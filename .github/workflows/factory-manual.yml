@@ -1,0 +1,75 @@
+name: factory-manual
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Factory mode'
+        type: choice
+        options:
+          - approval_required   # safe default — deployment stops for review
+          - autonomous
+        default: approval_required
+      ai:
+        description: 'AI backend'
+        type: choice
+        options:
+          - auto   # use GROQ_API_KEY if present, else mock
+          - mock
+          - groq
+        default: auto
+      dry_run:
+        description: 'Simulate deploy/distribute side effects (no real pushes)'
+        type: boolean
+        default: false
+
+jobs:
+  factory:
+    name: Manual factory run
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write       # gh-pages deploy + postmortem commits
+      issues: write
+    env:
+      FACTORY_MODE: ${{ inputs.mode }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GROQ_MODEL: ${{ vars.GROQ_MODEL || 'llama-3.3-70b-versatile' }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+      BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+      MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
+      MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+      REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+      REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+      REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+      REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Selftest + secret gate
+        run: |
+          python agent.py --selftest
+          python scripts/scan_secrets.py
+
+      - name: Run the pipeline
+        run: |
+          case "${{ inputs.ai }}" in
+            mock) FLAGS="--mock-ai" ;;
+            groq) FLAGS="" ;;
+            auto) FLAGS=""; [ -z "$GROQ_API_KEY" ] && FLAGS="--mock-ai" ;;
+          esac
+          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="$FLAGS --dry-run"; fi
+          python agent.py --run $FLAGS
+        timeout-minutes: 60

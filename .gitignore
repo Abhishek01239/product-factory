@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Environment / secrets — NEVER commit
+.env
+.env.local
+*.pem
+*.key
+
+# Factory runtime state (regenerated every run)
+runs/
+workspace/
+products/
+logs/
+projects.json
+distribution/capabilities.json
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Node (only relevant if you generate JS-based products locally)
+node_modules/
+dist/

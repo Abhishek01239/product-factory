@@ -1,0 +1,98 @@
+name: factory-daily
+
+on:
+  schedule:
+    # 08:00 UTC daily — one full factory pass.
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: factory-daily
+  cancel-in-progress: true
+
+jobs:
+  factory:
+    name: Run the factory
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write       # postmortems / notices via issue comments
+      pull-requests: read
+
+    env:
+      # --- Factory behavior (repo variable FACTORY_MODE overrides; default is the safe mode) ---
+      FACTORY_MODE: ${{ vars.FACTORY_MODE || 'approval_required' }}
+      # --- AI ---
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GROQ_MODEL: ${{ vars.GROQ_MODEL || 'llama-3.3-70b-versatile' }}
+      # --- Deployment ---
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      # --- Distribution (only platforms with configured creds activate) ---
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+      BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+      MASTODON_INSTANCE: ${{ secrets.MASTODON_INSTANCE }}
+      MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+      REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+      REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+      REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+      REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Offline smoke test (selftest)
+        run: python agent.py --selftest
+        timeout-minutes: 10
+
+      - name: Secret gate (committed-secret scan)
+        run: python scripts/scan_secrets.py
+
+      - name: Run the pipeline
+        run: |
+          if [ -n "$GROQ_API_KEY" ]; then
+            echo "::notice::Groq key present — real AI run"
+            python agent.py --run
+          else
+            echo "::notice::No Groq key — deterministic mock-AI pass (zero cost)"
+            python agent.py --run --mock-ai
+          fi
+        timeout-minutes: 60
+
+      - name: Upload run artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: factory-run
+          path: |
+            runs/**/*.json
+            runs/**/*.md
+            memory/VERSION
+          retention-days: 7
+
+      - name: Job summary
+        if: always()
+        run: |
+          latest=$(ls -1t runs/*.json 2>/dev/null | head -1)
+          if [ -n "$latest" ]; then
+            echo "### Factory run summary" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            jq -r '[.run_id, .stage, ("exit_code: " + ((.exit_code|tostring))),
+                    .project_id, .quality_score, .deploy_status, .message,
+                    ("errors: " + ((.errors|length)|tostring))] | .[]' \
+              "$latest" | sed 's/^/  /' >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "Run logs and memory snapshot are in the **factory-run** artifact." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No run report produced — check the selftest/secrets steps." >> "$GITHUB_STEP_SUMMARY"
+          fi

@@ -1,0 +1,79 @@
+{
+  "factory": {
+    "name": "Autonomous Product Factory",
+    "version": "1.0.0",
+    "mode": "approval_required",
+    "timezone": "UTC",
+    "runs_dir": "runs",
+    "workspace_dir": "workspace",
+    "products_dir": "products",
+    "registry_file": "projects.json",
+    "capabilities_file": "distribution/capabilities.json",
+    "memory_dir": "memory"
+  },
+  "budgets": {
+    "max_projects_per_run": 1,
+    "max_repair_attempts": 5,
+    "max_ai_requests": 30,
+    "max_build_seconds": 900,
+    "max_run_seconds": 3600,
+    "max_trend_items": 60,
+    "max_stored_projects": 50
+  },
+  "ai": {
+    "provider": "groq",
+    "model": "llama-3.3-70b-versatile",
+    "base_url": "https://api.groq.com/openai/v1/chat/completions",
+    "timeout_seconds": 90,
+    "retries": 2,
+    "max_tokens": 4096
+  },
+  "trends": {
+    "sources": ["hackernews", "reddit", "devto", "github"],
+    "subreddits": ["programming", "webdev", "SideProject", "SaaS", "MachineLearning"],
+    "hours_window": 48,
+    "min_score": 45,
+    "http_timeout_seconds": 25
+  },
+  "scoring": {
+    "user_need": 0.25,
+    "search_demand": 0.15,
+    "competition_gap": 0.15,
+    "buildability": 0.2,
+    "monetization": 0.1,
+    "long_term_value": 0.1,
+    "legal_risk_penalty": 0.2,
+    "security_risk_penalty": 0.1,
+    "platform_risk_penalty": 0.1
+  },
+  "quality": {
+    "deploy_threshold": 80,
+    "review_threshold": 60,
+    "min_page_words": 250
+  },
+  "gates": {
+    "require": [
+      "build",
+      "tests",
+      "security",
+      "seo",
+      "accessibility",
+      "legal",
+      "adsense",
+      "secrets"
+    ]
+  },
+  "deploy": {
+    "target": "vercel",
+    "vercel_project_scope": "",
+    "dry_run": false
+  },
+  "distribution": {
+    "enabled": true,
+    "max_posts_per_project": 5
+  },
+  "seo": {
+    "site_url": "https://example.com",
+    "author": "Product Factory"
+  }
+}

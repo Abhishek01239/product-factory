@@ -1,0 +1,33 @@
+{
+  "project": "Dev Toolbox",
+  "idea": "How I use LLMs to learn complex topics",
+  "architecture": "stdlib-only python factory; static-site renderer",
+  "technologies": [
+    "python",
+    "html",
+    "css",
+    "js"
+  ],
+  "successful_components": [],
+  "failed_components": [],
+  "errors": [],
+  "solutions": [],
+  "security_findings": [],
+  "seo_findings": [],
+  "performance_results": [
+    {
+      "score": 97.5
+    }
+  ],
+  "deployment_result": "simulated",
+  "lessons": [
+    "Pipeline works end-to-end in mock mode."
+  ],
+  "recommendations_for_future_projects": [],
+  "should_reuse": [
+    "stdlib-only design"
+  ],
+  "outcome": "successful",
+  "id": "p-20260810081209-b8a6",
+  "recorded_at": "2026-08-10T08:12:10+00:00"
+}
