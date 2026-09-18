@@ -15,6 +15,7 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+from factory.lifecycle import execute as lifecycle_execute
 
 ROOT = Path(__file__).resolve().parent.parent
 title = os.getenv("ISSUE_TITLE") or ""
