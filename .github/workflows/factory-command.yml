@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   command:
-    if: contains(github.event.issue.labels.*.name, 'factory-command')
+    if: startsWith(github.event.issue.title, '[factory]')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
