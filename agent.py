@@ -99,9 +99,26 @@ def _stage_trends(config: Config) -> int:
     print(f"\n{len(trends)} normalized trends from live public sources.\n")
     opps = score_opportunities(trends, config)
     print("Top opportunities:")
+    from factory.control_plane import ControlPlane
+    import hashlib
+    cp = ControlPlane(ROOT)
     for i, o in enumerate(opps[:5], 1):
         t = o["trend"]
+        fingerprint = f"{t.get('source', '')}|{t.get('url', '')}|{t.get('title', '')}"
+        opportunity_id = "opp-" + hashlib.sha256(fingerprint.encode()).hexdigest()[:12]
+        cp.put("opportunities", opportunity_id, {
+            "status": "discovered",
+            "title": t.get("title", ""),
+            "source": t.get("source", ""),
+            "url": t.get("url", ""),
+            "summary": t.get("summary", ""),
+            "score": o.get("total", 0),
+            "scores": o.get("scores", {}),
+            "eligible": o.get("eligible", False),
+            "risk_flags": o.get("risk_flags", []),
+        })
         print(f"  {i}. [{t.get('source')}] {t.get('title')[:90]}  (score {o['total']})")
+        print(f"     ID: {opportunity_id}")
         print(f"     {t.get('url', '')}")
     if not opps:
         print("No eligible opportunities this run.")
