@@ -1,0 +1,38 @@
+name: factory-command
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  command:
+    if: contains(github.event.issue.labels.*.name, 'factory-command')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Parse and execute command
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          FACTORY_COMMAND_ISSUE: ${{ github.event.issue.number }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          FACTORY_MODE: ${{ vars.FACTORY_MODE || 'approval_required' }}
+        run: |
+          set -e
+          python agent.py --command-issue "$ISSUE_TITLE" "$ISSUE_BODY"
+      - name: Comment result
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ github.event.issue.number }}
+        run: |
+          echo "Factory command finished. Check workflow logs and generated run report." > /tmp/comment.md
+          gh issue comment "$ISSUE" --body-file /tmp/comment.md
