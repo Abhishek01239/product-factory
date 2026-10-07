@@ -140,7 +140,8 @@ class SEOAuditor:
             findings.append({"level": "error", "file": "sitemap.xml", "issue": "sitemap has no <url> entries"})
 
         # Keyword-stuffing probe: the single most repeated *word* must stay under 4%.
-        text_blob = " ".join(read_text(f) for f in html_files)
+        # Count visible copy only (markup like class/href/aria must not count as "keywords").
+        text_blob = " ".join(_visible_text(read_text(f)) for f in html_files)
         words = re.findall(r"[a-z]{4,}", text_blob.lower())
         if words:
             top_word, top_count = max(((w, words.count(w)) for w in set(words)), key=lambda x: x[1])
@@ -153,6 +154,11 @@ class SEOAuditor:
         status = "pass" if not errors else "fail"
         log_event("seo", "info", f"seo: {status} ({len(errors)} errors, {len(warns)} warns)")
         return {"status": status, "score": score, "findings": findings[:40], "pages": info}
+
+
+def _visible_text(html: str) -> str:
+    text = re.sub(r"<script.*?</script>|<style.*?</style>", " ", html, flags=re.S)
+    return re.sub(r"<[^>]+>", " ", text)
 
 
 def _visible_words(html: str) -> int:

@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>EDF Tracker — free EDF deadline tracker for Indian freelancers</title>
+  <meta name="description" content="Free, private tracker for India's new EDF rules: monthly Export Declaration Form due dates, 9-month payment deadlines and a Part 2B CSV. No sign-up.">
+  <link rel="canonical" href="https://abhishek01239.github.io/product-factory/edf-tracker/">
+  <meta name="theme-color" content="#0f3d3e">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="EDF Tracker — never miss an Export Declaration Form deadline">
+  <meta property="og:description" content="Log foreign invoices, get your monthly EDF due date and 9-month realisation deadlines, export a Part 2B-ready CSV. Free, private, works offline.">
+  <meta property="og:url" content="https://abhishek01239.github.io/product-factory/edf-tracker/">
+  <meta property="og:image" content="https://abhishek01239.github.io/product-factory/edf-tracker/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EDF Tracker — free EDF deadline tracker for Indian service exporters">
+  <meta name="twitter:description" content="Monthly EDF due dates, 9-month realisation clock, Part 2B CSV, calendar reminders. Data never leaves your browser.">
+  <meta name="twitter:image" content="https://abhishek01239.github.io/product-factory/edf-tracker/og.png">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"EDF Tracker","applicationCategory":"FinanceApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"Free, private tracker for India's Export Declaration Form (EDF) deadlines for service exports under the FEMA 2026 regulations.","url":"https://abhishek01239.github.io/product-factory/edf-tracker/"}</script>
+</head>
+<body>
+<a class="skip" href="#tracker">Skip to tracker</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="./">
+      <span class="logo" aria-hidden="true"></span>
+      <span>EDF Tracker</span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="#tracker">Tracker</a>
+      <a href="#rules">The rules</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">New from 1 October 2026 · FEMA (Export &amp; Import) Regulations, 2026</p>
+        <h1>Foreign clients? You now owe your bank an EDF every month.</h1>
+        <p class="lede">Every Indian freelancer, consultant and agency that invoices clients abroad must file an Export Declaration Form within 30 days of month-end, and get paid within 9 months. EDF Tracker keeps both clocks for you, for free, without your data leaving this device.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#tracker">Start tracking invoices</a>
+          <a class="btn ghost" href="#rules">What changed?</a>
+        </div>
+        <ul class="trust">
+          <li>No sign-up</li><li>No server, no analytics</li><li>Works offline</li>
+        </ul>
+      </div>
+      <form class="card calc" id="quick-calc" aria-labelledby="calc-title" novalidate>
+        <h2 id="calc-title">Quick deadline check</h2>
+        <label for="qc-date">Invoice date</label>
+        <input type="date" id="qc-date" required>
+        <fieldset class="inline">
+          <legend>Invoiced in</legend>
+          <label><input type="radio" name="qc-cur" value="fx" checked> Foreign currency</label>
+          <label><input type="radio" name="qc-cur" value="inr"> Indian rupees</label>
+        </fieldset>
+        <div class="calc-out" id="qc-out" aria-live="polite">
+          <p class="muted">Pick a date to see your deadlines.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="tracker" class="tracker" aria-labelledby="tracker-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="tracker-title">Your EDF tracker</h2>
+        <div class="toolbar">
+          <button class="btn primary" type="button" id="add-btn">+ Add invoice</button>
+          <button class="btn" type="button" id="ics-btn">Calendar reminders (.ics)</button>
+          <details class="menu">
+            <summary class="btn">Backup</summary>
+            <div class="menu-body">
+              <button class="btn small" type="button" id="export-btn">Download backup (.json)</button>
+              <label class="btn small file-btn" for="import-file">Restore backup</label><input type="file" id="import-file" class="file-input" accept="application/json,.json">
+              <button class="btn small" type="button" id="demo-btn">Load sample data</button>
+              <button class="btn small danger" type="button" id="clear-btn">Delete all data</button>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="stats" id="stats" aria-live="polite"></div>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+      <div id="empty" class="empty card" hidden>
+        <h3>No invoices yet</h3>
+        <p>Add each invoice you raise to a client outside India. The tracker groups them by month (one EDF per month), shows when each EDF is due, and counts down the 9-month payment window.</p>
+        <div class="cta-row">
+          <button class="btn primary" type="button" id="empty-add">Add your first invoice</button>
+          <button class="btn" type="button" id="empty-demo">See it with sample data</button>
+        </div>
+      </div>
+
+      <div id="batches" class="batches"></div>
+
+      <div id="invoice-section" hidden>
+        <h3 class="sub">All invoices</h3>
+        <div class="table-wrap">
+          <table class="inv-table">
+            <caption class="sr-only">All logged export invoices with deadlines</caption>
+            <thead><tr><th scope="col">Invoice</th><th scope="col">Client</th><th scope="col">Amount</th><th scope="col">EDF due</th><th scope="col">Get paid by</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+            <tbody id="inv-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <dialog id="inv-dialog" aria-labelledby="dlg-title">
+    <form id="inv-form" method="dialog" novalidate>
+      <div class="dlg-head">
+        <h2 id="dlg-title">Add invoice</h2>
+        <button type="button" class="icon-btn" id="dlg-close" aria-label="Close">×</button>
+      </div>
+      <p class="muted small">Fields marked * are needed for tracking. The rest match EDF Part 2B, so month-end filing becomes copy-paste.</p>
+      <div class="grid2">
+        <div class="field"><label for="f-number">Invoice number *</label><input id="f-number" name="number" maxlength="60" required autocomplete="off"><p class="err" id="e-number"></p></div>
+        <div class="field"><label for="f-date">Invoice date *</label><input id="f-date" name="date" type="date" required><p class="err" id="e-date"></p></div>
+        <div class="field"><label for="f-client">Client (recipient) name *</label><input id="f-client" name="client" maxlength="120" required autocomplete="organization"><p class="err" id="e-client"></p></div>
+        <div class="field"><label for="f-country">Client country</label><input id="f-country" name="country" maxlength="60" autocomplete="country-name"></div>
+        <div class="field full"><label for="f-address">Client address</label><input id="f-address" name="address" maxlength="300"></div>
+        <div class="field"><label for="f-currency">Currency *</label><select id="f-currency" name="currency"></select><p class="err" id="e-currency"></p></div>
+        <div class="field"><label for="f-amount">Invoice amount *</label><input id="f-amount" name="amount" inputmode="decimal" required><p class="err" id="e-amount"></p></div>
+        <div class="field" id="inr-field"><label for="f-inrValue">Approx. value in ₹ <span class="hint">(for the ₹10 lakh check)</span></label><input id="f-inrValue" name="inrValue" inputmode="decimal"><p class="err" id="e-inrValue"></p></div>
+        <div class="field"><label for="f-netRealisable">Net realisable value <span class="hint">(after platform fees)</span></label><input id="f-netRealisable" name="netRealisable" inputmode="decimal"><p class="err" id="e-netRealisable"></p></div>
+        <fieldset class="field full inline">
+          <legend>Service type *</legend>
+          <label><input type="radio" name="category" value="software" checked> Software / digital deliverables</label>
+          <label><input type="radio" name="category" value="other"> Other services</label>
+          <p class="hint full">“Software” is defined broadly (programs, databases, designs, audio/video files delivered digitally). Designers and video editors may fall here. When unsure, ask your bank.</p>
+          <p class="err" id="e-category"></p>
+        </fieldset>
+        <div class="field"><label for="f-sac">SAC code</label><input id="f-sac" name="sac" inputmode="numeric" maxlength="8" placeholder="e.g. 998314"><p class="err" id="e-sac"></p></div>
+        <div class="field"><label for="f-contract">Contract no. / date</label><input id="f-contract" name="contract" maxlength="120"></div>
+        <div class="field full"><label for="f-description">Description of services</label><input id="f-description" name="description" maxlength="300"></div>
+        <div class="field"><label for="f-bank">AD bank receiving payment</label><input id="f-bank" name="bank" maxlength="80" placeholder="e.g. HDFC, ICICI, via Skydo"></div>
+        <div class="field"><label for="f-paidDate">Payment received on</label><input id="f-paidDate" name="paidDate" type="date"><p class="err" id="e-paidDate"></p></div>
+        <div class="field full"><span class="check"><input type="checkbox" id="f-advance" name="advance"> <label for="f-advance">This payment was an advance (received before the invoice)</label></span></div>
+      </div>
+      <div class="dlg-actions">
+        <button type="button" class="btn" id="dlg-cancel">Cancel</button>
+        <button type="submit" class="btn primary" id="dlg-save">Save invoice</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="file-dialog" aria-labelledby="file-title">
+    <form id="file-form" method="dialog" novalidate>
+      <div class="dlg-head"><h2 id="file-title">Mark EDF as filed</h2><button type="button" class="icon-btn" id="file-close" aria-label="Close">×</button></div>
+      <div class="field"><label for="ff-date">Filed on</label><input type="date" id="ff-date" required><p class="err" id="e-ff-date"></p></div>
+      <div class="field"><label for="ff-ref">Bank reference / EDF number (optional)</label><input id="ff-ref" maxlength="80"></div>
+      <div class="dlg-actions"><button type="button" class="btn" id="file-cancel">Cancel</button><button type="submit" class="btn primary">Save</button></div>
+    </form>
+  </dialog>
+
+  <section id="rules" class="rules" aria-labelledby="rules-title">
+    <div class="wrap">
+      <h2 id="rules-title">What changed on 1 October 2026</h2>
+      <div class="rule-grid">
+        <article class="card">
+          <h3>Every service export needs an EDF</h3>
+          <p>Under Regulation 3(2) of the FEMA (Export and Import of Goods and Services) Regulations, 2026, exporters of services declare the full export value on an Export Declaration Form. There is no minimum invoice size. SOFTEX is gone; software exports use the EDF too.</p>
+        </article>
+        <article class="card">
+          <h3>Due 30 days after month-end</h3>
+          <p>File within 30 days from the end of the month in which you raised the invoice. October invoices: 30 November. November: 30 December. December: 30 January 2027. One EDF can cover every invoice of the month, across all clients.</p>
+        </article>
+        <article class="card">
+          <h3>Get paid within 9 months</h3>
+          <p>The full value should be realised within 9 months of the invoice date (12 months if invoiced or settled in rupees). Your bank can extend either deadline if you ask with reasons, ideally before it passes.</p>
+        </article>
+        <article class="card">
+          <h3>Small invoices close easily</h3>
+          <p>For invoices up to ₹10 lakh, your bank can close the entry on your own declaration that payment was received, filed singly or as a quarterly bulk declaration.</p>
+        </article>
+      </div>
+      <p class="note"><strong>Non-software services:</strong> the regulations also let you file on or before the day payment arrives. Guidance differs on whether that replaces the 30-day limit, so this tracker conservatively shows the 30-day date as your outer deadline. Confirm with your bank.</p>
+    </div>
+  </section>
+
+  <section id="faq" class="faq" aria-labelledby="faq-title">
+    <div class="wrap narrow">
+      <h2 id="faq-title">FAQ</h2>
+      <details><summary>Is my data uploaded anywhere?</summary><p>No. Invoices are stored in your browser's local storage on this device only. The page has no server, no cookies, no analytics, and a security policy that blocks network requests. Use “Download backup” to move data between devices.</p></details>
+      <details><summary>Does this file the EDF for me?</summary><p>No. You file the EDF with your Authorised Dealer (AD) bank, or STPI/SEZ authority where applicable. The tracker tells you when, and exports a CSV laid out like Part 2B of the form (recipient, invoice, currency, amount, net realisable value, contract, description, SAC) so you can fill it quickly.</p></details>
+      <details><summary>I get paid via Upwork, Wise, PayPal or Skydo. Does this apply?</summary><p>Published guidance says to ask which AD bank the money actually settles through, and file the EDF with that bank. Bank procedures were still being finalised in early October 2026, so check your bank's published SOP.</p></details>
+      <details><summary>What about invoices dated before 1 October 2026?</summary><p>The new EDF requirement applies to exports from 1 October 2026. Transitional treatment of older invoices paid later is not clearly stated, so the tracker labels them “before new rules” and you should check with your bank.</p></details>
+      <details><summary>Is this legal or tax advice?</summary><p>No. It is a free calculator and organiser based on the published regulations and practitioner guidance listed below. Rules and bank procedures can change; verify important deadlines with your bank or a chartered accountant.</p></details>
+    </div>
+  </section>
+
+  <section class="sources" aria-labelledby="src-title">
+    <div class="wrap narrow">
+      <h2 id="src-title">Sources</h2>
+      <ul>
+        <li><a href="https://taxguru.in/rbi/export-declaration-form-edf-services-fema-declaration-1-october-2026.html" rel="noopener noreferrer" target="_blank">TaxGuru — EDF for services under the FEMA 2026 regulations</a></li>
+        <li><a href="https://eximpe.com/blog/payments/edf-form-idpms-services-fema-2026" rel="noopener noreferrer" target="_blank">EximPe — EDF form for services: how to file</a></li>
+        <li><a href="https://www.winvesta.in/blog/businesses/export-realisation-period-nine-months-october-2026" rel="noopener noreferrer" target="_blank">Winvesta — nine-month export realisation period</a></li>
+        <li><a href="https://www.indiatoday.in/business/story/rbis-new-fema-rule-from-october-1-what-freelancers-and-it-firms-need-to-know-3010553-2026-10-06" rel="noopener noreferrer" target="_blank">India Today — what freelancers and IT firms need to know</a></li>
+        <li><a href="https://www.thehindubusinessline.com/news/rbis-new-services-export-reporting-raises-concerns-among-freelancers-and-small-exporters/article71551924.ece" rel="noopener noreferrer" target="_blank">BusinessLine — concerns among freelancers and small exporters</a></li>
+      </ul>
+      <p class="muted small">Rules last reviewed 7 October 2026.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>EDF Tracker is free and open source, built by <a href="https://github.com/Abhishek01239/product-factory" rel="noopener noreferrer" target="_blank">Product Factory</a>. Not affiliated with RBI or any bank. Not legal advice. <a href="privacy.html">Privacy, terms &amp; disclaimer</a> · <a href="https://github.com/Abhishek01239/product-factory/issues" rel="noopener noreferrer" target="_blank">Feedback</a></p>
+  </div>
+</footer>
+<noscript><p class="noscript">EDF Tracker needs JavaScript to store and calculate your deadlines. Everything runs locally in your browser.</p></noscript>
+<script src="edf.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
