@@ -98,3 +98,16 @@ test("backup import validates and strips unknown fields", () => {
   const bad = E.parseBackup(JSON.stringify({ invoices: [{ ...good, amount: "x" }] }));
   assert.equal(bad.ok, false);
 });
+
+test("coverage: reflects RBI 7 Oct 2026 clarification and rejects bad input", () => {
+  assert.equal(E.coverage("entity", "large").level, "required");
+  assert.equal(E.coverage("business", "unsure").level, "unclear");
+  const ind = E.coverage("individual", "small");
+  assert.equal(ind.level, "not-required");
+  assert.ok(ind.points.some((p) => p.includes("self-declaration")));
+  assert.ok(ind.points.some((p) => p.includes("bank")));
+  assert.ok(E.coverage("entity", "unsure").points.some((p) => p.includes("per bill")));
+  assert.equal(E.coverage("robot", "small"), null);
+  assert.equal(E.coverage("individual", "<script>"), null);
+  assert.equal(E.CLARIFIED_ON, "2026-10-07");
+});

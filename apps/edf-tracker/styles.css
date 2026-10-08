@@ -197,3 +197,20 @@ dialog form { padding: 1.25rem 1.4rem 1.4rem; }
 }
 @media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
 .legal { padding: 2rem 0 3rem; } .legal h2 { margin-top: 1.6rem; font-size: 1.25rem; }
+
+/* v1.1: RBI 7 Oct update + coverage checker */
+.update-bar { background: var(--warn-bg); color: var(--ink); border-bottom: 1px solid #ecd9a6; padding: .75rem 0; font-size: .95rem; }
+.update-bar a { color: var(--brand); font-weight: 600; }
+.check { padding: 2.5rem 0 1rem; }
+.cov fieldset { border: 0; padding: 0; margin: 0 0 1rem; }
+.cov legend { font-weight: 700; margin-bottom: .5rem; }
+.cov label { display: flex; gap: .55rem; align-items: flex-start; padding: .45rem 0; cursor: pointer; }
+.cov input[type="radio"] { margin-top: .3rem; width: 1.05rem; height: 1.05rem; flex: none; }
+.cov-out { border-top: 1px dashed var(--line); padding-top: 1rem; }
+.cov-result { border-radius: 10px; padding: 1rem 1.1rem; border-left: 5px solid; }
+.cov-result h3 { margin: 0 0 .5rem; font-size: 1.1rem; }
+.cov-result ul { margin: 0 0 .6rem; padding-left: 1.2rem; }
+.cov-result li { margin-bottom: .35rem; }
+.cov-result.required { background: var(--info-bg); border-color: var(--info); }
+.cov-result.unclear { background: var(--warn-bg); border-color: var(--warn); }
+.cov-result.not-required { background: var(--ok-bg); border-color: var(--ok); }

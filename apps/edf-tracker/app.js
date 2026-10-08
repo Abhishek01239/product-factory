@@ -335,7 +335,29 @@
     return { invoices: invs, filings: {} };
   }
 
+
+  function bindCoverage() {
+    var form = $("cov-form"), out = $("cov-out");
+    if (!form) return;
+    function val(name) { var c = form.querySelector('input[name="' + name + '"]:checked'); return c ? c.value : ""; }
+    form.addEventListener("change", function () {
+      var who = val("cov-who"), bill = val("cov-bill");
+      out.textContent = "";
+      if (!who || !bill) { out.appendChild(el("p", { class: "muted", text: who || bill ? "Answer the other question too." : "Answer both questions to see your result." })); return; }
+      var r = E.coverage(who, bill);
+      if (!r) return;
+      var box = el("div", { class: "cov-result " + r.level }, [
+        el("h3", { text: r.title }),
+        el("ul", null, r.points.map(function (p) { return el("li", { text: p }); }))
+      ]);
+      box.appendChild(el("p", { class: "small" }, [r.level === "not-required" ? "You can still use the tracker below to log invoices and payment deadlines. " : "Use the tracker below to log invoices and get your monthly due dates. ", el("a", { href: "#tracker", text: "Go to the tracker" })]));
+      out.appendChild(box);
+    });
+    form.addEventListener("submit", function (e) { e.preventDefault(); });
+  }
+
   bind();
+  bindCoverage();
   render();
   if ("serviceWorker" in navigator && location.protocol === "https:") {
     navigator.serviceWorker.register("sw.js").catch(function () { /* offline cache is optional */ });

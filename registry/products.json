@@ -1,30 +1,99 @@
 {
-  "updated": "2026-10-07",
+  "updated": "2026-10-08",
   "products": [
     {
       "id": "edf-tracker",
       "name": "EDF Tracker",
       "status": "live",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "path": "apps/edf-tracker",
       "repository": "https://github.com/Abhishek01239/product-factory",
       "deployment_url": "https://abhishek01239.github.io/product-factory/edf-tracker/",
       "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
       "deployment_verified": "2026-10-07: 23/23 browser E2E checks passed against the live URL (desktop + mobile), 11/11 unit tests in CI",
       "created": "2026-10-07",
-      "problem": "India's FEMA 2026 regulations (effective 1 Oct 2026) require every service exporter, including freelancers, to file a monthly EDF within 30 days of month-end and realise payment within 9 months; no threshold, bank SOPs unclear.",
+      "problem": "India's FEMA 2026 regulations (effective 1 Oct 2026) require service exporters to file a monthly EDF within 30 days of month-end and realise payment within 9 months. RBI said on 7 Oct 2026 that individuals with personal-nature transactions are not covered; FAQs pending, so applicability is confusing.",
       "target_user": "Indian freelancers, consultants, small agencies and software exporters invoicing foreign clients",
       "opportunity_score": 7.9,
       "social_promotion": "drafted, not published (no social accounts connected)",
-      "analytics": "none (privacy-first; no tracking by design)"
+      "analytics": "none (privacy-first; no tracking by design)",
+      "changelog": [
+        {
+          "version": "1.1.0",
+          "date": "2026-10-08",
+          "change": "RBI 7 Oct clarification banner + 'Do I need to file?' checker; corrected copy that said every freelancer must file"
+        },
+        {
+          "version": "1.0.0",
+          "date": "2026-10-07",
+          "change": "initial release"
+        }
+      ],
+      "watch": "Update coverage() and copy when RBI publishes EDF FAQs"
     }
   ],
   "investigated": [
-    {"idea": "EDF deadline tracker for Indian service exporters", "score": 7.9, "decision": "selected", "date": "2026-10-07"},
-    {"idea": "AI agent token budget / cost tracker", "score": 5.7, "decision": "rejected", "reason": "Crowded (Helicone, Langfuse, provider dashboards); weak differentiation for a static MVP", "date": "2026-10-07"},
-    {"idea": "DGFT SAC to RBI purpose-code mismatch helper", "score": 5.6, "decision": "deferred", "reason": "Narrower; better as an EDF Tracker add-on (IMPROVE candidate)", "date": "2026-10-07"},
-    {"idea": "Developer/contractor offboarding access-revocation checklist", "score": 5.6, "decision": "rejected", "reason": "Low trend strength (1 mention); many existing checklists", "date": "2026-10-07"},
-    {"idea": "LibreOffice malicious-spreadsheet checker", "score": 4.8, "decision": "rejected", "reason": "Real fix is patching; a checker risks false assurance", "date": "2026-10-07"},
-    {"idea": "Kubernetes pending-pod provisioning explainer", "score": 4.7, "decision": "rejected", "reason": "Hard to build well without cluster access; small audience", "date": "2026-10-07"}
+    {
+      "idea": "EDF deadline tracker for Indian service exporters",
+      "score": 7.9,
+      "decision": "selected",
+      "date": "2026-10-07"
+    },
+    {
+      "idea": "AI agent token budget / cost tracker",
+      "score": 5.7,
+      "decision": "rejected",
+      "reason": "Crowded (Helicone, Langfuse, provider dashboards); weak differentiation for a static MVP",
+      "date": "2026-10-07"
+    },
+    {
+      "idea": "DGFT SAC to RBI purpose-code mismatch helper",
+      "score": 5.6,
+      "decision": "deferred",
+      "reason": "Narrower; better as an EDF Tracker add-on (IMPROVE candidate)",
+      "date": "2026-10-07"
+    },
+    {
+      "idea": "Developer/contractor offboarding access-revocation checklist",
+      "score": 5.6,
+      "decision": "rejected",
+      "reason": "Low trend strength (1 mention); many existing checklists",
+      "date": "2026-10-07"
+    },
+    {
+      "idea": "LibreOffice malicious-spreadsheet checker",
+      "score": 4.8,
+      "decision": "rejected",
+      "reason": "Real fix is patching; a checker risks false assurance",
+      "date": "2026-10-07"
+    },
+    {
+      "idea": "Kubernetes pending-pod provisioning explainer",
+      "score": 4.7,
+      "decision": "rejected",
+      "reason": "Hard to build well without cluster access; small audience",
+      "date": "2026-10-07"
+    },
+    {
+      "idea": "IMPROVE EDF Tracker for RBI 7 Oct clarification (individuals not covered)",
+      "score": 8.2,
+      "decision": "selected",
+      "date": "2026-10-08",
+      "reason": "Live product's core claim became partly wrong; correcting it and answering 'do I need to file?' is the highest-value work"
+    },
+    {
+      "idea": "Reddit RSS replacement (RSS ends 13 Nov 2026, public Data API March 2027)",
+      "score": 5.4,
+      "decision": "rejected",
+      "reason": "Any replacement depends on Reddit data access that Reddit is deliberately closing; ToS/legal risk; revisit only as a migration guide/OPML exporter",
+      "date": "2026-10-08"
+    },
+    {
+      "idea": "NYC Click-to-Cancel helper (rule effective 1 Oct 2026)",
+      "score": 4.9,
+      "decision": "rejected",
+      "reason": "NYC already runs an official complaint portal (NYC311/DCWP); single-city audience; small gap",
+      "date": "2026-10-08"
+    }
   ]
 }

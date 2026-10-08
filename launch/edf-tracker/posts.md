@@ -1,30 +1,30 @@
-# EDF Tracker — launch content (drafts)
+# EDF Tracker — launch content (drafts, v1.1.0)
 
-Status: NOT PUBLISHED. No social accounts are connected (X, Bluesky, Facebook Pages are disconnected).
-Image: `apps/edf-tracker/og.png` (1200×630; reflects the real UI).
+Status: NOT PUBLISHED. X, Bluesky, Facebook Pages and Mastodon are not connected (checked 2026-10-08).
+v1.0 drafts (2026-10-07) were withdrawn: they said every freelancer must file, which RBI's 7 Oct 2026 statement contradicts for individuals.
+Image: `apps/edf-tracker/og.png` (1200×630; still accurate: shows the tracker UI, makes no coverage claim).
 Link: https://abhishek01239.github.io/product-factory/edf-tracker/
 
 ## X (thread)
-1/ Indian freelancers: since 1 Oct 2026, every invoice to a foreign client needs an Export Declaration Form (EDF) filed with your bank. No minimum amount.
-Deadline = 30 days after the end of the invoice month. October invoices → 30 Nov.
+1/ Freelancers in India confused by the new Export Declaration Form (EDF) rules: on 7 Oct RBI's Governor said individuals providing services abroad (his examples: tutoring, small software work) are not required to report. Written FAQs are still pending.
 
-2/ Second clock: you must receive payment within 9 months of the invoice date (12 if invoiced in INR). Unpaid invoices quietly become a compliance problem.
+2/ Who still files? Companies, LLPs and firms exporting services: one EDF a month, due 30 days after month-end, with payment realised within 9 months. Proprietorships are a grey area until the FAQs land. Ask your bank.
 
-3/ One EDF can cover all of a month's invoices. So the practical routine is: log invoices as you raise them, file once a month, chase anything unpaid at month 6.
+3/ Also from RBI: bills up to ₹10 lakh each can use a self-declaration with the invoice. The limit is per bill, not per year. Banks, not you, report on the RBI portal.
 
-4/ I built a free tool that does exactly that: EDF Tracker. Monthly EDF due dates, 9-month payment countdown, Part 2B CSV export, calendar reminders. No sign-up; data stays in your browser.
+4/ I updated a free tool to answer "do I need to file?" in two questions, and to track EDF due dates and the 9-month payment clock if you do. No sign-up; data stays in your browser.
 https://abhishek01239.github.io/product-factory/edf-tracker/
-Not legal advice — confirm details with your bank.
+Not legal advice.
 
 ## Bluesky
-New since 1 Oct 2026: Indian freelancers billing foreign clients must file an Export Declaration Form within 30 days of month-end, and get paid within 9 months.
-I made a free, private tracker for both deadlines + a Part 2B CSV for month-end filing. No sign-up, works offline.
+RBI on 7 Oct: individuals doing personal-capacity freelance work abroad are not required to report under the new EDF rules. Companies, LLPs and firms still file monthly; proprietorships await RBI's FAQs.
+Free 2-question checker + EDF deadline tracker (no sign-up, works offline):
 https://abhishek01239.github.io/product-factory/edf-tracker/
 
-## Reddit (r/IndiaTax, r/developersIndia, r/freelance_forhire — check each sub's self-promo rules first)
-Title: Made a free EDF deadline tracker for the new 1 Oct service-export rules (no login, data stays local)
-Body: With the FEMA 2026 regs, every service export invoice needs an EDF filed with your AD bank within 30 days of the end of the invoice month (one EDF can cover the whole month), and payment must be realised within 9 months (12 if INR-invoiced). Tracking two dates per invoice is fiddly, so I built a small tracker: add invoices → it groups them by month, shows each EDF due date, counts down the realisation window, flags the ≤₹10 lakh self-declaration route, and exports a CSV laid out like Part 2B. Everything runs in your browser (no server, no analytics). Open source. Feedback on bank-specific quirks (HDFC/ICICI/SBI, Skydo/Wise payouts) very welcome. Not legal advice.
+## Reddit (r/IndiaTax, r/developersIndia — check each sub's self-promo rules first; best as a helpful comment in existing EDF threads)
+Title: Summary of RBI's 7 Oct EDF clarification + a free "do I need to file?" checker
+Body: What RBI said at the 7 Oct press conference (BusinessLine / New Indian Express): (1) individuals with forex transactions of a personal nature are not covered; the Governor's examples included tutoring and small software services; (2) small exporters with bills up to ₹10 lakh each can use a self-declaration with the invoice (a simpler route, not an exemption); (3) reporting on the portal is done by banks; (4) FAQs are coming. Companies/LLPs/firms should keep filing; proprietorships are unclear until the FAQs. I maintain a small open-source tool that turns this into a 2-question check and, if you do file, tracks monthly EDF due dates, the 9-month realisation window and a Part 2B CSV. Runs entirely in your browser. Not legal advice; corrections welcome.
 Link: https://abhishek01239.github.io/product-factory/edf-tracker/
 
 ## LinkedIn (only if configured)
-If you're an Indian consultant or agency with overseas clients, October changed your month-end routine: an Export Declaration Form per month, due 30 days after month-end, plus a 9-month realisation window per invoice. Here's a free checklist-style tracker that keeps both dates and prepares the Part 2B list: https://abhishek01239.github.io/product-factory/edf-tracker/
+RBI's 7 Oct clarification narrows who files the new Export Declaration Form: individuals acting in a personal capacity are out; companies, LLPs and firms exporting services still file one EDF a month and must realise payment within 9 months. If that's you, this free tracker keeps both dates and prepares the Part 2B list: https://abhishek01239.github.io/product-factory/edf-tracker/

@@ -304,6 +304,45 @@
     return { ok: true, data: { invoices: clean, filings: filings } };
   }
 
+
+  /*
+   * "Do I need to file?" guidance, reflecting RBI's 7 Oct 2026 clarification
+   * (Governor Sanjay Malhotra / Dy. Governor Rohit Jain, monetary policy
+   * press conference): individuals with forex transactions of a personal
+   * nature are not covered; small exporters with bills up to Rs 10 lakh may
+   * use a self-declaration with the invoice; reporting on the portal is done
+   * by banks. RBI FAQs are pending, so results are deliberately hedged.
+   *   who:  "entity" (company / LLP / partnership firm)
+   *         "business" (sole proprietorship / registered business in own name)
+   *         "individual" (freelancing in a personal capacity)
+   *   bill: "small" (every invoice <= Rs 10 lakh) | "large" | "unsure"
+   */
+  var CLARIFIED_ON = "2026-10-07";
+  function coverage(who, bill) {
+    var WHO = { entity: 1, business: 1, individual: 1 }, BILL = { small: 1, large: 1, unsure: 1 };
+    if (!WHO[who] || !BILL[bill]) return null;
+    var r = { who: who, bill: bill, points: [] };
+    if (who === "entity") {
+      r.level = "required";
+      r.title = "Yes, plan to file a monthly EDF";
+      r.points.push("RBI's 7 Oct clarification covers individuals only. Companies, LLPs and firms exporting services should treat the EDF as required.");
+    } else if (who === "business") {
+      r.level = "unclear";
+      r.title = "Unclear until RBI publishes its FAQs";
+      r.points.push("RBI said individuals are not covered, but a proprietorship run as a business may still be treated as an exporter. Ask your bank and keep tracking invoices so you are ready either way.");
+    } else {
+      r.level = "not-required";
+      r.title = "Probably not, based on RBI's 7 Oct statement";
+      r.points.push("RBI's Governor said individuals providing services abroad, such as tutoring or small software work, are not required to report. The written FAQs are still pending.");
+      r.points.push("Your bank may still ask for an invoice or purpose code when foreign money arrives. Tracking invoices here stays useful for that and for tax records.");
+    }
+    if (bill === "small") r.points.push("Every invoice is up to ₹10 lakh: RBI said small exporters can use a self-declaration with the invoice instead of the detailed process. This is a simpler route, not an exemption.");
+    else if (bill === "large") r.points.push("At least one invoice is above ₹10 lakh: expect the full EDF process and payment evidence for that bill.");
+    else r.points.push("The ₹10 lakh limit applies per bill, not per year. Add the rupee value to each invoice and the tracker will flag bills above it.");
+    r.points.push("Reporting on the RBI portal is done by your bank, not by you. Your part is the declaration and supporting invoice.");
+    return r;
+  }
+
   var FIELDS = ["id", "number", "date", "client", "address", "country", "currency", "amount", "inrValue",
     "netRealisable", "category", "sac", "description", "contract", "bank", "paidDate", "advance", "notes"];
 
@@ -330,6 +369,6 @@
     realisationDue: realisationDue, chaseDate: chaseDate, inScope: inScope, daysBetween: daysBetween,
     smallInvoice: smallInvoice, inrValue: inrValue, deadlineStatus: deadlineStatus, validateInvoice: validateInvoice,
     buildBatches: buildBatches, invoiceView: invoiceView, part2bCsv: part2bCsv, buildIcs: buildIcs,
-    parseBackup: parseBackup, sanitizeInvoice: sanitizeInvoice, uid: uid, csvCell: csvCell
+    parseBackup: parseBackup, coverage: coverage, CLARIFIED_ON: CLARIFIED_ON, sanitizeInvoice: sanitizeInvoice, uid: uid, csvCell: csvCell
   };
 });

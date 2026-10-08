@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
-  <title>EDF Tracker — free EDF deadline tracker for Indian freelancers</title>
-  <meta name="description" content="Free, private tracker for India's new EDF rules: monthly Export Declaration Form due dates, 9-month payment deadlines and a Part 2B CSV. No sign-up.">
+  <title>EDF Tracker — do you need to file an EDF? Free checker and deadline tracker</title>
+  <meta name="description" content="Check whether India's new Export Declaration Form (EDF) applies to you after RBI's 7 Oct 2026 clarification, then track monthly EDF due dates, 9-month payment deadlines and a Part 2B CSV. Free, private.">
   <link rel="canonical" href="https://abhishek01239.github.io/product-factory/edf-tracker/">
   <meta name="theme-color" content="#0f3d3e">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -35,6 +35,7 @@
       <span>EDF Tracker</span>
     </a>
     <nav aria-label="Primary">
+      <a href="#check">Do I file?</a>
       <a href="#tracker">Tracker</a>
       <a href="#rules">The rules</a>
       <a href="#faq">FAQ</a>
@@ -47,11 +48,11 @@
     <div class="wrap hero-grid">
       <div>
         <p class="eyebrow">New from 1 October 2026 · FEMA (Export &amp; Import) Regulations, 2026</p>
-        <h1>Foreign clients? You now owe your bank an EDF every month.</h1>
-        <p class="lede">Every Indian freelancer, consultant and agency that invoices clients abroad must file an Export Declaration Form within 30 days of month-end, and get paid within 9 months. EDF Tracker keeps both clocks for you, for free, without your data leaving this device.</p>
+        <h1>Foreign clients? Find out if you owe your bank an EDF, then never miss one.</h1>
+        <p class="lede">Service exporters must file an Export Declaration Form within 30 days of month-end and get paid within 9 months. On 7 October RBI said individuals working in a personal capacity are not covered. EDF Tracker helps you check where you stand and keeps both clocks if you do file. Free, and your data never leaves this device.</p>
         <div class="cta-row">
-          <a class="btn primary" href="#tracker">Start tracking invoices</a>
-          <a class="btn ghost" href="#rules">What changed?</a>
+          <a class="btn primary" href="#check">Check if you need to file</a>
+          <a class="btn ghost" href="#tracker">Go to the tracker</a>
         </div>
         <ul class="trust">
           <li>No sign-up</li><li>No server, no analytics</li><li>Works offline</li>
@@ -69,6 +70,32 @@
         <div class="calc-out" id="qc-out" aria-live="polite">
           <p class="muted">Pick a date to see your deadlines.</p>
         </div>
+      </form>
+    </div>
+  </section>
+
+  <div class="update-bar" role="note" aria-label="Rule update">
+    <div class="wrap"><strong>Update, 7 Oct 2026:</strong> RBI said individuals with forex transactions of a personal nature, including freelancers doing tutoring or small software work, are not required to report. RBI FAQs are pending. <a href="#check">See what it means for you</a>.</div>
+  </div>
+
+  <section id="check" class="check" aria-labelledby="check-title">
+    <div class="wrap narrow">
+      <h2 id="check-title">Do I need to file an EDF?</h2>
+      <p class="muted">Two questions, based on RBI's public statements of 7 October 2026. This is guidance, not a ruling. Your bank has the final say until RBI's written FAQs are out.</p>
+      <form id="cov-form" class="card cov" novalidate>
+        <fieldset>
+          <legend>1. How do you invoice your foreign clients?</legend>
+          <label><input type="radio" name="cov-who" value="individual"> As an individual, in my own name (personal capacity)</label>
+          <label><input type="radio" name="cov-who" value="business"> Through a sole proprietorship or registered business in my name</label>
+          <label><input type="radio" name="cov-who" value="entity"> Through a company, LLP or partnership firm</label>
+        </fieldset>
+        <fieldset>
+          <legend>2. How large are your invoices?</legend>
+          <label><input type="radio" name="cov-bill" value="small"> Every invoice is ₹10 lakh or less</label>
+          <label><input type="radio" name="cov-bill" value="large"> At least one invoice is above ₹10 lakh</label>
+          <label><input type="radio" name="cov-bill" value="unsure"> Not sure</label>
+        </fieldset>
+        <div id="cov-out" class="cov-out" aria-live="polite"><p class="muted">Answer both questions to see your result.</p></div>
       </form>
     </div>
   </section>
@@ -171,8 +198,8 @@
       <h2 id="rules-title">What changed on 1 October 2026</h2>
       <div class="rule-grid">
         <article class="card">
-          <h3>Every service export needs an EDF</h3>
-          <p>Under Regulation 3(2) of the FEMA (Export and Import of Goods and Services) Regulations, 2026, exporters of services declare the full export value on an Export Declaration Form. There is no minimum invoice size. SOFTEX is gone; software exports use the EDF too.</p>
+          <h3>Service exports need an EDF</h3>
+          <p>Under Regulation 3(2) of the FEMA (Export and Import of Goods and Services) Regulations, 2026, exporters of services declare the full export value on an Export Declaration Form. SOFTEX is gone; software exports use the EDF too. On 7 October 2026 RBI said individuals acting in a personal capacity are not covered.</p>
         </article>
         <article class="card">
           <h3>Due 30 days after month-end</h3>
@@ -183,8 +210,8 @@
           <p>The full value should be realised within 9 months of the invoice date (12 months if invoiced or settled in rupees). Your bank can extend either deadline if you ask with reasons, ideally before it passes.</p>
         </article>
         <article class="card">
-          <h3>Small invoices close easily</h3>
-          <p>For invoices up to ₹10 lakh, your bank can close the entry on your own declaration that payment was received, filed singly or as a quarterly bulk declaration.</p>
+          <h3>Small bills: self-declaration</h3>
+          <p>RBI said small exporters with bills up to ₹10 lakh each can use a self-declaration with the invoice. The limit is per bill, not per year. It is a simpler route, not an exemption. Banks, not you, report on the RBI portal.</p>
         </article>
       </div>
       <p class="note"><strong>Non-software services:</strong> the regulations also let you file on or before the day payment arrives. Guidance differs on whether that replaces the 30-day limit, so this tracker conservatively shows the 30-day date as your outer deadline. Confirm with your bank.</p>
@@ -194,6 +221,7 @@
   <section id="faq" class="faq" aria-labelledby="faq-title">
     <div class="wrap narrow">
       <h2 id="faq-title">FAQ</h2>
+      <details><summary>I'm a freelancer. Did RBI say I don't need to file?</summary><p>At a press conference on 7 October 2026, RBI Governor Sanjay Malhotra said individuals providing services abroad, giving tutoring and small software work as examples, are not required to report. RBI will publish FAQs with the details. Until then, freelancers working through a proprietorship or registered business are in a grey area, so ask your bank. Companies, LLPs and firms should keep filing.</p></details>
       <details><summary>Is my data uploaded anywhere?</summary><p>No. Invoices are stored in your browser's local storage on this device only. The page has no server, no cookies, no analytics, and a security policy that blocks network requests. Use “Download backup” to move data between devices.</p></details>
       <details><summary>Does this file the EDF for me?</summary><p>No. You file the EDF with your Authorised Dealer (AD) bank, or STPI/SEZ authority where applicable. The tracker tells you when, and exports a CSV laid out like Part 2B of the form (recipient, invoice, currency, amount, net realisable value, contract, description, SAC) so you can fill it quickly.</p></details>
       <details><summary>I get paid via Upwork, Wise, PayPal or Skydo. Does this apply?</summary><p>Published guidance says to ask which AD bank the money actually settles through, and file the EDF with that bank. Bank procedures were still being finalised in early October 2026, so check your bank's published SOP.</p></details>
@@ -211,8 +239,11 @@
         <li><a href="https://www.winvesta.in/blog/businesses/export-realisation-period-nine-months-october-2026" rel="noopener noreferrer" target="_blank">Winvesta — nine-month export realisation period</a></li>
         <li><a href="https://www.indiatoday.in/business/story/rbis-new-fema-rule-from-october-1-what-freelancers-and-it-firms-need-to-know-3010553-2026-10-06" rel="noopener noreferrer" target="_blank">India Today — what freelancers and IT firms need to know</a></li>
         <li><a href="https://www.thehindubusinessline.com/news/rbis-new-services-export-reporting-raises-concerns-among-freelancers-and-small-exporters/article71551924.ece" rel="noopener noreferrer" target="_blank">BusinessLine — concerns among freelancers and small exporters</a></li>
+        <li><a href="https://www.thehindubusinessline.com/news/rbi-governor-says-forex-transactions-of-personal-nature-remain-outside-new-fema-reporting/article71556874.ece" rel="noopener noreferrer" target="_blank">BusinessLine — RBI Governor: personal-nature forex transactions outside new reporting (7 Oct 2026)</a></li>
+        <li><a href="https://www.newindianexpress.com/business/2026/Oct/07/new-fema-rules-rbi-says-freelancers-need-not-report-faqs-to-be-issued-soon" rel="noopener noreferrer" target="_blank">New Indian Express — RBI says freelancers need not report; FAQs soon (7 Oct 2026)</a></li>
+        <li><a href="https://taxguru.in/rbi/edf-compliance-1-october-2026-paperwork-burden-indias-service-exporters-not.html" rel="noopener noreferrer" target="_blank">TaxGuru — EDF after RBI's 7 Oct clarification</a></li>
       </ul>
-      <p class="muted small">Rules last reviewed 7 October 2026.</p>
+      <p class="muted small">Rules last reviewed 8 October 2026. RBI FAQs not yet published.</p>
     </div>
   </section>
 </main>
