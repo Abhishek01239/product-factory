@@ -10,12 +10,12 @@
       "repository": "https://github.com/Abhishek01239/product-factory",
       "deployment_url": "https://abhishek01239.github.io/product-factory/edf-tracker/",
       "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
-      "deployment_verified": "2026-10-07: 23/23 browser E2E checks passed against the live URL (desktop + mobile), 11/11 unit tests in CI",
+      "deployment_verified": "2026-10-08 (v1.1.0): deploy-pages run 37728462968 succeeded; 22/22 Playwright E2E checks against the live URL (desktop + mobile); 12/12 unit tests. 2026-10-07 (v1.0.0): 23/23.",
       "created": "2026-10-07",
       "problem": "India's FEMA 2026 regulations (effective 1 Oct 2026) require service exporters to file a monthly EDF within 30 days of month-end and realise payment within 9 months. RBI said on 7 Oct 2026 that individuals with personal-nature transactions are not covered; FAQs pending, so applicability is confusing.",
       "target_user": "Indian freelancers, consultants, small agencies and software exporters invoicing foreign clients",
       "opportunity_score": 7.9,
-      "social_promotion": "drafted, not published (no social accounts connected)",
+      "social_promotion": "drafted v1.1 (v1.0 drafts withdrawn as inaccurate), not published: X/Bluesky/Facebook/Mastodon not connected",
       "analytics": "none (privacy-first; no tracking by design)",
       "changelog": [
         {
