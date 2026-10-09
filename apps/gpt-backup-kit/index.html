@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>GPT Backup Kit — back up and migrate your custom GPT before Dec 11, 2026</title>
+  <meta name="description" content="Custom GPTs retire on Dec 11, 2026 and OpenAI has no export button. Back up a GPT's instructions, starters, files and actions in one ZIP, see what migration drops, and get a SKILL.md, Claude/Gemini copies and MCP stubs for custom actions. Free, private, runs in your browser.">
+  <link rel="canonical" href="https://abhishek01239.github.io/product-factory/gpt-backup-kit/">
+  <meta name="theme-color" content="#1b1f3b">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="GPT Backup Kit — save your custom GPT before it retires">
+  <meta property="og:description" content="One-ZIP backup of a custom GPT, a checklist of what 'Migrate to plugin' drops, and MCP server stubs for custom actions. Free and private.">
+  <meta property="og:url" content="https://abhishek01239.github.io/product-factory/gpt-backup-kit/">
+  <meta property="og:image" content="https://abhishek01239.github.io/product-factory/gpt-backup-kit/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GPT Backup Kit — save your custom GPT before Dec 11">
+  <meta name="twitter:description" content="Back up instructions, starters, files and actions; see what migration drops; get MCP stubs for actions. Runs in your browser.">
+  <meta name="twitter:image" content="https://abhishek01239.github.io/product-factory/gpt-backup-kit/og.png">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"GPT Backup Kit","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free, private tool to back up a custom GPT and prepare its migration before custom GPTs retire on Dec 11, 2026.","url":"https://abhishek01239.github.io/product-factory/gpt-backup-kit/"}</script>
+</head>
+<body>
+<a class="skip" href="#kit">Skip to the kit</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="./"><span class="logo" aria-hidden="true"></span><span>GPT Backup Kit</span></a>
+    <nav aria-label="Primary">
+      <a href="#changes">What's lost</a>
+      <a href="#kit">Backup</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Custom GPTs retire on <strong>Dec 11, 2026</strong> · <span id="countdown">—</span></p>
+        <h1>Save your custom GPT before it stops running.</h1>
+        <p class="lede">OpenAI is replacing custom GPTs with plugins. "Migrate to plugin" moves instructions, knowledge files and connected apps, but custom actions, the chosen model, sharing settings and unpublished edits stay behind. OpenAI has no export button for GPTs. This kit gives you one: paste your GPT's configuration and download a complete backup, a checklist for your GPT, and starter code to rebuild its actions.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#kit">Back up a GPT</a>
+          <button class="btn ghost" type="button" id="try-sample">Try with a sample GPT</button>
+        </div>
+        <ul class="trust"><li>No sign-up</li><li>Runs entirely in your browser</li><li>Nothing is uploaded</li></ul>
+      </div>
+      <aside class="hero-card" aria-label="What you get">
+        <h2>One ZIP, everything you'd lose</h2>
+        <ul class="check">
+          <li><code>gpt.json</code> full config you can re-import</li>
+          <li><code>SKILL.md</code> in the open Agent Skills format</li>
+          <li>Ready-to-paste Claude Project &amp; Gemini Gem instructions</li>
+          <li>Python MCP server stub for each custom action</li>
+          <li>Your test prompts and expected answers</li>
+          <li>A migration checklist for this specific GPT</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section id="changes" class="band">
+    <div class="wrap">
+      <h2>What "Migrate to plugin" keeps and drops</h2>
+      <p class="muted">From OpenAI's <a href="https://help.openai.com/en/articles/20001519-custom-gpt-retirement-and-migration-faq" rel="noopener noreferrer">retirement and migration FAQ</a> and <a href="https://learn.chatgpt.com/docs/migrate-custom-gpts" rel="noopener noreferrer">migration guide</a>, checked 9 Oct 2026.</p>
+      <div class="table-wrap">
+        <table class="compare">
+          <thead><tr><th scope="col">Part of your GPT</th><th scope="col">After migration</th></tr></thead>
+          <tbody>
+            <tr><td>Instructions</td><td><span class="tag ok">Kept</span> become a skill in the plugin</td></tr>
+            <tr><td>Knowledge files</td><td><span class="tag ok">Kept</span> copied as reference files (retrieval may differ)</td></tr>
+            <tr><td>Connected apps</td><td><span class="tag ok">Kept</span> added to the plugin; users still need app access</td></tr>
+            <tr><td>Custom actions</td><td><span class="tag bad">Dropped</span> rebuild with an app or a custom MCP server</td></tr>
+            <tr><td>Selected model</td><td><span class="tag bad">Dropped</span></td></tr>
+            <tr><td>Sharing settings &amp; users</td><td><span class="tag bad">Dropped</span> plugin starts private; share it again</td></tr>
+            <tr><td>Unpublished drafts</td><td><span class="tag bad">Dropped</span> only the latest published version migrates</td></tr>
+            <tr><td>Conversation starters</td><td><span class="tag warn">Not one-to-one</span></td></tr>
+            <tr><td>Capability settings</td><td><span class="tag warn">Not guaranteed</span> same tools or behavior</td></tr>
+            <tr><td>Past conversations</td><td><span class="tag warn">Stay with the old GPT</span> still readable after retirement</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="kit" class="kit">
+    <div class="wrap">
+      <h2>Back up your GPT</h2>
+      <p class="muted">Open your GPT in ChatGPT → <strong>Edit</strong> → <strong>Configure</strong>, then copy each field below. Your entries are saved only in this browser (you can clear them any time). Knowledge files you add stay in memory and go only into your ZIP.</p>
+      <div class="toolbar">
+        <label class="btn small ghost file-btn">Import backup (gpt.json)<input type="file" id="import-file" accept=".json,application/json"></label>
+        <button type="button" class="btn small ghost" id="load-sample">Load sample</button>
+        <button type="button" class="btn small ghost danger" id="clear-all">Clear all</button>
+        <a class="btn small ghost jump" href="#output">Jump to your backup ↓</a>
+        <span class="status" id="save-status" role="status" aria-live="polite"></span>
+      </div>
+      <div class="kit-grid">
+        <form id="gpt-form" class="form" novalidate>
+          <fieldset>
+            <legend><span class="num">1</span> Basics</legend>
+            <label for="f-name">Name <span class="req">required</span></label>
+            <input id="f-name" name="name" type="text" maxlength="200" autocomplete="off" placeholder="e.g. Weekly Report Writer">
+            <label for="f-description">Description</label>
+            <input id="f-description" name="description" type="text" maxlength="1200" autocomplete="off" placeholder="One sentence: what it does">
+            <label for="f-instructions">Instructions <span class="req">required</span></label>
+            <textarea id="f-instructions" name="instructions" rows="10" spellcheck="false" placeholder="Paste the full Instructions field"></textarea>
+            <p class="hint"><span id="instr-count">0</span> characters</p>
+            <div class="row2">
+              <div>
+                <label for="f-model">Recommended model</label>
+                <input id="f-model" name="model" type="text" maxlength="80" autocomplete="off" placeholder="e.g. GPT-5.4 Thinking">
+              </div>
+              <div>
+                <label for="f-plan">Where was it created?</label>
+                <select id="f-plan" name="plan"><option value="personal">Personal plan (Free/Plus/Pro)</option><option value="enterprise">Enterprise / Edu / Business workspace</option></select>
+              </div>
+            </div>
+            <label for="f-published">Is your latest version published?</label>
+            <select id="f-published" name="published"><option value="published">Yes, published (privately is fine)</option><option value="draft">No, it has unpublished edits</option><option value="unsure">Not sure</option></select>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="num">2</span> Conversation starters &amp; capabilities</legend>
+            <div id="starters" class="list" data-kind="starters"></div>
+            <button type="button" class="btn small ghost" data-add="starters">+ Add starter</button>
+            <p class="label-like">Capabilities turned on</p>
+            <div class="caps" id="caps"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="num">3</span> Knowledge &amp; apps</legend>
+            <label class="btn small ghost file-btn">Add knowledge files<input type="file" id="knowledge-files" multiple></label>
+            <p class="hint">Download them from the GPT's Knowledge section first. Files are not stored; re-add them after a reload to include them in the ZIP.</p>
+            <ul id="knowledge-list" class="chips" aria-label="Knowledge files"></ul>
+            <label for="f-apps">Connected apps (if any)</label>
+            <input id="f-apps" name="apps" type="text" maxlength="300" autocomplete="off" placeholder="e.g. Google Drive, Slack">
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="num">4</span> Custom actions</legend>
+            <p class="hint">For each action, open it in the GPT editor and copy the <strong>Schema</strong>. Do not paste API keys; the backup never needs them.</p>
+            <div id="actions" class="list" data-kind="actions"></div>
+            <button type="button" class="btn small ghost" data-add="actions">+ Add action</button>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="num">5</span> Sharing &amp; tests</legend>
+            <div class="row2">
+              <div>
+                <label for="f-sharing">Shared with</label>
+                <select id="f-sharing" name="sharing"><option value="private">Only me</option><option value="link">Anyone with the link</option><option value="workspace">My workspace</option><option value="store">GPT Store (public)</option></select>
+              </div>
+              <div>
+                <label for="f-users">Who uses it?</label>
+                <input id="f-users" name="users" type="text" maxlength="200" autocomplete="off" placeholder="e.g. sales team, 40 people">
+              </div>
+            </div>
+            <label for="f-shareLink">Share link</label>
+            <input id="f-shareLink" name="shareLink" type="url" maxlength="300" autocomplete="off" placeholder="https://chatgpt.com/g/…">
+            <p class="label-like">Test prompts (run them on the original GPT now and note what a good answer looks like)</p>
+            <div id="tests" class="list" data-kind="tests"></div>
+            <button type="button" class="btn small ghost" data-add="tests">+ Add test prompt</button>
+          </fieldset>
+        </form>
+
+        <section class="output" id="output" aria-label="Your backup">
+          <div class="out-head">
+            <div>
+              <p class="out-title" id="out-title">Your backup</p>
+              <p class="muted small" id="out-sub">Fill in a name and instructions to start.</p>
+            </div>
+            <button type="button" class="btn primary" id="download-zip" disabled>Download backup ZIP</button>
+          </div>
+          <p class="error" id="form-error" role="alert" hidden></p>
+          <div class="tabs" role="tablist" aria-label="Backup outputs">
+            <button role="tab" id="tab-report" aria-controls="panel-report" aria-selected="true">Checklist</button>
+            <button role="tab" id="tab-skill" aria-controls="panel-skill" aria-selected="false" tabindex="-1">SKILL.md</button>
+            <button role="tab" id="tab-claude" aria-controls="panel-claude" aria-selected="false" tabindex="-1">Claude</button>
+            <button role="tab" id="tab-gemini" aria-controls="panel-gemini" aria-selected="false" tabindex="-1">Gemini</button>
+            <button role="tab" id="tab-actions" aria-controls="panel-actions" aria-selected="false" tabindex="-1">Actions → MCP</button>
+          </div>
+          <div role="tabpanel" id="panel-report" aria-labelledby="tab-report" class="panel">
+            <ul id="report" class="report"></ul>
+          </div>
+          <div role="tabpanel" id="panel-skill" aria-labelledby="tab-skill" class="panel" hidden>
+            <div class="code-head"><span>skill/<span id="skill-slug">my-gpt</span>/SKILL.md</span><button type="button" class="btn tiny" data-copy="out-skill">Copy</button></div>
+            <pre id="out-skill" class="code" tabindex="0"></pre>
+          </div>
+          <div role="tabpanel" id="panel-claude" aria-labelledby="tab-claude" class="panel" hidden>
+            <p class="muted small">Claude → Projects → New project → paste into project instructions, then upload your knowledge files.</p>
+            <div class="code-head"><span>portable/claude-project.md</span><button type="button" class="btn tiny" data-copy="out-claude">Copy</button></div>
+            <pre id="out-claude" class="code" tabindex="0"></pre>
+          </div>
+          <div role="tabpanel" id="panel-gemini" aria-labelledby="tab-gemini" class="panel" hidden>
+            <p class="muted small">Gemini → Gems → New Gem → paste into Instructions, then add your knowledge files.</p>
+            <div class="code-head"><span>portable/gemini-gem.md</span><button type="button" class="btn tiny" data-copy="out-gemini">Copy</button></div>
+            <pre id="out-gemini" class="code" tabindex="0"></pre>
+          </div>
+          <div role="tabpanel" id="panel-actions" aria-labelledby="tab-actions" class="panel" hidden>
+            <div id="actions-out"><p class="muted small">No custom actions added. If your GPT has none, nothing needs rebuilding.</p></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="band">
+    <div class="wrap faq">
+      <h2>FAQ</h2>
+      <details><summary>When exactly do custom GPTs stop working?</summary><p>OpenAI's FAQ says custom GPTs are scheduled to retire on Dec 11, 2026 across ChatGPT plans, when GPTs and their pages become inaccessible. Enterprise workspaces with a qualified, approved deferral get Feb 11, 2027. Follow the notice for your own account or workspace.</p></details>
+      <details><summary>Should I still use OpenAI's "Migrate to plugin"?</summary><p>Yes, if you want to keep using it in ChatGPT. This kit doesn't replace migration; it makes sure you keep a copy of everything, including the parts migration leaves behind, and gives you a checklist to test the result. Migration uses your latest published version and makes the original read-only, so publish edits and back up first.</p></details>
+      <details><summary>Does this connect to my ChatGPT account?</summary><p>No. There is no login and no server. You copy fields from the GPT editor yourself; the page builds the files in your browser. The page's security policy blocks it from sending data to other sites.</p></details>
+      <details><summary>What is SKILL.md?</summary><p>A Markdown file with a short YAML header (name and description), defined by the open <a href="https://agentskills.io/specification" rel="noopener noreferrer">Agent Skills specification</a>. OpenAI says migrated instructions become a skill. The generated file is a portable copy you can keep, edit, or use with tools that read Agent Skills.</p></details>
+      <details><summary>Will the MCP stub just work?</summary><p>It's a starting point. Each operation in your action's OpenAPI schema becomes one tool that calls the same API, with the key read from an environment variable. We tested generated stubs with MCP Python SDK v1 and v2. You still need to review it, host it securely if a remote assistant should reach it, and check your plan supports custom MCP connections.</p></details>
+      <details><summary>What about my past chats with the GPT?</summary><p>OpenAI says existing conversations stay accessible after retirement. To keep your own copy, use ChatGPT's Settings → Data controls → Export data.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>GPT Backup Kit is an independent, free tool, not affiliated with OpenAI, Anthropic or Google. Dates and rules come from OpenAI's public help pages (last reviewed 9 Oct 2026) and may change.</p>
+    <p><a href="privacy.html">Privacy</a> · <a href="https://github.com/Abhishek01239/product-factory/tree/main/apps/gpt-backup-kit" rel="noopener noreferrer">Source on GitHub</a> · <a href="../">More free tools</a> · v<span id="ver">1.0.0</span></p>
+  </div>
+</footer>
+<script src="vendor/js-yaml.min.js"></script>
+<script src="kit.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

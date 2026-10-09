@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-08",
+  "updated": "2026-10-09",
   "products": [
     {
       "id": "edf-tracker",
@@ -30,6 +30,31 @@
         }
       ],
       "watch": "Update coverage() and copy when RBI publishes EDF FAQs"
+    },
+    {
+      "id": "gpt-backup-kit",
+      "name": "GPT Backup Kit",
+      "status": "live-pending-verification",
+      "version": "1.0.0",
+      "path": "apps/gpt-backup-kit",
+      "repository": "https://github.com/Abhishek01239/product-factory",
+      "deployment_url": "https://abhishek01239.github.io/product-factory/gpt-backup-kit/",
+      "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
+      "deployment_verified": "pending",
+      "created": "2026-10-09",
+      "problem": "OpenAI retires custom GPTs on Dec 11, 2026 (Feb 11, 2027 for approved Enterprise deferrals). 'Migrate to plugin' keeps instructions, knowledge files and apps but drops custom actions, selected model, sharing settings and unpublished edits; there is no GPT export button.",
+      "target_user": "Custom GPT creators (individuals, consultants, teams, GPT Store builders) and workspace admins",
+      "opportunity_score": 7.4,
+      "social_promotion": "drafted (launch/gpt-backup-kit/posts.md), not published: X/Bluesky/Facebook/Mastodon not connected",
+      "analytics": "none (privacy-first; no tracking by design)",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-10-09",
+          "change": "initial release: backup ZIP, per-GPT migration checklist, SKILL.md, Claude/Gemini instructions, OpenAPI→Python MCP stubs, secret scanner, import/export"
+        }
+      ],
+      "watch": "Update kit.js DATES and the kept/dropped table if OpenAI's retirement FAQ changes; product is time-boxed (useful until ~Feb 2027)"
     }
   ],
   "investigated": [
@@ -94,6 +119,41 @@
       "decision": "rejected",
       "reason": "NYC already runs an official complaint portal (NYC311/DCWP); single-city audience; small gap",
       "date": "2026-10-08"
+    },
+    {
+      "idea": "Custom GPT backup + migration kit (custom GPTs retire Dec 11, 2026)",
+      "score": 7.4,
+      "decision": "selected",
+      "date": "2026-10-09",
+      "reason": "Large audience, hard deadline, OpenAI FAQ confirms what migration drops, no export button; only blog guides exist, no dedicated tool found"
+    },
+    {
+      "idea": "Hemp 0.4 mg total-THC per-container compliance calculator (Nov 12 / Dec 11, 2026)",
+      "score": 6.4,
+      "decision": "rejected",
+      "date": "2026-10-09",
+      "reason": "Several free COA calculators already exist (theleafconcierge, docs-hemp, hempdata); weak differentiation; harder organic distribution"
+    },
+    {
+      "idea": "GitHub Org-mode README converter (GitHub stopped rendering .org)",
+      "score": 5.4,
+      "decision": "rejected",
+      "date": "2026-10-09",
+      "reason": "Small audience; pandoc already does it; may be a bug GitHub fixes"
+    },
+    {
+      "idea": "Mozilla Solo site rescue (deleted Nov 30, 2026; images must be saved one by one)",
+      "score": 5.2,
+      "decision": "rejected",
+      "date": "2026-10-09",
+      "reason": "Export CSV format not public; image CDN CORS unknown; small audience"
+    },
+    {
+      "idea": "IMPROVE EDF Tracker for RBI EDF FAQs",
+      "score": 0,
+      "decision": "deferred",
+      "date": "2026-10-09",
+      "reason": "RBI FAQs not yet published as of 9 Oct 2026; nothing to change"
     }
   ]
 }
