@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Privacy — Ubuntu 26 Runner Check</title><meta name="description" content="Ubuntu 26 Runner Check has no server, no accounts and no analytics. Workflow files are analysed in your browser.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css"></head>
+<body><header class="site-header"><div class="wrap header-row"><a class="brand" href="./"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#f5a524"/><path d="M8 11l5 5-5 5" fill="none" stroke="#14181f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 22h8" stroke="#14181f" stroke-width="3" stroke-linecap="round"/></svg><span>Runner 26 Check</span></a></div></header>
+<main class="wrap prose"><h1>Privacy</h1>
+<p>Ubuntu 26 Runner Check is a static page. It has no server-side code, no accounts, no cookies and no analytics.</p>
+<ul>
+<li>Workflow files you paste or upload are analysed by JavaScript in your browser and are never uploaded.</li>
+<li>When you enter a public repository, your browser requests its <code>.github/workflows</code> listing from <code>api.github.com</code> and the files from <code>raw.githubusercontent.com</code>. Those are the only external connections the page's Content Security Policy allows. No token is used or requested.</li>
+<li>Nothing is stored: results disappear when you close the tab. A service worker caches the page's own static files so it loads offline.</li>
+<li>The page is hosted on GitHub Pages, which may keep standard server logs (such as IP address) as described in GitHub's privacy statement.</li>
+</ul>
+<p><a href="./">Back to the checker</a></p></main></body></html>

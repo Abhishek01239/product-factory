@@ -1,159 +1,250 @@
 {
-  "updated": "2026-10-09",
-  "products": [
+ "updated": "2026-10-10",
+ "products": [
+  {
+   "id": "edf-tracker",
+   "name": "EDF Tracker",
+   "status": "live",
+   "version": "1.1.0",
+   "path": "apps/edf-tracker",
+   "repository": "https://github.com/Abhishek01239/product-factory",
+   "deployment_url": "https://abhishek01239.github.io/product-factory/edf-tracker/",
+   "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
+   "deployment_verified": "2026-10-08 (v1.1.0): deploy-pages run 37728462968 succeeded; 22/22 Playwright E2E checks against the live URL (desktop + mobile); 12/12 unit tests. 2026-10-07 (v1.0.0): 23/23.",
+   "created": "2026-10-07",
+   "problem": "India's FEMA 2026 regulations (effective 1 Oct 2026) require service exporters to file a monthly EDF within 30 days of month-end and realise payment within 9 months. RBI said on 7 Oct 2026 that individuals with personal-nature transactions are not covered; FAQs pending, so applicability is confusing.",
+   "target_user": "Indian freelancers, consultants, small agencies and software exporters invoicing foreign clients",
+   "opportunity_score": 7.9,
+   "social_promotion": "drafted v1.1 (v1.0 drafts withdrawn as inaccurate), not published: X/Bluesky/Facebook/Mastodon not connected",
+   "analytics": "none (privacy-first; no tracking by design)",
+   "changelog": [
     {
-      "id": "edf-tracker",
-      "name": "EDF Tracker",
-      "status": "live",
-      "version": "1.1.0",
-      "path": "apps/edf-tracker",
-      "repository": "https://github.com/Abhishek01239/product-factory",
-      "deployment_url": "https://abhishek01239.github.io/product-factory/edf-tracker/",
-      "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
-      "deployment_verified": "2026-10-08 (v1.1.0): deploy-pages run 37728462968 succeeded; 22/22 Playwright E2E checks against the live URL (desktop + mobile); 12/12 unit tests. 2026-10-07 (v1.0.0): 23/23.",
-      "created": "2026-10-07",
-      "problem": "India's FEMA 2026 regulations (effective 1 Oct 2026) require service exporters to file a monthly EDF within 30 days of month-end and realise payment within 9 months. RBI said on 7 Oct 2026 that individuals with personal-nature transactions are not covered; FAQs pending, so applicability is confusing.",
-      "target_user": "Indian freelancers, consultants, small agencies and software exporters invoicing foreign clients",
-      "opportunity_score": 7.9,
-      "social_promotion": "drafted v1.1 (v1.0 drafts withdrawn as inaccurate), not published: X/Bluesky/Facebook/Mastodon not connected",
-      "analytics": "none (privacy-first; no tracking by design)",
-      "changelog": [
-        {
-          "version": "1.1.0",
-          "date": "2026-10-08",
-          "change": "RBI 7 Oct clarification banner + 'Do I need to file?' checker; corrected copy that said every freelancer must file"
-        },
-        {
-          "version": "1.0.0",
-          "date": "2026-10-07",
-          "change": "initial release"
-        }
-      ],
-      "watch": "Update coverage() and copy when RBI publishes EDF FAQs"
+     "version": "1.1.0",
+     "date": "2026-10-08",
+     "change": "RBI 7 Oct clarification banner + 'Do I need to file?' checker; corrected copy that said every freelancer must file"
     },
     {
-      "id": "gpt-backup-kit",
-      "name": "GPT Backup Kit",
-      "status": "live",
-      "version": "1.0.0",
-      "path": "apps/gpt-backup-kit",
-      "repository": "https://github.com/Abhishek01239/product-factory",
-      "deployment_url": "https://abhishek01239.github.io/product-factory/gpt-backup-kit/",
-      "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
-      "deployment_verified": "2026-10-09 (v1.0.0): deploy-pages run 37885758921 succeeded; 58/58 Playwright E2E checks against the live URL (desktop 1280 + mobile 390); 13/13 unit tests; generated MCP stub exercised end-to-end via MCP client on SDK 1.30.0 and 2.3.0.",
-      "created": "2026-10-09",
-      "problem": "OpenAI retires custom GPTs on Dec 11, 2026 (Feb 11, 2027 for approved Enterprise deferrals). 'Migrate to plugin' keeps instructions, knowledge files and apps but drops custom actions, selected model, sharing settings and unpublished edits; there is no GPT export button.",
-      "target_user": "Custom GPT creators (individuals, consultants, teams, GPT Store builders) and workspace admins",
-      "opportunity_score": 7.4,
-      "social_promotion": "drafted (launch/gpt-backup-kit/posts.md), not published: X/Bluesky/Facebook/Mastodon not connected",
-      "analytics": "none (privacy-first; no tracking by design)",
-      "changelog": [
-        {
-          "version": "1.0.0",
-          "date": "2026-10-09",
-          "change": "initial release: backup ZIP, per-GPT migration checklist, SKILL.md, Claude/Gemini instructions, OpenAPI→Python MCP stubs, secret scanner, import/export"
-        }
-      ],
-      "watch": "Update kit.js DATES and the kept/dropped table if OpenAI's retirement FAQ changes; product is time-boxed (useful until ~Feb 2027)"
+     "version": "1.0.0",
+     "date": "2026-10-07",
+     "change": "initial release"
     }
-  ],
-  "investigated": [
+   ],
+   "watch": "Update coverage() and copy when RBI publishes EDF FAQs"
+  },
+  {
+   "id": "gpt-backup-kit",
+   "name": "GPT Backup Kit",
+   "status": "live",
+   "version": "1.0.0",
+   "path": "apps/gpt-backup-kit",
+   "repository": "https://github.com/Abhishek01239/product-factory",
+   "deployment_url": "https://abhishek01239.github.io/product-factory/gpt-backup-kit/",
+   "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
+   "deployment_verified": "2026-10-09 (v1.0.0): deploy-pages run 37885758921 succeeded; 58/58 Playwright E2E checks against the live URL (desktop 1280 + mobile 390); 13/13 unit tests; generated MCP stub exercised end-to-end via MCP client on SDK 1.30.0 and 2.3.0.",
+   "created": "2026-10-09",
+   "problem": "OpenAI retires custom GPTs on Dec 11, 2026 (Feb 11, 2027 for approved Enterprise deferrals). 'Migrate to plugin' keeps instructions, knowledge files and apps but drops custom actions, selected model, sharing settings and unpublished edits; there is no GPT export button.",
+   "target_user": "Custom GPT creators (individuals, consultants, teams, GPT Store builders) and workspace admins",
+   "opportunity_score": 7.4,
+   "social_promotion": "drafted (launch/gpt-backup-kit/posts.md), not published: X/Bluesky/Facebook/Mastodon not connected",
+   "analytics": "none (privacy-first; no tracking by design)",
+   "changelog": [
     {
-      "idea": "EDF deadline tracker for Indian service exporters",
-      "score": 7.9,
-      "decision": "selected",
-      "date": "2026-10-07"
-    },
-    {
-      "idea": "AI agent token budget / cost tracker",
-      "score": 5.7,
-      "decision": "rejected",
-      "reason": "Crowded (Helicone, Langfuse, provider dashboards); weak differentiation for a static MVP",
-      "date": "2026-10-07"
-    },
-    {
-      "idea": "DGFT SAC to RBI purpose-code mismatch helper",
-      "score": 5.6,
-      "decision": "deferred",
-      "reason": "Narrower; better as an EDF Tracker add-on (IMPROVE candidate)",
-      "date": "2026-10-07"
-    },
-    {
-      "idea": "Developer/contractor offboarding access-revocation checklist",
-      "score": 5.6,
-      "decision": "rejected",
-      "reason": "Low trend strength (1 mention); many existing checklists",
-      "date": "2026-10-07"
-    },
-    {
-      "idea": "LibreOffice malicious-spreadsheet checker",
-      "score": 4.8,
-      "decision": "rejected",
-      "reason": "Real fix is patching; a checker risks false assurance",
-      "date": "2026-10-07"
-    },
-    {
-      "idea": "Kubernetes pending-pod provisioning explainer",
-      "score": 4.7,
-      "decision": "rejected",
-      "reason": "Hard to build well without cluster access; small audience",
-      "date": "2026-10-07"
-    },
-    {
-      "idea": "IMPROVE EDF Tracker for RBI 7 Oct clarification (individuals not covered)",
-      "score": 8.2,
-      "decision": "selected",
-      "date": "2026-10-08",
-      "reason": "Live product's core claim became partly wrong; correcting it and answering 'do I need to file?' is the highest-value work"
-    },
-    {
-      "idea": "Reddit RSS replacement (RSS ends 13 Nov 2026, public Data API March 2027)",
-      "score": 5.4,
-      "decision": "rejected",
-      "reason": "Any replacement depends on Reddit data access that Reddit is deliberately closing; ToS/legal risk; revisit only as a migration guide/OPML exporter",
-      "date": "2026-10-08"
-    },
-    {
-      "idea": "NYC Click-to-Cancel helper (rule effective 1 Oct 2026)",
-      "score": 4.9,
-      "decision": "rejected",
-      "reason": "NYC already runs an official complaint portal (NYC311/DCWP); single-city audience; small gap",
-      "date": "2026-10-08"
-    },
-    {
-      "idea": "Custom GPT backup + migration kit (custom GPTs retire Dec 11, 2026)",
-      "score": 7.4,
-      "decision": "selected",
-      "date": "2026-10-09",
-      "reason": "Large audience, hard deadline, OpenAI FAQ confirms what migration drops, no export button; only blog guides exist, no dedicated tool found"
-    },
-    {
-      "idea": "Hemp 0.4 mg total-THC per-container compliance calculator (Nov 12 / Dec 11, 2026)",
-      "score": 6.4,
-      "decision": "rejected",
-      "date": "2026-10-09",
-      "reason": "Several free COA calculators already exist (theleafconcierge, docs-hemp, hempdata); weak differentiation; harder organic distribution"
-    },
-    {
-      "idea": "GitHub Org-mode README converter (GitHub stopped rendering .org)",
-      "score": 5.4,
-      "decision": "rejected",
-      "date": "2026-10-09",
-      "reason": "Small audience; pandoc already does it; may be a bug GitHub fixes"
-    },
-    {
-      "idea": "Mozilla Solo site rescue (deleted Nov 30, 2026; images must be saved one by one)",
-      "score": 5.2,
-      "decision": "rejected",
-      "date": "2026-10-09",
-      "reason": "Export CSV format not public; image CDN CORS unknown; small audience"
-    },
-    {
-      "idea": "IMPROVE EDF Tracker for RBI EDF FAQs",
-      "score": 0,
-      "decision": "deferred",
-      "date": "2026-10-09",
-      "reason": "RBI FAQs not yet published as of 9 Oct 2026; nothing to change"
+     "version": "1.0.0",
+     "date": "2026-10-09",
+     "change": "initial release: backup ZIP, per-GPT migration checklist, SKILL.md, Claude/Gemini instructions, OpenAPI→Python MCP stubs, secret scanner, import/export"
     }
-  ]
+   ],
+   "watch": "Update kit.js DATES and the kept/dropped table if OpenAI's retirement FAQ changes; product is time-boxed (useful until ~Feb 2027)"
+  },
+  {
+   "id": "runner-26-check",
+   "name": "Ubuntu 26 Runner Check",
+   "status": "built",
+   "version": "1.0.0",
+   "path": "apps/runner-26-check",
+   "repository": "https://github.com/Abhishek01239/product-factory",
+   "deployment_url": "https://abhishek01239.github.io/product-factory/runner-26-check/",
+   "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
+   "deployment_verified": "pending",
+   "created": "2026-10-10",
+   "problem": "GitHub moves ubuntu-latest to Ubuntu 26.04 between Oct 19 and Nov 19, 2026 (runner-images #14748). The announcement lists version bumps but not removed tools (Java 8, Clang 16-18, GCC 12, Miniconda, Swift, Julia, Fastlane, Pulumi, global tsc/webpack/lerna...), and there is no official pre-migration check.",
+   "target_user": "Developers and DevOps/platform engineers with GitHub Actions or Azure Pipelines jobs on ubuntu-latest",
+   "evidence": [
+    "actions/runner-images#14748 (48 comments; a commenter asks which preinstalled programs are most likely to break, unanswered)",
+    "Ubuntu2404 vs Ubuntu2604 image READMEs and toolset JSON diff",
+    "Dev.to / Qiita / velog migration write-ups (Oct 2026) noting no official checker",
+    "Announcement table says Java 17 stays default while README/toolset say 25"
+   ],
+   "existing_solutions": [
+    "getreadystack actions-expiry-lint (dated runner/action/Node checks, no per-tool 26.04 analysis)",
+    "Node 24 / node20 action scanners",
+    "runner-drift CLI (diffs runner tool output, needs runs)",
+    "actionlint/zizmor (syntax/security)"
+   ],
+   "differentiation": "Step-level detection of tools removed from the 26.04 image with line numbers, mitigation-aware (setup-* actions, npx, services, containers), plus pinned-copy and side-by-side canary workflow generation; works on public repos without a token; Azure Pipelines support.",
+   "opportunity_score": 7.1,
+   "scores": {
+    "severity": 7,
+    "users": 9,
+    "trend": 8,
+    "competition": 6,
+    "ease": 8,
+    "differentiation": 7,
+    "distribution": 7,
+    "monetization": 3,
+    "mvp_speed": 9
+   },
+   "monetization": "none now; possible later: GitHub App/Action that comments on PRs before future image migrations (free for public repos).",
+   "social_promotion": "drafted (launch/runner-26-check/posts.md), not published: X/Bluesky/Facebook/Mastodon not connected",
+   "analytics": "none (privacy-first; no tracking by design)",
+   "changelog": [
+    {
+     "version": "1.0.0",
+     "date": "2026-10-10",
+     "change": "initial release: repo/paste/upload input, runs-on resolution, removed-tool and version-change rules from official toolsets, macOS 14/22.04 label checks, Markdown checklist, pinned copy, canary workflow, Azure Pipelines"
+    }
+   ]
+  }
+ ],
+ "investigated": [
+  {
+   "idea": "EDF deadline tracker for Indian service exporters",
+   "score": 7.9,
+   "decision": "selected",
+   "date": "2026-10-07"
+  },
+  {
+   "idea": "AI agent token budget / cost tracker",
+   "score": 5.7,
+   "decision": "rejected",
+   "reason": "Crowded (Helicone, Langfuse, provider dashboards); weak differentiation for a static MVP",
+   "date": "2026-10-07"
+  },
+  {
+   "idea": "DGFT SAC to RBI purpose-code mismatch helper",
+   "score": 5.6,
+   "decision": "deferred",
+   "reason": "Narrower; better as an EDF Tracker add-on (IMPROVE candidate)",
+   "date": "2026-10-07"
+  },
+  {
+   "idea": "Developer/contractor offboarding access-revocation checklist",
+   "score": 5.6,
+   "decision": "rejected",
+   "reason": "Low trend strength (1 mention); many existing checklists",
+   "date": "2026-10-07"
+  },
+  {
+   "idea": "LibreOffice malicious-spreadsheet checker",
+   "score": 4.8,
+   "decision": "rejected",
+   "reason": "Real fix is patching; a checker risks false assurance",
+   "date": "2026-10-07"
+  },
+  {
+   "idea": "Kubernetes pending-pod provisioning explainer",
+   "score": 4.7,
+   "decision": "rejected",
+   "reason": "Hard to build well without cluster access; small audience",
+   "date": "2026-10-07"
+  },
+  {
+   "idea": "IMPROVE EDF Tracker for RBI 7 Oct clarification (individuals not covered)",
+   "score": 8.2,
+   "decision": "selected",
+   "date": "2026-10-08",
+   "reason": "Live product's core claim became partly wrong; correcting it and answering 'do I need to file?' is the highest-value work"
+  },
+  {
+   "idea": "Reddit RSS replacement (RSS ends 13 Nov 2026, public Data API March 2027)",
+   "score": 5.4,
+   "decision": "rejected",
+   "reason": "Any replacement depends on Reddit data access that Reddit is deliberately closing; ToS/legal risk; revisit only as a migration guide/OPML exporter",
+   "date": "2026-10-08"
+  },
+  {
+   "idea": "NYC Click-to-Cancel helper (rule effective 1 Oct 2026)",
+   "score": 4.9,
+   "decision": "rejected",
+   "reason": "NYC already runs an official complaint portal (NYC311/DCWP); single-city audience; small gap",
+   "date": "2026-10-08"
+  },
+  {
+   "idea": "Custom GPT backup + migration kit (custom GPTs retire Dec 11, 2026)",
+   "score": 7.4,
+   "decision": "selected",
+   "date": "2026-10-09",
+   "reason": "Large audience, hard deadline, OpenAI FAQ confirms what migration drops, no export button; only blog guides exist, no dedicated tool found"
+  },
+  {
+   "idea": "Hemp 0.4 mg total-THC per-container compliance calculator (Nov 12 / Dec 11, 2026)",
+   "score": 6.4,
+   "decision": "rejected",
+   "date": "2026-10-09",
+   "reason": "Several free COA calculators already exist (theleafconcierge, docs-hemp, hempdata); weak differentiation; harder organic distribution"
+  },
+  {
+   "idea": "GitHub Org-mode README converter (GitHub stopped rendering .org)",
+   "score": 5.4,
+   "decision": "rejected",
+   "date": "2026-10-09",
+   "reason": "Small audience; pandoc already does it; may be a bug GitHub fixes"
+  },
+  {
+   "idea": "Mozilla Solo site rescue (deleted Nov 30, 2026; images must be saved one by one)",
+   "score": 5.2,
+   "decision": "rejected",
+   "date": "2026-10-09",
+   "reason": "Export CSV format not public; image CDN CORS unknown; small audience"
+  },
+  {
+   "idea": "IMPROVE EDF Tracker for RBI EDF FAQs",
+   "score": 0,
+   "decision": "deferred",
+   "date": "2026-10-09",
+   "reason": "RBI FAQs not yet published as of 9 Oct 2026; nothing to change"
+  },
+  {
+   "idea": "Ubuntu 26.04 runner migration checker (GitHub Actions)",
+   "score": 7.1,
+   "decision": "selected",
+   "date": "2026-10-10",
+   "reason": "Dated, broad developer pain (Oct 19-Nov 19); official announcement omits removed tools; gap vs existing Node24/expiry linters"
+  },
+  {
+   "idea": "Mealime recipe rescue (app shuts Oct 21, 2026)",
+   "score": 4.9,
+   "decision": "rejected",
+   "date": "2026-10-10",
+   "reason": "Crowded: multiple competitors already ship one-click Mealime importers"
+  },
+  {
+   "idea": "SSH key checker for GitHub Oct 14 RSA/SHA-1 changes",
+   "score": 5.0,
+   "decision": "rejected",
+   "date": "2026-10-10",
+   "reason": "ssh-keygen -l already answers it; GitHub emails affected users"
+  },
+  {
+   "idea": "Windows 11 24H2 end-of-support (Oct 13) checker",
+   "score": 4.8,
+   "decision": "rejected",
+   "date": "2026-10-10",
+   "reason": "Windows Update and many guides already cover it; not a software gap"
+  },
+  {
+   "idea": "Deprecated LLM model-ID scanner (OpenAI Dec 11 shutdowns)",
+   "score": 5.3,
+   "decision": "rejected",
+   "date": "2026-10-10",
+   "reason": "Existing deprecation trackers/scanners; overlaps GPT Backup Kit audience"
+  },
+  {
+   "idea": "IMPROVE EDF Tracker / GPT Backup Kit",
+   "score": 0,
+   "decision": "deferred",
+   "date": "2026-10-10",
+   "reason": "RBI EDF FAQs still unpublished; OpenAI retirement dates unchanged"
+  }
+ ]
 }
