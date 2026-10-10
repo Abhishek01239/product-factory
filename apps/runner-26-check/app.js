@@ -198,8 +198,8 @@
     sum.appendChild(stats);
     var msg;
     if (errs === res.length) msg = "None of the files could be checked; see the errors below.";
-    else if (high) msg = plural(high, "job") + " call tools that are not on Ubuntu 26.04. Fix or pin them before Oct 19." + (mac ? " " + plural(mac, "job") + (mac === 1 ? " also uses" : " also use") + " macOS 14, unsupported from Nov 2." : "");
-    else if (med) msg = "No removed tools found, but " + plural(med, "job") + " rely on versions that change. Run the canary workflow to confirm.";
+    else if (high) msg = plural(high, "job") + (high === 1 ? " calls" : " call") + " tools that are not on Ubuntu 26.04. Fix or pin them before Oct 19." + (mac ? " " + plural(mac, "job") + (mac === 1 ? " also uses" : " also use") + " macOS 14, unsupported from Nov 2." : "");
+    else if (med) msg = "No removed tools found, but " + plural(med, "job") + (med === 1 ? " relies" : " rely") + " on versions that change. Run the canary workflow to confirm.";
     else if (moving) msg = "No known breakers in jobs on ubuntu-latest. Scripts the checker can't see may still differ, so a canary run is cheap insurance.";
     else msg = "No jobs use ubuntu-latest, so the move doesn't affect these files.";
     sum.appendChild(el("p", "summary-msg", msg));

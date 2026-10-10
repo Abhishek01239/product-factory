@@ -59,13 +59,13 @@
   {
    "id": "runner-26-check",
    "name": "Ubuntu 26 Runner Check",
-   "status": "built",
-   "version": "1.0.0",
+   "status": "live",
+   "version": "1.0.1",
    "path": "apps/runner-26-check",
    "repository": "https://github.com/Abhishek01239/product-factory",
    "deployment_url": "https://abhishek01239.github.io/product-factory/runner-26-check/",
    "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
-   "deployment_verified": "pending",
+   "deployment_verified": "2026-10-10 (v1.0.0): deploy-pages run 38025447316 succeeded; live Playwright checks passed (sample, invalid/empty input, bad repo, 404 repo, live public-repo fetch of curl/curl 15 workflows, file upload, pinned-copy download, canary download, Markdown copy, mobile 375px no overflow); all assets 200; tests/ excluded from site (404); 23/23 unit tests; 129 real workflows from 12 popular repos analysed with no remaining false 'Breaks' findings.",
    "created": "2026-10-10",
    "problem": "GitHub moves ubuntu-latest to Ubuntu 26.04 between Oct 19 and Nov 19, 2026 (runner-images #14748). The announcement lists version bumps but not removed tools (Java 8, Clang 16-18, GCC 12, Miniconda, Swift, Julia, Fastlane, Pulumi, global tsc/webpack/lerna...), and there is no official pre-migration check.",
    "target_user": "Developers and DevOps/platform engineers with GitHub Actions or Azure Pipelines jobs on ubuntu-latest",
@@ -102,6 +102,11 @@
      "version": "1.0.0",
      "date": "2026-10-10",
      "change": "initial release: repo/paste/upload input, runs-on resolution, removed-tool and version-change rules from official toolsets, macOS 14/22.04 label checks, Markdown checklist, pinned copy, canary workflow, Azure Pipelines"
+    },
+    {
+     "version": "1.0.1",
+     "date": "2026-10-10",
+     "change": "singular/plural wording in summary"
     }
    ]
   }
