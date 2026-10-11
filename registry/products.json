@@ -119,7 +119,7 @@
       "repository": "https://github.com/Abhishek01239/product-factory",
       "deployment_url": "https://abhishek01239.github.io/product-factory/claude-55-check/",
       "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
-      "deployment_verified": "pending",
+      "deployment_verified": "2026-10-11 (v1.0.0): deploy-pages run 38112722863 succeeded; all assets 200, tests/ 404; live Playwright checks desktop 1280 + mobile 375 (sample request, target switch to Haiku, invalid JSON, Python-dict input, code sample, irrelevant code, bad repo input, live public-repo scan of valentinfrlch/ha-llmvision: 65 files read, 29 analysed), no console errors, no horizontal overflow; 27/27 unit tests; engine run on 5 real repos (ha-llmvision, llm-anthropic, anthropic-quickstarts, aider, claude-cookbooks) and 4 false-positive classes fixed.",
       "created": "2026-10-11",
       "problem": "Claude Sonnet 4.5 retires on the Claude API Nov 30, 2026 (Haiku 4.5 / Opus 4.5 tentatively from Oct 15 / Nov 24). Sonnet 5.5, Opus 5.5 and Haiku 5.5 return 400 for settings older code sends routinely (assistant prefill, non-default sampling, budget_tokens, thinking disabled, forced tool_choice on Sonnet/Opus, legacy computer-use tools, output_format), and the rules differ per model and platform.",
       "target_user": "Developers and maintainers of apps/libraries calling the Claude API (direct, Bedrock, Vertex) who must migrate off 4.5 models",
