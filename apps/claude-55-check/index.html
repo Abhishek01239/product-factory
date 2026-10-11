@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://api.github.com https://raw.githubusercontent.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Claude 5.5 Request Check: find the API calls that return 400 after you upgrade</title>
+<meta name="description" content="Free checker for Claude API code moving to Sonnet 5.5, Opus 5.5 or Haiku 5.5. Paste a request body, code, or a public GitHub repo and see which settings return 400 (prefill, temperature, budget_tokens, forced tool_choice, thinking disabled, old computer-use tools) with a fixed request. Runs in your browser, no API key.">
+<link rel="canonical" href="https://abhishek01239.github.io/product-factory/claude-55-check/">
+<meta name="theme-color" content="#1b1730">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Claude 5.5 Request Check: what returns 400 after the upgrade">
+<meta property="og:description" content="Claude Sonnet 4.5 retires Nov 30, 2026. Paste a request, code or a public repo and see which settings Sonnet 5.5, Opus 5.5 or Haiku 5.5 reject, with a fixed request.">
+<meta property="og:url" content="https://abhishek01239.github.io/product-factory/claude-55-check/">
+<meta property="og:image" content="https://abhishek01239.github.io/product-factory/claude-55-check/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Claude 5.5 Request Check">
+<meta name="twitter:description" content="Find the Claude API settings that return 400 on Sonnet 5.5, Opus 5.5 and Haiku 5.5, and get a fixed request.">
+<meta name="twitter:image" content="https://abhishek01239.github.io/product-factory/claude-55-check/og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Claude 5.5 Request Check","url":"https://abhishek01239.github.io/product-factory/claude-55-check/","applicationCategory":"DeveloperApplication","operatingSystem":"Any (browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Checks Claude API requests and code for settings that return 400 errors on Claude Sonnet 5.5, Opus 5.5 and Haiku 5.5, and produces a corrected request."}</script>
+</head>
+<body>
+<a class="skip" href="#check">Skip to the checker</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="./" aria-label="Claude 5.5 Request Check home">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#ff8a5b"/><path d="M9 16.5l4.5 4.5L23 11" fill="none" stroke="#1b1730" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>5.5 Request Check</span>
+    </a>
+    <nav aria-label="Main"><a href="#check">Check</a><a href="#rules">What breaks</a><a href="#faq">FAQ</a></nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow" id="countdown">Sonnet 4.5 retires Nov 30, 2026</p>
+      <h1>Find the Claude API calls that return <code>400</code> after you switch to 5.5.</h1>
+      <p class="lede">Changing the model string is not enough. Sonnet 5.5 and Opus 5.5 reject assistant prefill, non-default <code>temperature</code>, thinking budgets, forced <code>tool_choice</code> and <code>thinking: disabled</code>. Haiku 5.5 rejects most of those too, but still allows forced tools. Paste a request, some code or a public repo and see exactly which lines fail, and get a corrected request.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#check">Check my requests</a>
+        <button class="btn ghost" type="button" id="hero-sample">Try a sample</button>
+      </div>
+      <ul class="trust"><li>Runs in your browser</li><li>No API key, no sign-in</li><li>Rules from Anthropic's migration guides</li></ul>
+    </div>
+    <aside class="hero-card" aria-label="Dates">
+      <h2>Dates that matter</h2>
+      <ol class="timeline">
+        <li><strong>Oct 15, 2026</strong> <span>Claude Haiku 4.5: earliest possible retirement ("not sooner than")</span></li>
+        <li><strong>Nov 24, 2026</strong> <span>Claude Opus 4.5: earliest possible retirement</span></li>
+        <li><strong>Nov 30, 2026</strong> <span>Claude Sonnet 4.5 retires on the Claude API; requests fail</span></li>
+      </ol>
+      <p class="small">Source: <a href="https://platform.claude.com/docs/en/about-claude/model-deprecations" rel="noopener" target="_blank">Anthropic model deprecations</a>. Bedrock and Google Cloud set their own dates.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="problem wrap" aria-labelledby="why">
+  <h2 id="why">Why a model swap breaks working code</h2>
+  <div class="grid3">
+    <article><h3>Settings that used to be fine now fail</h3><p>Code written for Sonnet 4.5 or Haiku 4.5 often sends a prefilled <code>{</code> to force JSON, a <code>temperature</code>, or a <code>budget_tokens</code> thinking budget. All three return HTTP 400 on the 5.5 models.</p></article>
+    <article><h3>The rules differ per model</h3><p>Forced <code>tool_choice</code> fails on Sonnet 5.5 and Opus 5.5 but works on Haiku 5.5. <code>between_tools</code> exists only on Sonnet 5.5. Bedrock has no strict tools for these models. Generic checklists blur this.</p></article>
+    <article><h3>Responses change shape</h3><p>Thinking now runs by default, so <code>content[0]</code> can be a thinking block. Code that reads <code>content[0].text</code> silently gets the wrong thing.</p></article>
+  </div>
+</section>
+
+<section id="check" class="check" aria-labelledby="check-h">
+  <div class="wrap">
+    <h2 id="check-h">Check your requests</h2>
+    <form id="opts" class="opts" onsubmit="return false">
+      <fieldset>
+        <legend>Moving to</legend>
+        <label><input type="radio" name="target" value="sonnet" checked> Sonnet 5.5</label>
+        <label><input type="radio" name="target" value="opus"> Opus 5.5</label>
+        <label><input type="radio" name="target" value="haiku"> Haiku 5.5</label>
+      </fieldset>
+      <fieldset>
+        <legend>Platform</legend>
+        <label><input type="radio" name="platform" value="api" checked> Claude API</label>
+        <label><input type="radio" name="platform" value="gcp"> Google Cloud</label>
+        <label><input type="radio" name="platform" value="bedrock"> Amazon Bedrock</label>
+      </fieldset>
+    </form>
+
+    <div class="tabs" role="tablist" aria-label="Input type">
+      <button role="tab" id="tab-json" aria-controls="panel-json" aria-selected="true" type="button">Request JSON</button>
+      <button role="tab" id="tab-code" aria-controls="panel-code" aria-selected="false" type="button" tabindex="-1">Code</button>
+      <button role="tab" id="tab-repo" aria-controls="panel-repo" aria-selected="false" type="button" tabindex="-1">Public GitHub repo</button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-json" aria-labelledby="tab-json">
+      <label for="json-input">Paste the JSON body you send to <code>/v1/messages</code> (or the kwargs you pass to <code>messages.create</code>, as JSON)</label>
+      <textarea id="json-input" rows="12" spellcheck="false" autocomplete="off" placeholder='{"model": "claude-sonnet-4-5-20250929", "max_tokens": 1024, "messages": [...]}'></textarea>
+      <label for="beta-input" class="mt">Beta headers you send (optional, comma separated)</label>
+      <input id="beta-input" type="text" spellcheck="false" autocomplete="off" placeholder="interleaved-thinking-2025-05-14, fine-grained-tool-streaming-2025-05-14">
+      <div class="row"><button class="btn primary" type="button" id="run-json">Check request</button><button class="btn ghost dark" type="button" id="sample-json">Load sample</button></div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-code" aria-labelledby="tab-code" hidden>
+      <label for="code-input">Paste code that calls the Claude API (Python, TypeScript, Go, Java, C#, Ruby, PHP, YAML/JSON config…)</label>
+      <textarea id="code-input" rows="12" spellcheck="false" autocomplete="off" placeholder="client.messages.create(model=..., ...)"></textarea>
+      <label for="file-input" class="mt">…or choose files</label>
+      <input id="file-input" type="file" multiple>
+      <div class="row"><button class="btn primary" type="button" id="run-code">Scan code</button><button class="btn ghost dark" type="button" id="sample-code">Load sample</button></div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-repo" aria-labelledby="tab-repo" hidden>
+      <label for="repo-input">Public repository (owner/repo or a github.com URL, optionally with /tree/branch)</label>
+      <div class="row inline"><input id="repo-input" type="text" spellcheck="false" autocomplete="off" placeholder="owner/repo"><button class="btn primary" type="button" id="run-repo">Scan repo</button></div>
+      <p class="small muted">Your browser reads the file list from api.github.com (2 requests, no token) and files from raw.githubusercontent.com. Up to 600 source files (tests, docs and dependencies skipped); only files mentioning "anthropic" or "claude" are analysed.</p>
+    </div>
+
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <section id="results" class="results" hidden aria-labelledby="results-h">
+      <div class="results-head">
+        <h3 id="results-h">Results</h3>
+        <div class="row"><button class="btn ghost dark small-btn" type="button" id="copy-md">Copy Markdown checklist</button></div>
+      </div>
+      <div id="summary" class="summary"></div>
+      <div id="fixed-wrap" hidden>
+        <h4>Corrected request</h4>
+        <ul id="changes" class="changes"></ul>
+        <div class="code-wrap"><button class="btn ghost dark small-btn copy" type="button" id="copy-fixed">Copy JSON</button><pre id="fixed" tabindex="0"></pre></div>
+        <p class="small muted">Review before shipping: if you forced a tool, also tell the model in the prompt when to use it, and handle a reply with no <code>tool_use</code> block.</p>
+      </div>
+      <ol id="findings" class="findings"></ol>
+    </section>
+  </div>
+</section>
+
+<section id="rules" class="wrap rules" aria-labelledby="rules-h">
+  <h2 id="rules-h">What returns 400, per target model</h2>
+  <div class="table-wrap">
+  <table>
+    <caption class="sr-only">Request settings and how each 5.5 model handles them</caption>
+    <thead><tr><th scope="col">Setting</th><th scope="col">Sonnet 5.5</th><th scope="col">Opus 5.5</th><th scope="col">Haiku 5.5</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Assistant prefill (last turn is assistant)</th><td class="b">400</td><td class="b">400</td><td class="b">400</td></tr>
+      <tr><th scope="row"><code>thinking: {type: "enabled", budget_tokens}</code></th><td class="b">400</td><td class="b">400</td><td class="b">400</td></tr>
+      <tr><th scope="row"><code>thinking: {type: "disabled"}</code></th><td class="b">400 → use <code>between_tools</code></td><td class="b">400 → omit</td><td class="w">Not documented → omit</td></tr>
+      <tr><th scope="row">Non-default <code>temperature</code> / <code>top_p</code> / <code>top_k</code></th><td class="b">400</td><td class="b">400</td><td class="b">400 (temperature must be 1, top_p 0.99, no top_k, not both)</td></tr>
+      <tr><th scope="row"><code>tool_choice</code> <code>any</code> / <code>tool</code></th><td class="b">400</td><td class="b">400</td><td class="o">Allowed (no thinking block)</td></tr>
+      <tr><th scope="row"><code>computer_20250124</code></th><td class="b">400 everywhere</td><td class="b">400 on API / Google Cloud</td><td class="b">400 everywhere</td></tr>
+      <tr><th scope="row"><code>computer_20251124</code></th><td class="b">400 on API / Google Cloud</td><td class="b">400 on API / Google Cloud</td><td class="w">Use toolset on API / Google Cloud</td></tr>
+      <tr><th scope="row"><code>output_format</code> without its beta header</th><td class="b">400</td><td class="b">400</td><td class="w">Deprecated</td></tr>
+      <tr><th scope="row">Thinking with no <code>thinking</code> field</th><td class="o">On (adaptive)</td><td class="o">Always on</td><td class="o">On (adaptive)</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small muted">Sources: <a href="https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide" target="_blank" rel="noopener">Sonnet 5.5 migration guide</a>, <a href="https://platform.claude.com/docs/en/models/opus-5-5/migration-guide" target="_blank" rel="noopener">Opus 5.5 migration guide</a>, <a href="https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide" target="_blank" rel="noopener">Haiku 5.5 migration guide</a>. Rules as of <span id="asof"></span>.</p>
+</section>
+
+<section id="faq" class="wrap faq" aria-labelledby="faq-h">
+  <h2 id="faq-h">FAQ</h2>
+  <details><summary>Does this send my code or prompts anywhere?</summary><p>No. Everything runs in your browser. The only network requests are to GitHub, and only when you scan a public repo. See the <a href="privacy.html">privacy note</a>.</p></details>
+  <details><summary>How is this different from Anthropic's <code>/claude-api migrate</code> skill?</summary><p>That skill runs inside Claude Code and edits your files. This page is a free, read-only pre-check: no install, no API key, no edits. It is useful for reviewing a pull request, checking a library you depend on, or seeing the per-model differences before you pick a target.</p></details>
+  <details><summary>How accurate is the code scan?</summary><p>The JSON check is exact for the rules listed above. The code scan is line-based and can miss settings built dynamically, or flag a <code>temperature</code> that goes to another provider. Treat warnings as "look here".</p></details>
+  <details><summary>What can't it detect?</summary><p>Edited conversation history (thinking blocks must be replayed unchanged on new accounts), refusals, cost changes from the new tokenizer (~30% more tokens), and anything only visible at runtime. Those appear as notes.</p></details>
+  <details><summary>Is this affiliated with Anthropic?</summary><p>No. It is an independent, open-source tool built from Anthropic's public documentation. Claude is a trademark of Anthropic.</p></details>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Built by <a href="../">Product Factory</a> · <a href="https://github.com/Abhishek01239/product-factory/tree/main/apps/claude-55-check">Source on GitHub</a> · <a href="privacy.html">Privacy</a></p>
+    <p class="small">Independent tool, not affiliated with Anthropic. Always confirm against the official migration guides before shipping.</p>
+  </div>
+</footer>
+<script src="rules.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Privacy — Claude 5.5 Request Check</title><meta name="description" content="Claude 5.5 Request Check has no server, no accounts and no analytics. Requests and code are analysed in your browser.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css"></head>
+<body><header class="site-header"><div class="wrap header-row"><a class="brand" href="./"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#ff8a5b"/><path d="M9 16.5l4.5 4.5L23 11" fill="none" stroke="#1b1730" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>5.5 Request Check</span></a></div></header>
+<main class="wrap prose"><h1>Privacy</h1>
+<p>Claude 5.5 Request Check is a static page. It has no server-side code, no accounts, no cookies and no analytics. It never asks for an API key.</p>
+<ul>
+<li>Request bodies, code and files you paste or choose are analysed by JavaScript in your browser and are never uploaded. Prompts inside a pasted request stay on your device.</li>
+<li>When you scan a public repository, your browser requests the repository info and file list from <code>api.github.com</code> and the files from <code>raw.githubusercontent.com</code>. Those are the only external connections the page's Content Security Policy allows. No token is used.</li>
+<li>Nothing is stored: results disappear when you close the tab. A service worker caches the page's own static files so it loads offline.</li>
+<li>The page is hosted on GitHub Pages, which may keep standard server logs (such as IP address) as described in GitHub's privacy statement.</li>
+</ul>
+<p><a href="./">Back to the checker</a></p></main></body></html>
