@@ -167,7 +167,7 @@
    "repository": "https://github.com/Abhishek01239/product-factory",
    "deployment_url": "https://abhishek01239.github.io/product-factory/npm12-check/",
    "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
-   "deployment_verified": "PENDING",
+   "deployment_verified": "2026-10-12 (v1.0.0): deploy-pages run 38205672261 succeeded; all assets 200, tests/ 404; live Playwright checks desktop 1280 + mobile 390 (sample, decision change, pin toggle, file upload, empty/invalid input, bad repo, 404 repo, live scan of jitsi/jitsi-meet: 1766 locked packages), 9/9 install scripts fetched from registry.npmjs.org under the live CSP, no console errors, no horizontal overflow; 25/25 unit tests; engine run on 8 real repos (vscode, cypress kitchensink, electron-quick-start, jitsi-meet, bitwarden/clients, puppeteer, typeorm) and 5 detection bugs fixed.",
    "created": "2026-10-12",
    "problem": "npm 12 (12.0.0 Jul 8; 12.2.0 = registry latest since Sep 30, 2026) skips dependency preinstall/install/postinstall scripts unless approved in package.json allowScripts, and the install still exits 0, so Puppeteer/Prisma/sqlite3/bcrypt 5 fail later at runtime. It also refuses git and tarball-URL deps (allow-git/allow-remote=none), throws on unknown/abbreviated CLI flags, rejects --allow-scripts on project installs, removed shrinkwrap/adduser/star, and changed npm view --json. Node.js still bundles npm 11 or older, so it lands via npm i -g npm@latest, images, Corepack.",
    "target_user": "JavaScript/Node developers and CI maintainers using npm lockfiles who upgrade (or whose CI upgrades) to npm 12",
