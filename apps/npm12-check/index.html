@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://api.github.com https://raw.githubusercontent.com https://registry.npmjs.org; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>npm 12 Readiness Check: find the install scripts npm 12 will skip</title>
+<meta name="description" content="Free npm 12 checker. Drop in package-lock.json (or a public GitHub repo) and see which dependencies need the install scripts npm 12 now blocks (puppeteer, prisma, sqlite3, bcrypt 5…), which git deps get refused, and which CI lines break. Get a ready allowScripts block. Runs in your browser.">
+<link rel="canonical" href="https://abhishek01239.github.io/product-factory/npm12-check/">
+<meta name="theme-color" content="#1d1416">
+<meta property="og:type" content="website">
+<meta property="og:title" content="npm 12 Readiness Check: which install scripts will npm 12 skip?">
+<meta property="og:description" content="npm 12 blocks dependency install scripts by default and still exits 0. Check your lockfile, CI and .npmrc in the browser and get a ready allowScripts block.">
+<meta property="og:url" content="https://abhishek01239.github.io/product-factory/npm12-check/">
+<meta property="og:image" content="https://abhishek01239.github.io/product-factory/npm12-check/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="npm 12 Readiness Check">
+<meta name="twitter:description" content="See which dependencies break when npm 12 skips their install scripts, and get the allowScripts block to fix it.">
+<meta name="twitter:image" content="https://abhishek01239.github.io/product-factory/npm12-check/og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"npm 12 Readiness Check","url":"https://abhishek01239.github.io/product-factory/npm12-check/","applicationCategory":"DeveloperApplication","operatingSystem":"Any (browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Reads package-lock.json, package.json, .npmrc and CI files to find what breaks under npm 12: blocked install scripts, refused git and tarball dependencies, removed commands and abbreviated flags. Generates an allowScripts block."}</script>
+</head>
+<body>
+<a class="skip" href="#check">Skip to the checker</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="./" aria-label="npm 12 Readiness Check home">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#ff5a5f"/><path d="M9 16.5l4.5 4.5L23 11" fill="none" stroke="#1d1416" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>npm 12 Check</span>
+    </a>
+    <nav aria-label="Main"><a href="#check">Check</a><a href="#rules">What changed</a><a href="#faq">FAQ</a></nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">npm 12 skips install scripts, and still exits 0</p>
+      <h1>Find the dependencies that break when npm 12 skips their install scripts.</h1>
+      <p class="lede">npm 12 no longer runs <code>preinstall</code>, <code>install</code> or <code>postinstall</code> for dependencies unless you approve them. The install succeeds, and later Puppeteer can't find Chrome, Prisma can't find its client, or <code>sqlite3</code> has no bindings. Drop in your <code>package-lock.json</code> or a public repo to see which packages actually need their script, plus the <code>allowScripts</code> block to commit.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#check">Check my project</a>
+        <button class="btn ghost" type="button" id="hero-sample">Try a sample</button>
+      </div>
+      <ul class="trust"><li>Runs in your browser</li><li>No install, no sign-in</li><li>Rules from npm's changelog</li></ul>
+    </div>
+    <aside class="hero-card" aria-label="Where npm 12 comes from">
+      <h2>Are you on npm 12 yet?</h2>
+      <ol class="timeline">
+        <li><strong>Jul 8, 2026</strong> <span>npm 12.0.0 released: install scripts, git and remote deps blocked by default</span></li>
+        <li><strong>Sep 30, 2026</strong> <span>npm 12.2.0 is the registry's <code>latest</code>; <code>npm i -g npm@latest</code> now installs 12</span></li>
+        <li><strong>Today</strong> <span>Node.js still bundles npm 11 or older, so the change lands when a CI step, Docker image, Corepack or a teammate upgrades npm</span></li>
+      </ol>
+      <p class="small">Sources: <a href="https://docs.npmjs.com/cli/v12/using-npm/changelog/" rel="noopener" target="_blank">npm 12 changelog</a>, <a href="https://www.npmjs.com/package/npm?activeTab=versions" rel="noopener" target="_blank">npm versions</a>. Check yours with <code>npm -v</code>.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="problem wrap" aria-labelledby="why">
+  <h2 id="why">Why upgrading npm quietly breaks projects</h2>
+  <div class="grid3">
+    <article><h3>Failures show up later</h3><p>A blocked script is only a warning. <code>npm ci</code> passes, then tests fail with "Could not find Chrome" or "Could not locate the bindings file", far from the cause.</p></article>
+    <article><h3>Not every script matters</h3><p><code>npm install-scripts ls</code> lists every package with a script, but not which ones need it. esbuild and bcrypt 6 work without theirs; bcrypt 5 and sqlite3 don't. Approving everything defeats the security point.</p></article>
+    <article><h3>CI changed too</h3><p>Git dependencies are refused, abbreviated flags like <code>--leg</code> throw, <code>--allow-scripts</code> fails on project installs, <code>npm shrinkwrap</code> is gone and <code>npm view --json</code> returns an array.</p></article>
+  </div>
+</section>
+
+<section id="check" class="check" aria-labelledby="check-h">
+  <div class="wrap">
+    <h2 id="check-h">Check your project</h2>
+    <div class="tabs" role="tablist" aria-label="Input type">
+      <button role="tab" id="tab-files" aria-controls="panel-files" aria-selected="true" type="button">Files</button>
+      <button role="tab" id="tab-paste" aria-controls="panel-paste" aria-selected="false" type="button" tabindex="-1">Paste</button>
+      <button role="tab" id="tab-repo" aria-controls="panel-repo" aria-selected="false" type="button" tabindex="-1">Public GitHub repo</button>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-files" aria-labelledby="tab-files">
+      <div class="drop" id="drop">
+        <p><strong>Drop files here</strong> or choose them: <code>package-lock.json</code> (needed), plus optional <code>package.json</code>, <code>.npmrc</code>, workflow YAML, Dockerfile, shell scripts.</p>
+        <label for="file-input" class="sr-only">Choose files</label>
+        <input id="file-input" type="file" multiple>
+        <ul id="files-list" class="files-list" aria-label="Selected files"></ul>
+      </div>
+      <div class="row"><button class="btn primary" type="button" id="run-files">Check files</button><button class="btn ghost dark" type="button" id="sample-files">Load sample</button></div>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-paste" aria-labelledby="tab-paste" hidden>
+      <div class="grid2">
+        <div><label for="lock-input">package-lock.json</label><textarea id="lock-input" rows="10" spellcheck="false" autocomplete="off" placeholder='{"lockfileVersion": 3, "packages": { ... }}'></textarea></div>
+        <div><label for="pkg-input">package.json (optional)</label><textarea id="pkg-input" rows="10" spellcheck="false" autocomplete="off" placeholder='{"name": "my-app", "allowScripts": { ... }}'></textarea></div>
+        <div><label for="npmrc-input">.npmrc (optional)</label><textarea id="npmrc-input" rows="5" spellcheck="false" autocomplete="off" placeholder="allow-git=root"></textarea></div>
+        <div><label for="ci-input">CI workflow, Dockerfile or script (optional)</label><textarea id="ci-input" rows="5" spellcheck="false" autocomplete="off" placeholder="- run: npm ci"></textarea></div>
+      </div>
+      <div class="row"><button class="btn primary" type="button" id="run-paste">Check</button><button class="btn ghost dark" type="button" id="sample-paste">Load sample</button></div>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-repo" aria-labelledby="tab-repo" hidden>
+      <label for="repo-input">Public repository (owner/repo or a github.com URL, optionally with /tree/branch)</label>
+      <div class="row inline"><input id="repo-input" type="text" spellcheck="false" autocomplete="off" placeholder="owner/repo"><button class="btn primary" type="button" id="run-repo">Scan repo</button></div>
+      <p class="small muted">Your browser reads the file list from api.github.com (2 requests, no token) and the root package-lock.json, package.json, .npmrc, workflows and Dockerfiles from raw.githubusercontent.com.</p>
+    </div>
+    <label class="check-inline"><input type="checkbox" id="use-registry" checked> <span>Look up each flagged package's actual install script on registry.npmjs.org (sends only package names and versions; up to 200 lookups)</span></label>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+
+    <section id="results" class="results" hidden aria-labelledby="results-h">
+      <div class="results-head">
+        <h3 id="results-h">Results</h3>
+        <div class="row"><button class="btn ghost dark small-btn" type="button" id="copy-md">Copy Markdown checklist</button></div>
+      </div>
+      <div id="summary" class="summary"></div>
+      <ol id="findings" class="findings"></ol>
+      <div id="pkgs-wrap" hidden>
+        <h4>Packages with install scripts</h4>
+        <p class="small muted">Defaults: approve what breaks without its script, deny what works without it, leave the rest for you to read. Change any row; the outputs below update.</p>
+        <div class="table-wrap"><table class="pkg-table">
+          <caption class="sr-only">Dependencies with install scripts, verdicts and your decision</caption>
+          <thead><tr><th scope="col">Package</th><th scope="col">Without its script</th><th scope="col">allowScripts now</th><th scope="col">Decision</th></tr></thead>
+          <tbody id="pkgs"></tbody>
+        </table></div>
+        <label class="check-inline"><input type="checkbox" id="pin" checked> <span>Pin approvals to the exact version (npm 12's default, safer: an upgrade must be re-approved)</span></label>
+      </div>
+      <div id="out-wrap" hidden>
+        <h4>What to commit</h4>
+        <div class="out-grid">
+          <div class="code-wrap"><button class="btn ghost dark small-btn copy" type="button" data-copy="out-json">Copy</button><pre id="out-json" tabindex="0" aria-label="allowScripts block for package.json"></pre></div>
+          <div class="code-wrap"><button class="btn ghost dark small-btn copy" type="button" data-copy="out-cmds">Copy</button><pre id="out-cmds" tabindex="0" aria-label="Commands to run"></pre></div>
+        </div>
+        <p class="small muted">Run the commands with npm 12 (they edit package.json for you), or paste the block into package.json. Only approve packages you trust: an install script can run any code on your machine.</p>
+      </div>
+    </section>
+  </div>
+</section>
+
+<section id="rules" class="wrap rules" aria-labelledby="rules-h">
+  <h2 id="rules-h">What npm 12 changed, and what this checks</h2>
+  <div class="table-wrap">
+  <table>
+    <caption class="sr-only">npm 12 breaking changes and how the check detects them</caption>
+    <thead><tr><th scope="col">Change in npm 12</th><th scope="col">What you see</th><th scope="col">What this checks</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Dependency install scripts need approval (<code>allowScripts</code>)</th><td class="w">A warning; install exits 0, the package fails later</td><td>Every lockfile entry with <code>hasInstallScript</code>, its real script, a verdict and your current allowScripts coverage</td></tr>
+      <tr><th scope="row">Approvals pin to an exact version by default</th><td class="w">An upgrade silently blocks the script again</td><td>Pinned keys that no longer match the locked version, and stale keys</td></tr>
+      <tr><th scope="row"><code>allow-git</code> and <code>allow-remote</code> default to <code>none</code></th><td class="b"><code>EALLOWGIT</code> / <code>EALLOWREMOTE</code>, install fails</td><td>Git, GitHub-shorthand and tarball-URL deps, direct or transitive, and whether <code>root</code> is enough</td></tr>
+      <tr><th scope="row"><code>--allow-scripts</code> only for global installs</th><td class="b"><code>EALLOWSCRIPTS</code></td><td>Project installs passing it on the CLI or via <code>npm_config_allow_scripts</code></td></tr>
+      <tr><th scope="row">Abbreviated and unknown flags throw</th><td class="b"><code>EUNKNOWNCONFIG</code></td><td>Prefix flags such as <code>--leg</code> or <code>--prod</code> in scripts and CI</td></tr>
+      <tr><th scope="row"><code>shrinkwrap</code>, <code>adduser</code>, <code>star</code> removed; npm-shrinkwrap.json ignored</th><td class="b">Command fails / lock ignored</td><td>Commands in scripts and CI; the file in repo scans</td></tr>
+      <tr><th scope="row"><code>npm view --json</code> always returns an array</th><td class="w">Parsing breaks</td><td><code>view</code> / <code>info</code> / <code>show</code> with <code>--json</code></td></tr>
+      <tr><th scope="row">Node <code>^22.22.2 || ^24.15.0 || &gt;=26</code> required</th><td class="b">npm won't run</td><td>Files that upgrade npm while pinning Node 18, 20, 21, 23 or 25</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small muted">Sources: <a href="https://docs.npmjs.com/cli/v12/using-npm/changelog/" target="_blank" rel="noopener">npm 12 changelog</a>, <a href="https://docs.npmjs.com/cli/v12/commands/npm-install-scripts/" target="_blank" rel="noopener">npm install-scripts</a>, <a href="https://docs.npmjs.com/cli/v12/using-npm/config/" target="_blank" rel="noopener">npm config</a>, and <a href="https://nilaykabariya.blog/tested/npm-12-breaking-changes-tested" target="_blank" rel="noopener">hands-on tests of popular packages</a>. Rules as of <span id="asof"></span>.</p>
+</section>
+
+<section id="faq" class="wrap faq" aria-labelledby="faq-h">
+  <h2 id="faq-h">FAQ</h2>
+  <details><summary>Does this upload my lockfile?</summary><p>No. Files are read and analysed in your browser. With registry lookup on, your browser asks registry.npmjs.org for the manifest of each package that has an install script (names and versions only). Repo scans read public files from GitHub. See the <a href="privacy.html">privacy note</a>.</p></details>
+  <details><summary>How is this different from <code>npm install-scripts ls</code>?</summary><p>That command needs npm 12 and an installed tree, and lists every package with a script. This check works before you upgrade, needs no install, and tells you which scripts the package actually needs, with the exact command it runs. It also checks CI files, .npmrc and git dependencies.</p></details>
+  <details><summary>How are verdicts decided?</summary><p>First from a short list of packages with documented behaviour (for example Puppeteer, Cypress, Prisma, sqlite3, lefthook, bcrypt by version, esbuild). Otherwise from the script itself: <code>prebuild-install</code>, <code>node-pre-gyp</code> and <code>node-gyp rebuild</code> mean a native binary is downloaded or built; <code>node-gyp-build</code> means prebuilds ship in the package; message-only scripts are safe to deny. Anything else is marked "review".</p></details>
+  <details><summary>Does it support pnpm, Yarn or Bun?</summary><p>No, only npm's package-lock.json (v2 or v3). pnpm and Bun already block dependency scripts by default and have their own allowlists.</p></details>
+  <details><summary>Is this affiliated with npm or GitHub?</summary><p>No. It is an independent, open-source tool built from npm's public documentation.</p></details>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Built by <a href="../">Product Factory</a> · <a href="https://github.com/Abhishek01239/product-factory/tree/main/apps/npm12-check">Source on GitHub</a> · <a href="privacy.html">Privacy</a></p>
+    <p class="small">Independent tool, not affiliated with npm, Inc. or GitHub. Review every install script before approving it.</p>
+  </div>
+</footer>
+<script src="rules.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
