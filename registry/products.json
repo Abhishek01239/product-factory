@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-12",
+ "updated": "2026-10-13",
  "products": [
   {
    "id": "edf-tracker",
@@ -205,6 +205,57 @@
      "version": "1.0.0",
      "date": "2026-10-12",
      "change": "initial release: lockfile install-script audit with registry script lookup + verdicts, allowScripts coverage/pins, git/remote deps, CI/Docker/package.json script scan, allowScripts/commands/.npmrc generator, public repo scan, Markdown checklist"
+    }
+   ]
+  },
+  {
+   "id": "py315-check",
+   "name": "Python 3.15 Readiness Check",
+   "status": "live (pending deploy verification)",
+   "version": "1.0.0",
+   "path": "apps/py315-check",
+   "repository": "https://github.com/Abhishek01239/product-factory",
+   "deployment_url": "https://abhishek01239.github.io/product-factory/py315-check/",
+   "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
+   "deployment_verified": null,
+   "created": "2026-10-13",
+   "problem": "Python 3.15.0 (Oct 9, 2026) needs new cp315/abi3 wheels; releases pinned before October never get them, so pip compiles numpy (<2.5.2), pandas (<3.0.6), psycopg2-binary (<2.9.13), pydantic-core, PyYAML (no 3.15 wheels yet) from source and slim/Alpine builds fail; torch 2.12.1 and ctranslate2 have no installable file at all. Docker python:3/latest/slim/alpine and setup-python '3.x' already resolve to 3.15, so teams land on it without choosing. 3.15 also removed sre_* modules, CGIHTTPRequestHandler, glob0/1, co_lnotab, load_module etc., and made strptime %d-without-year and positional sqlite3.connect args errors.",
+   "target_user": "Python developers, maintainers and CI/Docker owners with pinned requirements/uv/Poetry/Pipenv lockfiles",
+   "evidence": [
+    "What's new in Python 3.15 (Removed, Porting) https://docs.python.org/3/whatsnew/3.15.html",
+    "Docker official-images library/python: 3, latest, slim, alpine -> 3.15.0 https://github.com/docker-library/official-images/blob/master/library/python",
+    "actions/python-versions manifest includes 3.15.0 (setup-python '3.x' resolves to it)",
+    "pyreadiness.org/3.15: 90/360 top packages declare 3.15 support (Oct 13)",
+    "PyPI JSON checked Oct 13: numpy cp315 wheels only from 2.5.2, pandas from 3.0.6, psycopg2-binary from 2.9.13, PyYAML none; pip download --only-binary --python-version 3.15 numpy==2.2.6 fails",
+    "Real repos: open-webui/open-webui uv.lock has 8 packages with no installable 3.15 file (torch 2.12.1, ctranslate2 4.8.0, pywin32 on Windows) and 3 compiling from source; pydantic/pydantic locks 26 packages without 3.15 wheels"
+   ],
+   "existing_solutions": [
+    "pyreadiness.org (latest release of top 360, classifier-based)",
+    "check-pypi-metadata / pip download --only-binary (CLI, per package)",
+    "ruff/pyupgrade (code rules, not wheel availability)",
+    "vermin (minimum version detection)"
+   ],
+   "differentiation": "Checks the exact pinned versions in your lockfile (requirements, uv.lock offline, poetry.lock offline, pylock.toml, Pipfile.lock) against real wheel tags per platform incl. abi3/abi3t/free-threaded, finds the smallest non-prerelease upgrade with wheels on all selected platforms, routes exact-pinned children to their parent (pydantic -> pydantic-core), plus 3.15 removed-API code scan and floating CI/Docker detection, all in the browser with no install.",
+   "opportunity_score": 7.0,
+   "scores": {
+    "severity": 6,
+    "users": 9,
+    "trend": 8,
+    "competition": 6,
+    "ease": 8,
+    "differentiation": 7,
+    "distribution": 7,
+    "monetization": 3,
+    "mvp_speed": 9
+   },
+   "monetization": "none now; possible later: GitHub Action / PR comment that runs the same check on every lockfile change (free for public repos).",
+   "social_promotion": "drafted (launch/py315-check/posts.md), not published: X/Bluesky/Facebook/Mastodon/Threads not connected",
+   "analytics": "none (privacy-first; no tracking by design)",
+   "changelog": [
+    {
+     "version": "1.0.0",
+     "date": "2026-10-13",
+     "change": "initial release: pinned-dependency 3.15 wheel check per platform via PyPI JSON + Simple API, smallest upgrade, parent-pin detection, uv/poetry/pylock offline, requires-python caps, removed-API/behaviour code rules, UTF-8 default note, .pth imports, floating Docker/setup-python detection, public repo scan, Markdown checklist"
     }
    ]
   }
@@ -418,6 +469,41 @@
    "decision": "rejected",
    "date": "2026-10-12",
    "reason": "Mature official tooling (upgrade assistant, dotnet list package) covers it"
+  },
+  {
+   "idea": "Python 3.15 Readiness Check (pinned wheels + removed APIs + floating CI)",
+   "score": 7.0,
+   "decision": "selected",
+   "date": "2026-10-13",
+   "reason": "3.15.0 released Oct 9; floating tags already moved; per-pin wheel gap verified on PyPI; existing tools check latest release only"
+  },
+  {
+   "idea": "Australia card surcharge ban (Oct 1, 2026) menu repricer for small businesses",
+   "score": 6.4,
+   "decision": "rejected (keep as candidate)",
+   "date": "2026-10-13",
+   "reason": "Real pain (SMH Oct 10, ASBFEO guidance) but a free calculator already exists (WebGecko) and the factory has no AU distribution; revisit with a per-item price list + ACCC-safe signage angle"
+  },
+  {
+   "idea": "Gemini 2.5 on Vertex retirement Oct 20 request checker",
+   "score": 5.0,
+   "decision": "rejected",
+   "date": "2026-10-13",
+   "reason": "Too close to Claude 5.5 Request Check and earlier rejected model-ID scanner; Google publishes a migration guide"
+  },
+  {
+   "idea": "Passkey lockout / 'passkeys are a trap' debate",
+   "score": 3.5,
+   "decision": "rejected",
+   "date": "2026-10-13",
+   "reason": "Hot discussion but no concrete, software-solvable gap identified"
+  },
+  {
+   "idea": "npm trusted publishing unvalidated configs expiring",
+   "score": 4.0,
+   "decision": "rejected",
+   "date": "2026-10-13",
+   "reason": "Niche (package maintainers only) and npm notifies affected users directly"
   }
  ]
 }

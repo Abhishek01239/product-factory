@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://pypi.org https://api.github.com https://raw.githubusercontent.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Python 3.15 Readiness Check: which of your pinned dependencies install on 3.15?</title>
+<meta name="description" content="Free Python 3.15 compatibility checker. Drop in requirements.txt, uv.lock, poetry.lock, Pipfile.lock or a public GitHub repo and see which exact pinned versions have no 3.15 wheel, the smallest upgrade that fixes each, APIs removed in 3.15 in your code, and CI or Docker tags that silently moved to 3.15. Runs in your browser.">
+<link rel="canonical" href="https://abhishek01239.github.io/product-factory/py315-check/">
+<meta name="theme-color" content="#0e1f33">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Python 3.15 Readiness Check: will your lockfile install on 3.15?">
+<meta property="og:description" content="Python 3.15 shipped on 9 Oct 2026 and python:3 / setup-python '3.x' now resolve to it. Check your exact pins for 3.15 wheels, get the smallest upgrade for each, and find removed APIs in your code.">
+<meta property="og:url" content="https://abhishek01239.github.io/product-factory/py315-check/">
+<meta property="og:image" content="https://abhishek01239.github.io/product-factory/py315-check/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Python 3.15 Readiness Check">
+<meta name="twitter:description" content="Which of your pinned dependencies have no Python 3.15 wheel, and what's the smallest upgrade that fixes each? Checks lockfiles, code and CI in your browser.">
+<meta name="twitter:image" content="https://abhishek01239.github.io/product-factory/py315-check/og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Python 3.15 Readiness Check","url":"https://abhishek01239.github.io/product-factory/py315-check/","applicationCategory":"DeveloperApplication","operatingSystem":"Any (browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Reads requirements.txt, uv.lock, poetry.lock, Pipfile.lock, pylock.toml, pyproject.toml, Python code and CI files to find what breaks on Python 3.15: pinned versions without 3.15 wheels, requires-python caps, APIs removed in 3.15 and floating CI/Docker versions."}</script>
+</head>
+<body>
+<a class="skip" href="#check">Skip to the checker</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="./" aria-label="Python 3.15 Readiness Check home">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#ffd43b"/><path d="M9 16.5l4.5 4.5L23 11" fill="none" stroke="#0e1f33" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Py 3.15 Check</span>
+    </a>
+    <nav aria-label="Main"><a href="#check">Check</a><a href="#rules">What changed</a><a href="#faq">FAQ</a></nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Python 3.15 is out, and "3.x" now means 3.15</p>
+      <h1>Find the pinned dependencies that won't install on Python 3.15, and the smallest upgrade for each.</h1>
+      <p class="lede">A dependency without a <code>cp315</code> wheel makes pip compile it from source. In a slim Docker image or a fresh CI runner that means a long build or a failed one. Drop in your lockfile or a public repo to see exactly which of <strong>your</strong> versions are affected on Linux, macOS and Windows, plus the APIs 3.15 removed and the CI lines that already moved to 3.15.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#check">Check my project</a>
+        <button class="btn ghost" type="button" id="hero-sample">Try a sample</button>
+      </div>
+      <ul class="trust"><li>Runs in your browser</li><li>No install, no sign-in</li><li>Live wheel data from PyPI</li></ul>
+    </div>
+    <aside class="hero-card" aria-label="Why this matters now">
+      <h2>Why now</h2>
+      <ol class="timeline">
+        <li><strong>9 Oct 2026</strong> <span>Python 3.15.0 released: UTF-8 by default, lazy imports, a batch of removed APIs</span></li>
+        <li><strong>Now</strong> <span>Docker <code>python:3</code>, <code>latest</code>, <code>slim</code> and <code>alpine</code> point to 3.15.0, and <code>actions/setup-python</code> with <code>'3.x'</code> installs it</span></li>
+        <li><strong>13 Oct 2026</strong> <span>90 of the 360 most-downloaded PyPI packages declare 3.15 support; older releases of the rest have no 3.15 wheels</span></li>
+      </ol>
+      <p class="small">Sources: <a href="https://docs.python.org/3/whatsnew/3.15.html" rel="noopener" target="_blank">What's new in 3.15</a>, <a href="https://github.com/docker-library/official-images/blob/master/library/python" rel="noopener" target="_blank">Docker official image tags</a>, <a href="https://github.com/actions/python-versions/blob/main/versions-manifest.json" rel="noopener" target="_blank">setup-python manifest</a>, <a href="https://pyreadiness.org/3.15/" rel="noopener" target="_blank">pyreadiness.org</a>.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="problem wrap" aria-labelledby="why">
+  <h2 id="why">Why "works on 3.14" breaks on 3.15</h2>
+  <div class="grid3">
+    <article><h3>Your pins are older than the fix</h3><p>numpy only ships 3.15 wheels from 2.5.2, pandas from 3.0.6, psycopg2-binary from 2.9.13. A lockfile from last spring pins versions that predate 3.15, so pip falls back to a source build.</p></article>
+    <article><h3>Readiness lists check "latest"</h3><p>pyreadiness.org and package pages show whether the newest release supports 3.15. What matters is the version in your lockfile, on your platforms, and whether a parent package pins it exactly.</p></article>
+    <article><h3>You may already be on 3.15</h3><p>Floating tags like <code>python:3-slim</code> and <code>python-version: '3.x'</code> picked up 3.15 on their own. The first sign is often a failing build of a package you never touched.</p></article>
+  </div>
+</section>
+
+<section id="check" class="check" aria-labelledby="check-h">
+  <div class="wrap">
+    <h2 id="check-h">Check your project</h2>
+    <div class="opts">
+      <fieldset id="plat-set"><legend>Platforms you install on</legend></fieldset>
+      <fieldset><legend>Interpreter</legend>
+        <label><input type="radio" name="build" value="gil" checked> CPython 3.15</label>
+        <label><input type="radio" name="build" value="ft"> Free-threaded 3.15t</label>
+      </fieldset>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Input type">
+      <button role="tab" id="tab-files" aria-controls="panel-files" aria-selected="true" type="button">Files</button>
+      <button role="tab" id="tab-paste" aria-controls="panel-paste" aria-selected="false" type="button" tabindex="-1">Paste</button>
+      <button role="tab" id="tab-repo" aria-controls="panel-repo" aria-selected="false" type="button" tabindex="-1">Public GitHub repo</button>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-files" aria-labelledby="tab-files">
+      <div class="drop" id="drop">
+        <p><strong>Drop files here</strong> or choose them: <code>requirements.txt</code>, <code>uv.lock</code>, <code>poetry.lock</code>, <code>Pipfile.lock</code>, <code>pylock.toml</code> or <code>pyproject.toml</code>, plus optional <code>.py</code> files, workflow YAML and Dockerfiles.</p>
+        <label for="file-input" class="sr-only">Choose files</label>
+        <input id="file-input" type="file" multiple>
+        <ul id="files-list" class="files-list" aria-label="Selected files"></ul>
+      </div>
+      <div class="row"><button class="btn primary" type="button" id="run-files">Check files</button><button class="btn ghost dark" type="button" id="sample-files">Load sample</button></div>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-paste" aria-labelledby="tab-paste" hidden>
+      <div class="grid2">
+        <div><label for="deps-input">requirements.txt or a lockfile</label><textarea id="deps-input" rows="10" spellcheck="false" autocomplete="off" placeholder="numpy==2.2.6&#10;pandas==2.2.3"></textarea></div>
+        <div><label for="code-input">Python code (optional)</label><textarea id="code-input" rows="10" spellcheck="false" autocomplete="off" placeholder="import sre_constants"></textarea></div>
+        <div><label for="ci-input">CI workflow or Dockerfile (optional)</label><textarea id="ci-input" rows="6" spellcheck="false" autocomplete="off" placeholder="FROM python:3-slim"></textarea></div>
+        <div><label for="pyproject-input">pyproject.toml (optional)</label><textarea id="pyproject-input" rows="6" spellcheck="false" autocomplete="off" placeholder='[project]&#10;requires-python = ">=3.10"'></textarea></div>
+      </div>
+      <div class="row"><button class="btn primary" type="button" id="run-paste">Check</button><button class="btn ghost dark" type="button" id="sample-paste">Load sample</button></div>
+    </div>
+    <div class="panel" role="tabpanel" id="panel-repo" aria-labelledby="tab-repo" hidden>
+      <label for="repo-input">Public repository (owner/repo or a github.com URL, optionally with /tree/branch)</label>
+      <div class="row inline"><input id="repo-input" type="text" spellcheck="false" autocomplete="off" placeholder="owner/repo"><button class="btn primary" type="button" id="run-repo">Scan repo</button></div>
+      <p class="small muted">Your browser reads the file list from api.github.com (2 requests, no token), then lockfiles, pyproject.toml, workflows, Dockerfiles and up to 200 .py files from raw.githubusercontent.com.</p>
+    </div>
+    <label class="check-inline"><input type="checkbox" id="use-pypi" checked> <span>Look up wheels on pypi.org for packages your files don't list wheels for (sends only package names and versions; up to 300 lookups). uv.lock, poetry.lock and pylock.toml already list wheels, so they work offline.</span></label>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+
+    <section id="results" class="results" hidden aria-labelledby="results-h">
+      <div class="results-head">
+        <h3 id="results-h">Results</h3>
+        <div class="row"><button class="btn ghost dark small-btn" type="button" id="copy-md">Copy Markdown checklist</button></div>
+      </div>
+      <div id="summary" class="summary"></div>
+      <ol id="findings" class="findings"></ol>
+      <div id="pkgs-wrap" hidden>
+        <h4>Dependencies on Python 3.15</h4>
+        <div class="filter-row"><label><input type="checkbox" id="only-problems" checked> Show only packages that need attention</label><span id="pkg-count" class="small muted"></span></div>
+        <div class="table-wrap"><table class="pkg-table">
+          <caption class="sr-only">Each dependency, whether it installs from a wheel on each platform, and the smallest fix</caption>
+          <thead><tr><th scope="col">Package</th><th scope="col">On 3.15</th><th scope="col">Per platform</th><th scope="col">Smallest fix</th></tr></thead>
+          <tbody id="pkgs"></tbody>
+        </table></div>
+      </div>
+      <div id="out-wrap" hidden>
+        <h4>Upgrades to make</h4>
+        <div class="code-wrap"><button class="btn ghost dark small-btn copy" type="button" data-copy="out-up">Copy</button><pre id="out-up" tabindex="0" aria-label="Upgrade lines and commands"></pre></div>
+        <p class="small muted">Each version is the lowest release newer than your pin that has wheels for every platform you selected and allows Python 3.15. Run your tests after upgrading: some are major versions.</p>
+      </div>
+      <p id="notes" class="notes"></p>
+    </section>
+  </div>
+</section>
+
+<section id="rules" class="wrap rules" aria-labelledby="rules-h">
+  <h2 id="rules-h">What Python 3.15 changed, and what this checks</h2>
+  <div class="table-wrap">
+  <table>
+    <caption class="sr-only">Python 3.15 changes and how the check detects them</caption>
+    <thead><tr><th scope="col">Change</th><th scope="col">What you see</th><th scope="col">What this checks</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">New ABI tag <code>cp315</code> (and <code>cp315t</code> / <code>abi3t</code> for free-threaded)</th><td class="w">pip builds the sdist; fails without a compiler</td><td>Every pinned version's wheels per platform, abi3 and pure-Python wheels included, plus the smallest upgrade with 3.15 wheels</td></tr>
+      <tr><th scope="row"><code>requires-python</code> upper caps</th><td class="b">"No matching distribution", resolver errors</td><td>Your pyproject.toml and every pinned dependency's metadata</td></tr>
+      <tr><th scope="row">Removed: <code>sre_*</code> modules, <code>CGIHTTPRequestHandler</code>, <code>glob0/glob1</code>, <code>co_lnotab</code>, <code>PurePath.is_reserved()</code>, <code>load_module()</code>, NamedTuple keyword syntax, empty <code>TypedDict("TD")</code>…</th><td class="b"><code>ModuleNotFoundError</code>, <code>AttributeError</code>, <code>TypeError</code></td><td>Your .py files, with line numbers</td></tr>
+      <tr><th scope="row"><code>strptime()</code> with <code>%d</code> and no year</th><td class="b"><code>ValueError</code></td><td>String-literal formats passed to strptime</td></tr>
+      <tr><th scope="row"><code>sqlite3.connect()</code> keyword-only parameters; argparse <code>dest</code> from <code>-foo</code></th><td class="b"><code>TypeError</code> / renamed attribute</td><td>Positional second arguments; <code>add_argument('-f', '-foo')</code></td></tr>
+      <tr><th scope="row">UTF-8 is the default text encoding (PEP 686)</th><td class="w">Decode errors on Windows for cp1252 files</td><td><code>open()</code>, <code>read_text()</code>, <code>write_text()</code> without <code>encoding=</code></td></tr>
+      <tr><th scope="row"><code>import</code> lines in .pth files deprecated (PEP 829)</th><td class="w">Ignored when a .start file exists</td><td>.pth files in the repo</td></tr>
+      <tr><th scope="row">Floating versions moved to 3.15</th><td class="w">CI or image rebuild changes Python</td><td><code>python:3</code>/<code>latest</code>/<code>slim</code>/<code>alpine</code> tags, <code>python-version: '3.x'</code>, unquoted <code>3.10</code>, matrices without 3.15</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small muted">Sources: <a href="https://docs.python.org/3/whatsnew/3.15.html" target="_blank" rel="noopener">What's new in Python 3.15</a> (Removed, Porting), <a href="https://peps.python.org/pep-0686/" target="_blank" rel="noopener">PEP 686</a>, <a href="https://packaging.python.org/en/latest/specifications/platform-compatibility-tags/" target="_blank" rel="noopener">wheel compatibility tags</a>. Rules as of <span id="asof"></span>.</p>
+</section>
+
+<section id="faq" class="wrap faq" aria-labelledby="faq-h">
+  <h2 id="faq-h">FAQ</h2>
+  <details><summary>Does this upload my files?</summary><p>No. Files are read and analysed in your browser. With PyPI lookup on, your browser asks pypi.org for the public file list of each pinned package (names and versions only). Repo scans read public files from GitHub. See the <a href="privacy.html">privacy note</a>.</p></details>
+  <details><summary>How is this different from pyreadiness.org?</summary><p>pyreadiness shows whether the latest release of the 360 most popular packages declares 3.15 support with a classifier. This check reads the versions you actually pin, looks at the real wheel files for your platforms (a package can work on 3.15 without the classifier, or declare it without Windows wheels), covers every package in your lockfile, and finds the smallest upgrade that fixes each.</p></details>
+  <details><summary>A package says "compiles from source". Will it fail?</summary><p>It depends on the package and your machine. pip needs a compiler, Python headers and the library's own build dependencies; slim and Alpine images have none of these. Even when it works, it can add minutes to every build. Upgrading to a release with a 3.15 wheel avoids the question.</p></details>
+  <details><summary>Why does it say to upgrade a different package?</summary><p>Some packages are pinned exactly by another one, for example pydantic pins pydantic-core. Upgrading the child alone would fail to resolve, so the check points you to the parent.</p></details>
+  <details><summary>Does it support conda?</summary><p>No. conda-forge builds its own packages and is still adding py315 builds. This check is for pip, uv, Poetry and Pipenv installs from PyPI.</p></details>
+  <details><summary>Is this affiliated with the Python Software Foundation?</summary><p>No. It is an independent, open-source tool built from the official Python documentation and PyPI's public APIs.</p></details>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Built by <a href="../">Product Factory</a> · <a href="https://github.com/Abhishek01239/product-factory/tree/main/apps/py315-check">Source on GitHub</a> · <a href="privacy.html">Privacy</a></p>
+    <p class="small">Independent tool, not affiliated with the Python Software Foundation, PyPI or GitHub. Always run your test suite on 3.15 before switching.</p>
+  </div>
+</footer>
+<script src="rules.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'">
+<title>Privacy — Python 3.15 Readiness Check</title><meta name="description" content="Python 3.15 Readiness Check has no server, no accounts and no analytics. Lockfiles, code and CI files are analysed in your browser.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css"></head>
+<body><header class="site-header"><div class="wrap header-row"><a class="brand" href="./"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#ffd43b"/><path d="M9 16.5l4.5 4.5L23 11" fill="none" stroke="#0e1f33" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Py 3.15 Check</span></a></div></header>
+<main class="wrap prose"><h1>Privacy</h1>
+<p>Python 3.15 Readiness Check is a static page. It has no server-side code, no accounts, no cookies and no analytics.</p>
+<ul>
+<li>Files you choose or paste (requirements files, lockfiles, pyproject.toml, Python code, workflows, Dockerfiles) are analysed by JavaScript in your browser and are never uploaded.</li>
+<li>With "Look up wheels on pypi.org" switched on, your browser asks <code>pypi.org</code> for the public file list of each pinned package, and of flagged packages to find the smallest upgrade. Only package names and versions are sent. Switch it off to stay offline; uv.lock, poetry.lock and pylock.toml are still checked from the wheel names they contain.</li>
+<li>When you scan a public repository, your browser requests the repository info and file list from <code>api.github.com</code> and the files from <code>raw.githubusercontent.com</code>. No token is used. These three hosts are the only external connections the page's Content Security Policy allows.</li>
+<li>Nothing is stored: results disappear when you close the tab. A service worker caches the page's own static files so it loads offline.</li>
+<li>The page is hosted on GitHub Pages, which may keep standard server logs (such as IP address) as described in GitHub's privacy statement.</li>
+</ul>
+<p><a href="./">Back to the checker</a></p></main></body></html>
