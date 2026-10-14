@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://api.github.com https://raw.githubusercontent.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Supabase Grants Check: fix the Oct 30 "permission denied" (42501) before it ships</title>
+<meta name="description" content="Free Supabase Oct 30 checker. Point it at a public repo, your migrations folder or a read-only SQL snapshot. See which tables lose Data API access, which are open with RLS off, and get a least-privilege GRANT migration built from your own policies and supabase-js calls. Runs in your browser, no email.">
+<link rel="canonical" href="https://abhishek01239.github.io/product-factory/supabase-grants-check/">
+<meta name="theme-color" content="#0c1a14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Supabase Grants Check: which tables break on Oct 30?">
+<meta property="og:description" content="Supabase stops auto-granting new public tables on Oct 30, 2026. Check your migrations and app code in the browser and get least-privilege GRANTs, not GRANT ALL.">
+<meta property="og:url" content="https://abhishek01239.github.io/product-factory/supabase-grants-check/">
+<meta property="og:image" content="https://abhishek01239.github.io/product-factory/supabase-grants-check/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Supabase Grants Check">
+<meta name="twitter:description" content="Find the tables that 42501 after Supabase's Oct 30 change, and get the exact GRANTs your code needs.">
+<meta name="twitter:image" content="https://abhishek01239.github.io/product-factory/supabase-grants-check/og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Supabase Grants Check","url":"https://abhishek01239.github.io/product-factory/supabase-grants-check/","applicationCategory":"DeveloperApplication","operatingSystem":"Any (browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Replays Supabase SQL migrations and reads supabase-js calls to find tables that lose Data API access when Supabase stops automatic grants on October 30, 2026, flags tables with RLS off, and writes a least-privilege GRANT migration."}</script>
+</head>
+<body>
+<a class="skip" href="#check">Skip to the checker</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="./" aria-label="Supabase Grants Check home">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#34d399"/><path d="M10 14v-2.5a6 6 0 0 1 12 0V14" fill="none" stroke="#0c1a14" stroke-width="2.6" stroke-linecap="round"/><rect x="8" y="14" width="16" height="11" rx="2.5" fill="#0c1a14"/><path d="M12.5 19.5l2.3 2.3 4.7-4.7" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Supabase Grants Check</span>
+    </a>
+    <nav aria-label="Main"><a href="#check">Check</a><a href="#rules">What changes</a><a href="#faq">FAQ</a></nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" aria-labelledby="hero-h">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Supabase · Oct 30, 2026</p>
+      <h1 id="hero-h">Your next Supabase table will throw <code>42501</code>. Find out which ones, and fix them without <code>GRANT ALL</code>.</h1>
+      <p class="lede">On October 30 Supabase stops giving new <code>public</code> tables to the Data API automatically. A table without a <code>GRANT</code> fails with "permission denied for table" for supabase-js, REST and GraphQL, even with the service_role key. This check reads your migrations, your RLS policies and your <code>supabase.from()</code> calls, and writes the grants each table actually needs.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#check">Check my project</a>
+        <button class="btn ghost" type="button" id="hero-sample">Try a sample app</button>
+      </div>
+      <ul class="trust"><li>Runs in your browser</li><li>No sign-up, no email</li><li>No database keys</li></ul>
+    </div>
+    <aside class="hero-card" aria-labelledby="tl-h">
+      <h2 id="tl-h">The timeline</h2>
+      <ol class="timeline">
+        <li><strong>May 30, 2026</strong><span>New projects stop auto-granting new tables to anon, authenticated and service_role.</span></li>
+        <li><strong>Oct 30, 2026</strong><span>Same default for every existing project. Existing tables keep their grants; new ones get none.</span></li>
+        <li><strong>After that</strong><span>Every <code>create table</code> needs its own <code>grant</code>, or the app gets 42501.</span></li>
+      </ol>
+      <p class="small">Source: <a href="https://supabase.com/changelog/45329-breaking-change-tables-not-exposed-to-data-and-graphql-api-automatically" rel="noopener">Supabase changelog</a> and <a href="https://supabase.com/docs/guides/api/securing-your-api" rel="noopener">Securing your API</a>.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="wrap problem" aria-labelledby="prob-h">
+  <h2 id="prob-h">Why the quick fix is the wrong fix</h2>
+  <div class="grid3">
+    <article><h3>It breaks quietly, later</h3><p>Nothing fails on Oct 30 itself. The failure arrives with your next migration, preview branch or fresh project, often from an AI builder that wrote the table for you.</p></article>
+    <article><h3>GRANT ALL reopens everything</h3><p>The copy-paste fix, <code>grant all on all tables in schema public to anon</code>, brings back the old exposure, including tables that never had RLS turned on.</p></article>
+    <article><h3>Your code already knows</h3><p>Which tables you read, insert, update or upsert is in your <code>supabase.from()</code> calls. Your policies say who may. This check combines the two into least-privilege grants.</p></article>
+  </div>
+</section>
+
+<section id="check" class="wrap check" aria-labelledby="check-h">
+  <h2 id="check-h">Check your project</h2>
+  <p class="muted">Use a public GitHub repo, upload your project folder, or paste SQL. For tables made in the Dashboard, add the read-only snapshot under step 2.</p>
+  <div class="tabs" role="tablist" aria-label="Input method">
+    <button role="tab" id="tab-repo" aria-controls="p-repo" aria-selected="true">GitHub repo</button>
+    <button role="tab" id="tab-files" aria-controls="p-files" aria-selected="false" tabindex="-1">Upload folder</button>
+    <button role="tab" id="tab-paste" aria-controls="p-paste" aria-selected="false" tabindex="-1">Paste SQL</button>
+  </div>
+  <div class="panel" role="tabpanel" id="p-repo" aria-labelledby="tab-repo">
+    <label for="repo">Public repository</label>
+    <div class="row inline"><input type="text" id="repo" placeholder="https://github.com/owner/repo  or  owner/repo" autocomplete="off" spellcheck="false" inputmode="url"><button class="btn primary" type="button" id="run-repo">Check repo</button></div>
+    <p class="small muted">Reads <code>supabase/migrations</code>, <code>supabase/schemas</code>, <code>supabase/config.toml</code> and up to 250 source files from GitHub's public API. Private repos: use Upload folder.</p>
+  </div>
+  <div class="panel" role="tabpanel" id="p-files" aria-labelledby="tab-files" hidden>
+    <div class="drop" id="drop">
+      <p><strong>Drop your project folder here</strong>, or choose it:</p>
+      <div class="row center">
+        <label class="btn ghost dark small-btn" for="folder">Choose folder</label><input type="file" id="folder" webkitdirectory multiple class="sr-only">
+        <label class="btn ghost dark small-btn" for="files">Choose files</label><input type="file" id="files" multiple accept=".sql,.toml,.js,.jsx,.ts,.tsx,.mjs,.cjs,.vue,.svelte,.astro" class="sr-only">
+      </div>
+      <p class="small muted">Only .sql, config.toml and JS/TS source files are read; node_modules and build output are skipped. Nothing is uploaded.</p>
+    </div>
+    <ul class="files-list" id="files-list" aria-live="polite"></ul>
+  </div>
+  <div class="panel" role="tabpanel" id="p-paste" aria-labelledby="tab-paste" hidden>
+    <label for="sql">Migration SQL (one or more files, in order)</label>
+    <textarea id="sql" spellcheck="false" placeholder="create table public.todos (...);&#10;alter table public.todos enable row level security;&#10;create policy ..."></textarea>
+    <label for="code" class="mt">App code that calls supabase-js (optional)</label>
+    <textarea id="code" class="short" spellcheck="false" placeholder="const { data } = await supabase.from('todos').select('*')"></textarea>
+    <div class="row"><button class="btn primary" type="button" id="run-paste">Check SQL</button><button class="btn ghost dark" type="button" id="sample">Load sample app</button></div>
+  </div>
+
+  <details class="mt" id="snap-box">
+    <summary>Step 2 (optional): add a read-only snapshot of your live project</summary>
+    <p>Covers tables created in the Dashboard or Table Editor, and shows whether your project is still auto-granting. Open <strong>SQL Editor</strong> in Supabase, run this query (it only reads system catalogs), and paste the single <code>snapshot</code> cell below.</p>
+    <div class="code-wrap"><button class="btn ghost dark small-btn copy" type="button" data-copy="snap-sql">Copy query</button><pre class="dark" id="snap-sql" tabindex="0"></pre></div>
+    <label for="snap" class="mt">Snapshot JSON</label>
+    <textarea id="snap" class="short" spellcheck="false" placeholder='{"tool": "supabase-grants-check", "version": 1, "tables": [...]}'></textarea>
+    <p class="small muted">Includes table, policy and function names and their grants. No row data. The check runs again when you paste.</p>
+  </details>
+
+  <fieldset class="mt"><legend>Migration options</legend>
+    <div class="opts-row">
+      <label><input type="checkbox" id="opt-sr" checked> Grant service_role (server code, Edge Functions)</label>
+      <label><input type="checkbox" id="opt-tighten"> Add revokes for access nobody needs</label>
+    </div>
+  </fieldset>
+
+  <p class="status" id="status" role="status" aria-live="polite"></p>
+
+  <div class="results" id="results" hidden tabindex="-1" aria-labelledby="res-h">
+    <div class="results-head">
+      <h3 id="res-h">Results</h3>
+      <div class="row"><button class="btn ghost dark small-btn" type="button" id="dl-md">Download checklist (.md)</button><button class="btn ghost dark small-btn" type="button" id="share">Copy share link</button></div>
+    </div>
+    <p class="small muted" id="res-meta"></p>
+    <div class="summary" id="summary"></div>
+    <ul class="findings" id="findings"></ul>
+    <h4>Tables in exposed schemas</h4>
+    <div class="table-wrap"><table class="obj-table"><caption class="sr-only">Each table, its RLS state, status and recommended privileges</caption>
+      <thead><tr><th scope="col">Table</th><th scope="col">RLS</th><th scope="col">Status</th><th scope="col">anon</th><th scope="col">authenticated</th><th scope="col">Used by code</th></tr></thead>
+      <tbody id="objs"></tbody></table></div>
+    <h4 id="mig-h">Grant migration</h4>
+    <p class="small muted">Save as <code id="mig-name"></code>, review, then <code>supabase db push</code> or run it in the SQL Editor. Grants only open a table to a role; RLS still decides which rows.</p>
+    <div class="code-wrap"><button class="btn ghost dark small-btn copy" type="button" data-copy="mig">Copy SQL</button><pre class="dark" id="mig" tabindex="0" aria-labelledby="mig-h"></pre></div>
+    <div class="row"><button class="btn primary small-btn" type="button" id="dl-sql">Download .sql</button></div>
+    <h4 id="tpl-h">Pattern for every new table</h4>
+    <div class="code-wrap"><button class="btn ghost dark small-btn copy" type="button" data-copy="tpl">Copy</button><pre class="dark" id="tpl" tabindex="0" aria-labelledby="tpl-h"></pre></div>
+  </div>
+</section>
+
+<section id="rules" class="wrap rules" aria-labelledby="rules-h">
+  <h2 id="rules-h">What changes, and what this check looks for</h2>
+  <div class="table-wrap"><table><caption class="sr-only">Behaviour before and after October 30, 2026</caption>
+    <thead><tr><th scope="col">Situation</th><th scope="col">Before Oct 30</th><th scope="col">After Oct 30</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Table that already exists</th><td class="o">Reachable (auto-granted)</td><td class="o">Unchanged, keeps its grants</td></tr>
+      <tr><th scope="row">New table in public, no GRANT</th><td class="o">Reachable</td><td class="b">42501 for anon, authenticated and service_role</td></tr>
+      <tr><th scope="row">Same migrations on a new project or branch</th><td class="b">Already 42501 for projects created after May 30</td><td class="b">42501</td></tr>
+      <tr><th scope="row">serial / bigserial id, INSERT granted</th><td class="o">Sequence auto-granted</td><td class="b">"permission denied for sequence" until USAGE is granted</td></tr>
+      <tr><th scope="row">Table with RLS off</th><td class="b">Open to anyone with the anon key</td><td class="w">Open if granted; closed if not</td></tr>
+      <tr><th scope="row">Functions called with .rpc()</th><td class="o">EXECUTE via PUBLIC</td><td class="o">Not changed by this default</td></tr>
+    </tbody></table></div>
+  <p class="small muted">Privileges per supabase-js call, checked on Postgres 18: <code>select</code> needs SELECT; <code>insert</code> needs INSERT (plus SELECT when you chain <code>.select()</code>); <code>update</code> and <code>delete</code> with filters also need SELECT; <code>upsert</code> needs INSERT, UPDATE and SELECT. Identity columns need no sequence grant. Rules as of <span id="asof"></span>.</p>
+</section>
+
+<section id="faq" class="wrap faq" aria-labelledby="faq-h">
+  <h2 id="faq-h">FAQ</h2>
+  <details><summary>Does this upload my code or touch my database?</summary><p>No. Everything runs in your browser. Repo checks read public files from GitHub. The snapshot is a query you run yourself and paste back; this page never sees your database URL or keys. See the <a href="privacy.html">privacy note</a>.</p></details>
+  <details><summary>How are the grants decided?</summary><p>For each table: the operations your client code performs (<code>.select</code>, <code>.insert</code>, <code>.update</code>, <code>.upsert</code>, <code>.delete</code>, plus tables embedded in select strings like <code>prices(*)</code>), limited to the roles your RLS policies allow. Policies <code>TO public</code> that depend on <code>auth.uid()</code> count for signed-in users only. Without app code, grants mirror the policies. service_role gets full access by default because server code and Edge Functions use it.</p></details>
+  <details><summary>My table has RLS off. Why no grants?</summary><p>Granting anon or authenticated on a table without RLS lets anyone with your public anon key read and change every row. The migration leaves those lines commented out until you enable RLS and add policies.</p></details>
+  <details><summary>What can't it see?</summary><p>Tables created in the Dashboard (use the snapshot), table names held in variables (<code>.from(name)</code>), raw <code>fetch</code> calls to <code>/rest/v1</code>, and SQL inside other tools. Server-side calls are recognised by the service-role key, admin client names or the <code>supabase/functions</code> folder.</p></details>
+  <details><summary>How is this different from the Supabase Security Advisor?</summary><p>The Advisor checks a live project. This check works on your migrations before you deploy, and writes the grants from your code. Use both.</p></details>
+  <details><summary>Is this affiliated with Supabase?</summary><p>No. It is an independent, open-source tool built from Supabase's and PostgreSQL's public documentation.</p></details>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Built by <a href="../">Product Factory</a> · <a href="https://github.com/Abhishek01239/product-factory/tree/main/apps/supabase-grants-check">Source on GitHub</a> · <a href="privacy.html">Privacy</a></p>
+    <p class="small">Independent tool, not affiliated with Supabase. Review every migration before applying it.</p>
+  </div>
+</footer>
+<script src="rules.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

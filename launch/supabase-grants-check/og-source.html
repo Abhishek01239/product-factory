@@ -1,0 +1,35 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box}body{margin:0;width:1200px;height:630px;background:radial-gradient(900px 420px at 90% -10%,#1b4a37 0%,transparent 60%),#0c1a14;color:#fff;font-family:"Noto Sans",system-ui,sans-serif;display:flex;padding:64px 64px 56px;gap:44px}
+.l{flex:1;min-width:0;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:14px;font-family:"DejaVu Sans Mono",monospace;font-weight:700;font-size:23px;white-space:nowrap}
+.chip{display:inline-block;margin:28px 0 16px;background:rgba(52,211,153,.14);color:#a7f3d0;border:1px solid rgba(52,211,153,.5);padding:6px 16px;border-radius:999px;font-family:"DejaVu Sans Mono",monospace;font-size:20px;align-self:flex-start}
+h1{font-size:52px;line-height:1.08;margin:0 0 20px;letter-spacing:-.01em}
+h1 em{font-style:normal;color:#34d399}
+p{font-size:22px;line-height:1.4;color:#dcefe6;margin:0}
+.foot{margin-top:auto;padding-top:14px;font-size:20px;color:#b9d6c9}
+.r{flex:0 0 530px;display:flex;flex-direction:column;gap:14px;justify-content:center}
+.f{background:#13261e;border:1px solid #28493b;border-left:6px solid #e0584f;border-radius:12px;padding:14px 18px;font-size:20px}
+.f.w{border-left-color:#d99a00}
+.t{font-family:"DejaVu Sans Mono",monospace;font-size:13px;font-weight:700;padding:2px 7px;border-radius:5px;background:#fbe9e7;color:#a3271f;margin-right:8px}
+.w .t{background:#fdf0d5;color:#7a4f00}
+pre{margin:0;background:#06100c;border:1px solid #28493b;border-radius:12px;padding:16px 18px;font-family:"DejaVu Sans Mono",monospace;font-size:15.5px;line-height:1.55;color:#e8f5ee;white-space:pre}
+.c{color:#7fa595}.k{color:#34d399}
+</style></head><body>
+<div class="l">
+ <div class="brand"><svg width="44" height="44" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#34d399"/><path d="M10 14v-2.5a6 6 0 0 1 12 0V14" fill="none" stroke="#0c1a14" stroke-width="2.6" stroke-linecap="round"/><rect x="8" y="14" width="16" height="11" rx="2.5" fill="#0c1a14"/><path d="M12.5 19.5l2.3 2.3 4.7-4.7" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Supabase Grants Check</div>
+ <span class="chip">Supabase · Oct 30, 2026</span>
+ <h1>Which tables <em>42501</em> after&nbsp;Oct&nbsp;30?</h1>
+ <p>Reads your migrations, RLS policies and supabase-js calls, and writes least-privilege GRANTs, not GRANT&nbsp;ALL.</p>
+ <div class="foot">Free · in your browser · no email</div>
+</div>
+<div class="r">
+ <div class="f"><span class="t">BREAKS</span>public.teams: new table, no grants</div>
+ <div class="f"><span class="t">BREAKS</span>public.feedback: RLS off, open to anon</div>
+ <div class="f w"><span class="t">REVIEW</span>5 tables rely on auto-grants</div>
+<pre><span class="c">-- public.todos (RLS on; 1 policy)</span>
+<span class="k">grant</span> select, insert, update, delete
+  on table public.todos to authenticated;
+<span class="k">grant usage on sequence</span> public.todos_id_seq
+  to authenticated, service_role;</pre>
+</div>
+</body></html>
