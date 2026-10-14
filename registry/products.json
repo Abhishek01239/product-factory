@@ -1,509 +1,571 @@
 {
- "updated": "2026-10-13",
- "products": [
-  {
-   "id": "edf-tracker",
-   "name": "EDF Tracker",
-   "status": "live",
-   "version": "1.1.0",
-   "path": "apps/edf-tracker",
-   "repository": "https://github.com/Abhishek01239/product-factory",
-   "deployment_url": "https://abhishek01239.github.io/product-factory/edf-tracker/",
-   "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
-   "deployment_verified": "2026-10-08 (v1.1.0): deploy-pages run 37728462968 succeeded; 22/22 Playwright E2E checks against the live URL (desktop + mobile); 12/12 unit tests. 2026-10-07 (v1.0.0): 23/23.",
-   "created": "2026-10-07",
-   "problem": "India's FEMA 2026 regulations (effective 1 Oct 2026) require service exporters to file a monthly EDF within 30 days of month-end and realise payment within 9 months. RBI said on 7 Oct 2026 that individuals with personal-nature transactions are not covered; FAQs pending, so applicability is confusing.",
-   "target_user": "Indian freelancers, consultants, small agencies and software exporters invoicing foreign clients",
-   "opportunity_score": 7.9,
-   "social_promotion": "drafted v1.1 (v1.0 drafts withdrawn as inaccurate), not published: X/Bluesky/Facebook/Mastodon not connected",
-   "analytics": "none (privacy-first; no tracking by design)",
-   "changelog": [
+  "updated": "2026-10-14",
+  "products": [
     {
-     "version": "1.1.0",
-     "date": "2026-10-08",
-     "change": "RBI 7 Oct clarification banner + 'Do I need to file?' checker; corrected copy that said every freelancer must file"
+      "id": "edf-tracker",
+      "name": "EDF Tracker",
+      "status": "live",
+      "version": "1.1.0",
+      "path": "apps/edf-tracker",
+      "repository": "https://github.com/Abhishek01239/product-factory",
+      "deployment_url": "https://abhishek01239.github.io/product-factory/edf-tracker/",
+      "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
+      "deployment_verified": "2026-10-08 (v1.1.0): deploy-pages run 37728462968 succeeded; 22/22 Playwright E2E checks against the live URL (desktop + mobile); 12/12 unit tests. 2026-10-07 (v1.0.0): 23/23.",
+      "created": "2026-10-07",
+      "problem": "India's FEMA 2026 regulations (effective 1 Oct 2026) require service exporters to file a monthly EDF within 30 days of month-end and realise payment within 9 months. RBI said on 7 Oct 2026 that individuals with personal-nature transactions are not covered; FAQs pending, so applicability is confusing.",
+      "target_user": "Indian freelancers, consultants, small agencies and software exporters invoicing foreign clients",
+      "opportunity_score": 7.9,
+      "social_promotion": "drafted v1.1 (v1.0 drafts withdrawn as inaccurate), not published: X/Bluesky/Facebook/Mastodon not connected",
+      "analytics": "none (privacy-first; no tracking by design)",
+      "changelog": [
+        {
+          "version": "1.1.0",
+          "date": "2026-10-08",
+          "change": "RBI 7 Oct clarification banner + 'Do I need to file?' checker; corrected copy that said every freelancer must file"
+        },
+        {
+          "version": "1.0.0",
+          "date": "2026-10-07",
+          "change": "initial release"
+        }
+      ],
+      "watch": "Update coverage() and copy when RBI publishes EDF FAQs"
     },
     {
-     "version": "1.0.0",
-     "date": "2026-10-07",
-     "change": "initial release"
-    }
-   ],
-   "watch": "Update coverage() and copy when RBI publishes EDF FAQs"
-  },
-  {
-   "id": "gpt-backup-kit",
-   "name": "GPT Backup Kit",
-   "status": "live",
-   "version": "1.0.0",
-   "path": "apps/gpt-backup-kit",
-   "repository": "https://github.com/Abhishek01239/product-factory",
-   "deployment_url": "https://abhishek01239.github.io/product-factory/gpt-backup-kit/",
-   "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
-   "deployment_verified": "2026-10-09 (v1.0.0): deploy-pages run 37885758921 succeeded; 58/58 Playwright E2E checks against the live URL (desktop 1280 + mobile 390); 13/13 unit tests; generated MCP stub exercised end-to-end via MCP client on SDK 1.30.0 and 2.3.0.",
-   "created": "2026-10-09",
-   "problem": "OpenAI retires custom GPTs on Dec 11, 2026 (Feb 11, 2027 for approved Enterprise deferrals). 'Migrate to plugin' keeps instructions, knowledge files and apps but drops custom actions, selected model, sharing settings and unpublished edits; there is no GPT export button.",
-   "target_user": "Custom GPT creators (individuals, consultants, teams, GPT Store builders) and workspace admins",
-   "opportunity_score": 7.4,
-   "social_promotion": "drafted (launch/gpt-backup-kit/posts.md), not published: X/Bluesky/Facebook/Mastodon not connected",
-   "analytics": "none (privacy-first; no tracking by design)",
-   "changelog": [
-    {
-     "version": "1.0.0",
-     "date": "2026-10-09",
-     "change": "initial release: backup ZIP, per-GPT migration checklist, SKILL.md, Claude/Gemini instructions, OpenAPI→Python MCP stubs, secret scanner, import/export"
-    }
-   ],
-   "watch": "Update kit.js DATES and the kept/dropped table if OpenAI's retirement FAQ changes; product is time-boxed (useful until ~Feb 2027)"
-  },
-  {
-   "id": "runner-26-check",
-   "name": "Ubuntu 26 Runner Check",
-   "status": "live",
-   "version": "1.0.1",
-   "path": "apps/runner-26-check",
-   "repository": "https://github.com/Abhishek01239/product-factory",
-   "deployment_url": "https://abhishek01239.github.io/product-factory/runner-26-check/",
-   "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
-   "deployment_verified": "2026-10-10 (v1.0.0): deploy-pages run 38025447316 succeeded; live Playwright checks passed (sample, invalid/empty input, bad repo, 404 repo, live public-repo fetch of curl/curl 15 workflows, file upload, pinned-copy download, canary download, Markdown copy, mobile 375px no overflow); all assets 200; tests/ excluded from site (404); 23/23 unit tests; 129 real workflows from 12 popular repos analysed with no remaining false 'Breaks' findings.",
-   "created": "2026-10-10",
-   "problem": "GitHub moves ubuntu-latest to Ubuntu 26.04 between Oct 19 and Nov 19, 2026 (runner-images #14748). The announcement lists version bumps but not removed tools (Java 8, Clang 16-18, GCC 12, Miniconda, Swift, Julia, Fastlane, Pulumi, global tsc/webpack/lerna...), and there is no official pre-migration check.",
-   "target_user": "Developers and DevOps/platform engineers with GitHub Actions or Azure Pipelines jobs on ubuntu-latest",
-   "evidence": [
-    "actions/runner-images#14748 (48 comments; a commenter asks which preinstalled programs are most likely to break, unanswered)",
-    "Ubuntu2404 vs Ubuntu2604 image READMEs and toolset JSON diff",
-    "Dev.to / Qiita / velog migration write-ups (Oct 2026) noting no official checker",
-    "Announcement table says Java 17 stays default while README/toolset say 25"
-   ],
-   "existing_solutions": [
-    "getreadystack actions-expiry-lint (dated runner/action/Node checks, no per-tool 26.04 analysis)",
-    "Node 24 / node20 action scanners",
-    "runner-drift CLI (diffs runner tool output, needs runs)",
-    "actionlint/zizmor (syntax/security)"
-   ],
-   "differentiation": "Step-level detection of tools removed from the 26.04 image with line numbers, mitigation-aware (setup-* actions, npx, services, containers), plus pinned-copy and side-by-side canary workflow generation; works on public repos without a token; Azure Pipelines support.",
-   "opportunity_score": 7.1,
-   "scores": {
-    "severity": 7,
-    "users": 9,
-    "trend": 8,
-    "competition": 6,
-    "ease": 8,
-    "differentiation": 7,
-    "distribution": 7,
-    "monetization": 3,
-    "mvp_speed": 9
-   },
-   "monetization": "none now; possible later: GitHub App/Action that comments on PRs before future image migrations (free for public repos).",
-   "social_promotion": "drafted (launch/runner-26-check/posts.md), not published: X/Bluesky/Facebook/Mastodon not connected",
-   "analytics": "none (privacy-first; no tracking by design)",
-   "changelog": [
-    {
-     "version": "1.0.0",
-     "date": "2026-10-10",
-     "change": "initial release: repo/paste/upload input, runs-on resolution, removed-tool and version-change rules from official toolsets, macOS 14/22.04 label checks, Markdown checklist, pinned copy, canary workflow, Azure Pipelines"
+      "id": "gpt-backup-kit",
+      "name": "GPT Backup Kit",
+      "status": "live",
+      "version": "1.0.0",
+      "path": "apps/gpt-backup-kit",
+      "repository": "https://github.com/Abhishek01239/product-factory",
+      "deployment_url": "https://abhishek01239.github.io/product-factory/gpt-backup-kit/",
+      "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
+      "deployment_verified": "2026-10-09 (v1.0.0): deploy-pages run 37885758921 succeeded; 58/58 Playwright E2E checks against the live URL (desktop 1280 + mobile 390); 13/13 unit tests; generated MCP stub exercised end-to-end via MCP client on SDK 1.30.0 and 2.3.0.",
+      "created": "2026-10-09",
+      "problem": "OpenAI retires custom GPTs on Dec 11, 2026 (Feb 11, 2027 for approved Enterprise deferrals). 'Migrate to plugin' keeps instructions, knowledge files and apps but drops custom actions, selected model, sharing settings and unpublished edits; there is no GPT export button.",
+      "target_user": "Custom GPT creators (individuals, consultants, teams, GPT Store builders) and workspace admins",
+      "opportunity_score": 7.4,
+      "social_promotion": "drafted (launch/gpt-backup-kit/posts.md), not published: X/Bluesky/Facebook/Mastodon not connected",
+      "analytics": "none (privacy-first; no tracking by design)",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-10-09",
+          "change": "initial release: backup ZIP, per-GPT migration checklist, SKILL.md, Claude/Gemini instructions, OpenAPI→Python MCP stubs, secret scanner, import/export"
+        }
+      ],
+      "watch": "Update kit.js DATES and the kept/dropped table if OpenAI's retirement FAQ changes; product is time-boxed (useful until ~Feb 2027)"
     },
     {
-     "version": "1.0.1",
-     "date": "2026-10-10",
-     "change": "singular/plural wording in summary"
-    }
-   ]
-  },
-  {
-   "id": "claude-55-check",
-   "name": "Claude 5.5 Request Check",
-   "status": "live",
-   "version": "1.0.0",
-   "path": "apps/claude-55-check",
-   "repository": "https://github.com/Abhishek01239/product-factory",
-   "deployment_url": "https://abhishek01239.github.io/product-factory/claude-55-check/",
-   "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
-   "deployment_verified": "2026-10-11 (v1.0.0): deploy-pages run 38112722863 succeeded; all assets 200, tests/ 404; live Playwright checks desktop 1280 + mobile 375 (sample request, target switch to Haiku, invalid JSON, Python-dict input, code sample, irrelevant code, bad repo input, live public-repo scan of valentinfrlch/ha-llmvision: 65 files read, 29 analysed), no console errors, no horizontal overflow; 27/27 unit tests; engine run on 5 real repos (ha-llmvision, llm-anthropic, anthropic-quickstarts, aider, claude-cookbooks) and 4 false-positive classes fixed.",
-   "created": "2026-10-11",
-   "problem": "Claude Sonnet 4.5 retires on the Claude API Nov 30, 2026 (Haiku 4.5 / Opus 4.5 tentatively from Oct 15 / Nov 24). Sonnet 5.5, Opus 5.5 and Haiku 5.5 return 400 for settings older code sends routinely (assistant prefill, non-default sampling, budget_tokens, thinking disabled, forced tool_choice on Sonnet/Opus, legacy computer-use tools, output_format), and the rules differ per model and platform.",
-   "target_user": "Developers and maintainers of apps/libraries calling the Claude API (direct, Bedrock, Vertex) who must migrate off 4.5 models",
-   "evidence": [
-    "Anthropic Sonnet/Opus/Haiku 5.5 migration guides (settings that return errors)",
-    "Anthropic model deprecations page (Sonnet 4.5 retires Nov 30, 2026)",
-    "valentinfrlch/ha-llmvision#742 (forced tool_choice 400 on Sonnet 5.5)",
-    "Developer write-ups Oct 2026 (tenten.co, claude-media, importstatic, 7it) explaining the 400s"
-   ],
-   "existing_solutions": [
-    "Anthropic /claude-api migrate skill (Claude Code, edits code, needs Claude Code)",
-    "Blog checklists (generic, blur per-model differences)",
-    "importstatic.com snippet (request-body check function)"
-   ],
-   "differentiation": "Free, no install, no key; exact per-target (Sonnet/Opus/Haiku 5.5) and per-platform (API/GCP/Bedrock) request check that also generates the corrected body; repo-wide line-level scan of public GitHub repos; Markdown checklist for PRs.",
-   "opportunity_score": 6.9,
-   "scores": {
-    "severity": 8,
-    "users": 8,
-    "trend": 8,
-    "competition": 5,
-    "ease": 8,
-    "differentiation": 6,
-    "distribution": 7,
-    "monetization": 3,
-    "mvp_speed": 9
-   },
-   "monetization": "none now; possible later: GitHub Action that comments on PRs when Claude request settings break on a target model (free for public repos).",
-   "social_promotion": "drafted (launch/claude-55-check/posts.md), not published: X/Bluesky/Facebook/Mastodon not connected",
-   "analytics": "none (privacy-first; no tracking by design)",
-   "changelog": [
+      "id": "runner-26-check",
+      "name": "Ubuntu 26 Runner Check",
+      "status": "live",
+      "version": "1.0.1",
+      "path": "apps/runner-26-check",
+      "repository": "https://github.com/Abhishek01239/product-factory",
+      "deployment_url": "https://abhishek01239.github.io/product-factory/runner-26-check/",
+      "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
+      "deployment_verified": "2026-10-10 (v1.0.0): deploy-pages run 38025447316 succeeded; live Playwright checks passed (sample, invalid/empty input, bad repo, 404 repo, live public-repo fetch of curl/curl 15 workflows, file upload, pinned-copy download, canary download, Markdown copy, mobile 375px no overflow); all assets 200; tests/ excluded from site (404); 23/23 unit tests; 129 real workflows from 12 popular repos analysed with no remaining false 'Breaks' findings.",
+      "created": "2026-10-10",
+      "problem": "GitHub moves ubuntu-latest to Ubuntu 26.04 between Oct 19 and Nov 19, 2026 (runner-images #14748). The announcement lists version bumps but not removed tools (Java 8, Clang 16-18, GCC 12, Miniconda, Swift, Julia, Fastlane, Pulumi, global tsc/webpack/lerna...), and there is no official pre-migration check.",
+      "target_user": "Developers and DevOps/platform engineers with GitHub Actions or Azure Pipelines jobs on ubuntu-latest",
+      "evidence": [
+        "actions/runner-images#14748 (48 comments; a commenter asks which preinstalled programs are most likely to break, unanswered)",
+        "Ubuntu2404 vs Ubuntu2604 image READMEs and toolset JSON diff",
+        "Dev.to / Qiita / velog migration write-ups (Oct 2026) noting no official checker",
+        "Announcement table says Java 17 stays default while README/toolset say 25"
+      ],
+      "existing_solutions": [
+        "getreadystack actions-expiry-lint (dated runner/action/Node checks, no per-tool 26.04 analysis)",
+        "Node 24 / node20 action scanners",
+        "runner-drift CLI (diffs runner tool output, needs runs)",
+        "actionlint/zizmor (syntax/security)"
+      ],
+      "differentiation": "Step-level detection of tools removed from the 26.04 image with line numbers, mitigation-aware (setup-* actions, npx, services, containers), plus pinned-copy and side-by-side canary workflow generation; works on public repos without a token; Azure Pipelines support.",
+      "opportunity_score": 7.1,
+      "scores": {
+        "severity": 7,
+        "users": 9,
+        "trend": 8,
+        "competition": 6,
+        "ease": 8,
+        "differentiation": 7,
+        "distribution": 7,
+        "monetization": 3,
+        "mvp_speed": 9
+      },
+      "monetization": "none now; possible later: GitHub App/Action that comments on PRs before future image migrations (free for public repos).",
+      "social_promotion": "drafted (launch/runner-26-check/posts.md), not published: X/Bluesky/Facebook/Mastodon not connected",
+      "analytics": "none (privacy-first; no tracking by design)",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-10-10",
+          "change": "initial release: repo/paste/upload input, runs-on resolution, removed-tool and version-change rules from official toolsets, macOS 14/22.04 label checks, Markdown checklist, pinned copy, canary workflow, Azure Pipelines"
+        },
+        {
+          "version": "1.0.1",
+          "date": "2026-10-10",
+          "change": "singular/plural wording in summary"
+        }
+      ]
+    },
     {
-     "version": "1.0.0",
-     "date": "2026-10-11",
-     "change": "initial release: request JSON check + corrected body for Sonnet/Opus/Haiku 5.5 on API/GCP/Bedrock; code paste/upload/notebook scan; public repo scan; grouped findings; Markdown checklist"
-    }
-   ]
-  },
-  {
-   "id": "npm12-check",
-   "name": "npm 12 Readiness Check",
-   "status": "live",
-   "version": "1.0.0",
-   "path": "apps/npm12-check",
-   "repository": "https://github.com/Abhishek01239/product-factory",
-   "deployment_url": "https://abhishek01239.github.io/product-factory/npm12-check/",
-   "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
-   "deployment_verified": "2026-10-12 (v1.0.0): deploy-pages run 38205672261 succeeded; all assets 200, tests/ 404; live Playwright checks desktop 1280 + mobile 390 (sample, decision change, pin toggle, file upload, empty/invalid input, bad repo, 404 repo, live scan of jitsi/jitsi-meet: 1766 locked packages), 9/9 install scripts fetched from registry.npmjs.org under the live CSP, no console errors, no horizontal overflow; 25/25 unit tests; engine run on 8 real repos (vscode, cypress kitchensink, electron-quick-start, jitsi-meet, bitwarden/clients, puppeteer, typeorm) and 5 detection bugs fixed.",
-   "created": "2026-10-12",
-   "problem": "npm 12 (12.0.0 Jul 8; 12.2.0 = registry latest since Sep 30, 2026) skips dependency preinstall/install/postinstall scripts unless approved in package.json allowScripts, and the install still exits 0, so Puppeteer/Prisma/sqlite3/bcrypt 5 fail later at runtime. It also refuses git and tarball-URL deps (allow-git/allow-remote=none), throws on unknown/abbreviated CLI flags, rejects --allow-scripts on project installs, removed shrinkwrap/adduser/star, and changed npm view --json. Node.js still bundles npm 11 or older, so it lands via npm i -g npm@latest, images, Corepack.",
-   "target_user": "JavaScript/Node developers and CI maintainers using npm lockfiles who upgrade (or whose CI upgrades) to npm 12",
-   "evidence": [
-    "npm 12 changelog (breaking changes) https://docs.npmjs.com/cli/v12/using-npm/changelog/",
-    "Hands-on tests of popular packages under npm 12 https://nilaykabariya.blog/tested/npm-12-breaking-changes-tested",
-    "GitHub issues Oct 10-12, 2026: withastro/astro#17745 (package has install scripts not covered by allowScripts), pingdotgg/t3code#9398 (EALLOWSCRIPTS), earendil-works/pi#6600 (npm 11.16 warns, npm 12 blocks), npm/cli#9912 and #9835",
-    "Coverage Oct 2026: SecurityWeek, NodeSource 'not a silver bullet', CI migration playbooks (digitalapplied, codercops)",
-    "Real repos already adapting: microsoft/vscode and cypress-io/cypress-example-kitchensink commit allowScripts; jitsi/jitsi-meet has 6 git + 4 tarball deps (1 transitive) refused by default"
-   ],
-   "existing_solutions": [
-    "npm install-scripts ls/approve (needs npm 12 + installed tree; lists all scripts, no needed/not-needed verdict)",
-    "npm-script-lens CLI",
-    "@lavamoat/allow-scripts (older allowlist tool)",
-    "Blog checklists (installsafe.dev, ossprey, others)"
-   ],
-   "differentiation": "Works before upgrading with no install: reads package-lock.json in the browser (or a public repo), fetches each package's real install script from the registry, gives a breaks / review / works-without verdict (documented list + script heuristics, version-aware e.g. bcrypt 5 vs 6), checks allowScripts coverage incl. stale pins, git/tarball deps incl. whether root is enough, CI/Docker lines (unknown/abbrev flags from npm's real 184 config names, EALLOWSCRIPTS, removed commands, Node engine), and generates allowScripts JSON + commands + .npmrc lines.",
-   "opportunity_score": 6.7,
-   "scores": {
-    "severity": 7,
-    "users": 9,
-    "trend": 7,
-    "competition": 5,
-    "ease": 8,
-    "differentiation": 6,
-    "distribution": 7,
-    "monetization": 3,
-    "mvp_speed": 8
-   },
-   "monetization": "none now; possible later: GitHub Action that comments on PRs when a new dependency has an unapproved install script (free for public repos).",
-   "social_promotion": "drafted (launch/npm12-check/posts.md), not published: X/Bluesky/Facebook/Mastodon/Threads not connected",
-   "analytics": "none (privacy-first; no tracking by design)",
-   "changelog": [
+      "id": "claude-55-check",
+      "name": "Claude 5.5 Request Check",
+      "status": "live",
+      "version": "1.0.0",
+      "path": "apps/claude-55-check",
+      "repository": "https://github.com/Abhishek01239/product-factory",
+      "deployment_url": "https://abhishek01239.github.io/product-factory/claude-55-check/",
+      "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
+      "deployment_verified": "2026-10-11 (v1.0.0): deploy-pages run 38112722863 succeeded; all assets 200, tests/ 404; live Playwright checks desktop 1280 + mobile 375 (sample request, target switch to Haiku, invalid JSON, Python-dict input, code sample, irrelevant code, bad repo input, live public-repo scan of valentinfrlch/ha-llmvision: 65 files read, 29 analysed), no console errors, no horizontal overflow; 27/27 unit tests; engine run on 5 real repos (ha-llmvision, llm-anthropic, anthropic-quickstarts, aider, claude-cookbooks) and 4 false-positive classes fixed.",
+      "created": "2026-10-11",
+      "problem": "Claude Sonnet 4.5 retires on the Claude API Nov 30, 2026 (Haiku 4.5 / Opus 4.5 tentatively from Oct 15 / Nov 24). Sonnet 5.5, Opus 5.5 and Haiku 5.5 return 400 for settings older code sends routinely (assistant prefill, non-default sampling, budget_tokens, thinking disabled, forced tool_choice on Sonnet/Opus, legacy computer-use tools, output_format), and the rules differ per model and platform.",
+      "target_user": "Developers and maintainers of apps/libraries calling the Claude API (direct, Bedrock, Vertex) who must migrate off 4.5 models",
+      "evidence": [
+        "Anthropic Sonnet/Opus/Haiku 5.5 migration guides (settings that return errors)",
+        "Anthropic model deprecations page (Sonnet 4.5 retires Nov 30, 2026)",
+        "valentinfrlch/ha-llmvision#742 (forced tool_choice 400 on Sonnet 5.5)",
+        "Developer write-ups Oct 2026 (tenten.co, claude-media, importstatic, 7it) explaining the 400s"
+      ],
+      "existing_solutions": [
+        "Anthropic /claude-api migrate skill (Claude Code, edits code, needs Claude Code)",
+        "Blog checklists (generic, blur per-model differences)",
+        "importstatic.com snippet (request-body check function)"
+      ],
+      "differentiation": "Free, no install, no key; exact per-target (Sonnet/Opus/Haiku 5.5) and per-platform (API/GCP/Bedrock) request check that also generates the corrected body; repo-wide line-level scan of public GitHub repos; Markdown checklist for PRs.",
+      "opportunity_score": 6.9,
+      "scores": {
+        "severity": 8,
+        "users": 8,
+        "trend": 8,
+        "competition": 5,
+        "ease": 8,
+        "differentiation": 6,
+        "distribution": 7,
+        "monetization": 3,
+        "mvp_speed": 9
+      },
+      "monetization": "none now; possible later: GitHub Action that comments on PRs when Claude request settings break on a target model (free for public repos).",
+      "social_promotion": "drafted (launch/claude-55-check/posts.md), not published: X/Bluesky/Facebook/Mastodon not connected",
+      "analytics": "none (privacy-first; no tracking by design)",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-10-11",
+          "change": "initial release: request JSON check + corrected body for Sonnet/Opus/Haiku 5.5 on API/GCP/Bedrock; code paste/upload/notebook scan; public repo scan; grouped findings; Markdown checklist"
+        }
+      ]
+    },
     {
-     "version": "1.0.0",
-     "date": "2026-10-12",
-     "change": "initial release: lockfile install-script audit with registry script lookup + verdicts, allowScripts coverage/pins, git/remote deps, CI/Docker/package.json script scan, allowScripts/commands/.npmrc generator, public repo scan, Markdown checklist"
-    }
-   ]
-  },
-  {
-   "id": "py315-check",
-   "name": "Python 3.15 Readiness Check",
-   "status": "live",
-   "version": "1.0.0",
-   "path": "apps/py315-check",
-   "repository": "https://github.com/Abhishek01239/product-factory",
-   "deployment_url": "https://abhishek01239.github.io/product-factory/py315-check/",
-   "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
-   "deployment_verified": "2026-10-13 (v1.0.0): deploy-pages run 38348416477 succeeded; all assets 200, tests/ 404; live Playwright checks desktop 1280 + mobile 390 under the live CSP: sample (9 fixes, upgrades numpy 2.5.2 / pandas 3.0.6 / psycopg2-binary 2.9.13, pydantic-core routed to pydantic), uv.lock upload (pydantic: 163 pkgs, 12 flagged, offline), ?repo= deep link scan of open-webui/open-webui (337 deps, 60 to fix, verdicts spot-checked against PyPI), invalid/404 repo and empty input errors; no console errors other than the intentional 404; 16/16 unit tests; engine run on pydantic, poetry, flask, open-webui; 2 false-positive classes fixed (platform-only packages, test fixture lockfiles).",
-   "created": "2026-10-13",
-   "problem": "Python 3.15.0 (Oct 9, 2026) needs new cp315/abi3 wheels; releases pinned before October never get them, so pip compiles numpy (<2.5.2), pandas (<3.0.6), psycopg2-binary (<2.9.13), pydantic-core, PyYAML (no 3.15 wheels yet) from source and slim/Alpine builds fail; torch 2.12.1 and ctranslate2 have no installable file at all. Docker python:3/latest/slim/alpine and setup-python '3.x' already resolve to 3.15, so teams land on it without choosing. 3.15 also removed sre_* modules, CGIHTTPRequestHandler, glob0/1, co_lnotab, load_module etc., and made strptime %d-without-year and positional sqlite3.connect args errors.",
-   "target_user": "Python developers, maintainers and CI/Docker owners with pinned requirements/uv/Poetry/Pipenv lockfiles",
-   "evidence": [
-    "What's new in Python 3.15 (Removed, Porting) https://docs.python.org/3/whatsnew/3.15.html",
-    "Docker official-images library/python: 3, latest, slim, alpine -> 3.15.0 https://github.com/docker-library/official-images/blob/master/library/python",
-    "actions/python-versions manifest includes 3.15.0 (setup-python '3.x' resolves to it)",
-    "pyreadiness.org/3.15: 90/360 top packages declare 3.15 support (Oct 13)",
-    "PyPI JSON checked Oct 13: numpy cp315 wheels only from 2.5.2, pandas from 3.0.6, psycopg2-binary from 2.9.13, PyYAML none; pip download --only-binary --python-version 3.15 numpy==2.2.6 fails",
-    "Real repos: open-webui/open-webui uv.lock has 8 packages with no installable 3.15 file (torch 2.12.1, ctranslate2 4.8.0, pywin32 on Windows) and 3 compiling from source; pydantic/pydantic locks 26 packages without 3.15 wheels"
-   ],
-   "existing_solutions": [
-    "pyreadiness.org (latest release of top 360, classifier-based)",
-    "check-pypi-metadata / pip download --only-binary (CLI, per package)",
-    "ruff/pyupgrade (code rules, not wheel availability)",
-    "vermin (minimum version detection)"
-   ],
-   "differentiation": "Checks the exact pinned versions in your lockfile (requirements, uv.lock offline, poetry.lock offline, pylock.toml, Pipfile.lock) against real wheel tags per platform incl. abi3/abi3t/free-threaded, finds the smallest non-prerelease upgrade with wheels on all selected platforms, routes exact-pinned children to their parent (pydantic -> pydantic-core), plus 3.15 removed-API code scan and floating CI/Docker detection, all in the browser with no install.",
-   "opportunity_score": 7.0,
-   "scores": {
-    "severity": 6,
-    "users": 9,
-    "trend": 8,
-    "competition": 6,
-    "ease": 8,
-    "differentiation": 7,
-    "distribution": 7,
-    "monetization": 3,
-    "mvp_speed": 9
-   },
-   "monetization": "none now; possible later: GitHub Action / PR comment that runs the same check on every lockfile change (free for public repos).",
-   "social_promotion": "drafted (launch/py315-check/posts.md), not published: X/Bluesky/Facebook/Mastodon/Threads not connected",
-   "analytics": "none (privacy-first; no tracking by design)",
-   "changelog": [
+      "id": "npm12-check",
+      "name": "npm 12 Readiness Check",
+      "status": "live",
+      "version": "1.0.0",
+      "path": "apps/npm12-check",
+      "repository": "https://github.com/Abhishek01239/product-factory",
+      "deployment_url": "https://abhishek01239.github.io/product-factory/npm12-check/",
+      "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
+      "deployment_verified": "2026-10-12 (v1.0.0): deploy-pages run 38205672261 succeeded; all assets 200, tests/ 404; live Playwright checks desktop 1280 + mobile 390 (sample, decision change, pin toggle, file upload, empty/invalid input, bad repo, 404 repo, live scan of jitsi/jitsi-meet: 1766 locked packages), 9/9 install scripts fetched from registry.npmjs.org under the live CSP, no console errors, no horizontal overflow; 25/25 unit tests; engine run on 8 real repos (vscode, cypress kitchensink, electron-quick-start, jitsi-meet, bitwarden/clients, puppeteer, typeorm) and 5 detection bugs fixed.",
+      "created": "2026-10-12",
+      "problem": "npm 12 (12.0.0 Jul 8; 12.2.0 = registry latest since Sep 30, 2026) skips dependency preinstall/install/postinstall scripts unless approved in package.json allowScripts, and the install still exits 0, so Puppeteer/Prisma/sqlite3/bcrypt 5 fail later at runtime. It also refuses git and tarball-URL deps (allow-git/allow-remote=none), throws on unknown/abbreviated CLI flags, rejects --allow-scripts on project installs, removed shrinkwrap/adduser/star, and changed npm view --json. Node.js still bundles npm 11 or older, so it lands via npm i -g npm@latest, images, Corepack.",
+      "target_user": "JavaScript/Node developers and CI maintainers using npm lockfiles who upgrade (or whose CI upgrades) to npm 12",
+      "evidence": [
+        "npm 12 changelog (breaking changes) https://docs.npmjs.com/cli/v12/using-npm/changelog/",
+        "Hands-on tests of popular packages under npm 12 https://nilaykabariya.blog/tested/npm-12-breaking-changes-tested",
+        "GitHub issues Oct 10-12, 2026: withastro/astro#17745 (package has install scripts not covered by allowScripts), pingdotgg/t3code#9398 (EALLOWSCRIPTS), earendil-works/pi#6600 (npm 11.16 warns, npm 12 blocks), npm/cli#9912 and #9835",
+        "Coverage Oct 2026: SecurityWeek, NodeSource 'not a silver bullet', CI migration playbooks (digitalapplied, codercops)",
+        "Real repos already adapting: microsoft/vscode and cypress-io/cypress-example-kitchensink commit allowScripts; jitsi/jitsi-meet has 6 git + 4 tarball deps (1 transitive) refused by default"
+      ],
+      "existing_solutions": [
+        "npm install-scripts ls/approve (needs npm 12 + installed tree; lists all scripts, no needed/not-needed verdict)",
+        "npm-script-lens CLI",
+        "@lavamoat/allow-scripts (older allowlist tool)",
+        "Blog checklists (installsafe.dev, ossprey, others)"
+      ],
+      "differentiation": "Works before upgrading with no install: reads package-lock.json in the browser (or a public repo), fetches each package's real install script from the registry, gives a breaks / review / works-without verdict (documented list + script heuristics, version-aware e.g. bcrypt 5 vs 6), checks allowScripts coverage incl. stale pins, git/tarball deps incl. whether root is enough, CI/Docker lines (unknown/abbrev flags from npm's real 184 config names, EALLOWSCRIPTS, removed commands, Node engine), and generates allowScripts JSON + commands + .npmrc lines.",
+      "opportunity_score": 6.7,
+      "scores": {
+        "severity": 7,
+        "users": 9,
+        "trend": 7,
+        "competition": 5,
+        "ease": 8,
+        "differentiation": 6,
+        "distribution": 7,
+        "monetization": 3,
+        "mvp_speed": 8
+      },
+      "monetization": "none now; possible later: GitHub Action that comments on PRs when a new dependency has an unapproved install script (free for public repos).",
+      "social_promotion": "drafted (launch/npm12-check/posts.md), not published: X/Bluesky/Facebook/Mastodon/Threads not connected",
+      "analytics": "none (privacy-first; no tracking by design)",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-10-12",
+          "change": "initial release: lockfile install-script audit with registry script lookup + verdicts, allowScripts coverage/pins, git/remote deps, CI/Docker/package.json script scan, allowScripts/commands/.npmrc generator, public repo scan, Markdown checklist"
+        }
+      ]
+    },
     {
-     "version": "1.0.0",
-     "date": "2026-10-13",
-     "change": "initial release: pinned-dependency 3.15 wheel check per platform via PyPI JSON + Simple API, smallest upgrade, parent-pin detection, uv/poetry/pylock offline, requires-python caps, removed-API/behaviour code rules, UTF-8 default note, .pth imports, floating Docker/setup-python detection, public repo scan, Markdown checklist"
+      "id": "py315-check",
+      "name": "Python 3.15 Readiness Check",
+      "status": "live",
+      "version": "1.0.0",
+      "path": "apps/py315-check",
+      "repository": "https://github.com/Abhishek01239/product-factory",
+      "deployment_url": "https://abhishek01239.github.io/product-factory/py315-check/",
+      "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
+      "deployment_verified": "2026-10-13 (v1.0.0): deploy-pages run 38348416477 succeeded; all assets 200, tests/ 404; live Playwright checks desktop 1280 + mobile 390 under the live CSP: sample (9 fixes, upgrades numpy 2.5.2 / pandas 3.0.6 / psycopg2-binary 2.9.13, pydantic-core routed to pydantic), uv.lock upload (pydantic: 163 pkgs, 12 flagged, offline), ?repo= deep link scan of open-webui/open-webui (337 deps, 60 to fix, verdicts spot-checked against PyPI), invalid/404 repo and empty input errors; no console errors other than the intentional 404; 16/16 unit tests; engine run on pydantic, poetry, flask, open-webui; 2 false-positive classes fixed (platform-only packages, test fixture lockfiles).",
+      "created": "2026-10-13",
+      "problem": "Python 3.15.0 (Oct 9, 2026) needs new cp315/abi3 wheels; releases pinned before October never get them, so pip compiles numpy (<2.5.2), pandas (<3.0.6), psycopg2-binary (<2.9.13), pydantic-core, PyYAML (no 3.15 wheels yet) from source and slim/Alpine builds fail; torch 2.12.1 and ctranslate2 have no installable file at all. Docker python:3/latest/slim/alpine and setup-python '3.x' already resolve to 3.15, so teams land on it without choosing. 3.15 also removed sre_* modules, CGIHTTPRequestHandler, glob0/1, co_lnotab, load_module etc., and made strptime %d-without-year and positional sqlite3.connect args errors.",
+      "target_user": "Python developers, maintainers and CI/Docker owners with pinned requirements/uv/Poetry/Pipenv lockfiles",
+      "evidence": [
+        "What's new in Python 3.15 (Removed, Porting) https://docs.python.org/3/whatsnew/3.15.html",
+        "Docker official-images library/python: 3, latest, slim, alpine -> 3.15.0 https://github.com/docker-library/official-images/blob/master/library/python",
+        "actions/python-versions manifest includes 3.15.0 (setup-python '3.x' resolves to it)",
+        "pyreadiness.org/3.15: 90/360 top packages declare 3.15 support (Oct 13)",
+        "PyPI JSON checked Oct 13: numpy cp315 wheels only from 2.5.2, pandas from 3.0.6, psycopg2-binary from 2.9.13, PyYAML none; pip download --only-binary --python-version 3.15 numpy==2.2.6 fails",
+        "Real repos: open-webui/open-webui uv.lock has 8 packages with no installable 3.15 file (torch 2.12.1, ctranslate2 4.8.0, pywin32 on Windows) and 3 compiling from source; pydantic/pydantic locks 26 packages without 3.15 wheels"
+      ],
+      "existing_solutions": [
+        "pyreadiness.org (latest release of top 360, classifier-based)",
+        "check-pypi-metadata / pip download --only-binary (CLI, per package)",
+        "ruff/pyupgrade (code rules, not wheel availability)",
+        "vermin (minimum version detection)"
+      ],
+      "differentiation": "Checks the exact pinned versions in your lockfile (requirements, uv.lock offline, poetry.lock offline, pylock.toml, Pipfile.lock) against real wheel tags per platform incl. abi3/abi3t/free-threaded, finds the smallest non-prerelease upgrade with wheels on all selected platforms, routes exact-pinned children to their parent (pydantic -> pydantic-core), plus 3.15 removed-API code scan and floating CI/Docker detection, all in the browser with no install.",
+      "opportunity_score": 7.0,
+      "scores": {
+        "severity": 6,
+        "users": 9,
+        "trend": 8,
+        "competition": 6,
+        "ease": 8,
+        "differentiation": 7,
+        "distribution": 7,
+        "monetization": 3,
+        "mvp_speed": 9
+      },
+      "monetization": "none now; possible later: GitHub Action / PR comment that runs the same check on every lockfile change (free for public repos).",
+      "social_promotion": "drafted (launch/py315-check/posts.md), not published: X/Bluesky/Facebook/Mastodon/Threads not connected",
+      "analytics": "none (privacy-first; no tracking by design)",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-10-13",
+          "change": "initial release: pinned-dependency 3.15 wheel check per platform via PyPI JSON + Simple API, smallest upgrade, parent-pin detection, uv/poetry/pylock offline, requires-python caps, removed-API/behaviour code rules, UTF-8 default note, .pth imports, floating Docker/setup-python detection, public repo scan, Markdown checklist"
+        }
+      ]
+    },
+    {
+      "id": "supabase-grants-check",
+      "name": "Supabase Grants Check",
+      "status": "live",
+      "version": "1.0.0",
+      "path": "apps/supabase-grants-check",
+      "repository": "https://github.com/Abhishek01239/product-factory",
+      "deployment_url": "https://abhishek01239.github.io/product-factory/supabase-grants-check/",
+      "deployment_target": "GitHub Pages (.github/workflows/pages.yml)",
+      "deployment_verified": "2026-10-14 (v1.0.0): deploy-pages run 38513492507 succeeded; all assets 200, tests/ 404; live Playwright desktop 1366 + mobile 390 under the live CSP: sample app (2 breaking, 3 review), pasted Postgres 18 snapshot (RLS-off, sequence, view, definer, still-auto-granting), ?repo= deep links vercel/nextjs-subscription-payments and a 176-migration Lovable app (fahadazhar1/alchemy-stock-flow), 404 repo, invalid repo, empty input and bad snapshot errors; no console errors; no horizontal overflow.",
+      "created": "2026-10-14",
+      "problem": "On Oct 30, 2026 Supabase applies explicit Data API grants to all existing projects (new projects since May 30): new public tables are no longer granted to anon/authenticated/service_role, so the next CREATE TABLE fails every supabase-js/REST/GraphQL call with 42501, even with service_role. Migrations that relied on auto-grants already fail on new projects/branches. The common fix (GRANT ALL ON ALL TABLES TO anon) re-exposes tables without RLS.",
+      "target_user": "Supabase developers, including people building with Lovable/Bolt/AI tools whose migrations never contain GRANTs",
+      "evidence": [
+        "Supabase changelog 45329 'Breaking change: tables not exposed to Data and GraphQL API automatically' https://supabase.com/changelog/45329-breaking-change-tables-not-exposed-to-data-and-graphql-api-automatically",
+        "Supabase docs: Securing your API, Hardening the Data API, 42501 troubleshooting",
+        "Many Oct 2026 guides: dev.to (x3blank, cekuu35, amichayilan, toritic), imprintedowl, wakatchi, theclarity.today, elvisonunwa (Lovable permission denied), checkyourvibe",
+        "UpGuard/hexnode Sept 2026: ~16k Supabase databases readable due to RLS gaps",
+        "Competition checked: supabase-security CLI (~15 npm downloads/week, web check gated by email), $490 paid fix service, bettersupabase (framework); none derive grants from app code"
+      ],
+      "solution": "Browser-only checker: replays supabase/migrations + schemas (tables, views, serial sequences, RLS, policies, grants/revokes, default privileges, definer functions), reads supabase-js calls incl. embedded resources and server/admin context, optional read-only catalog snapshot; reports breaking/open/auto-reliant tables and writes a least-privilege per-table GRANT migration + checklist.",
+      "differentiation": "Grants derived from your own code and policies (not GRANT ALL), no email/sign-up/keys, works on a public repo link or local folder, Postgres-verified privilege rules (update/delete/upsert need SELECT; serial needs sequence USAGE; identity doesn't).",
+      "tests": "18 unit tests; end-to-end on PostgreSQL 18 (before: 42501 for every call; after generated migration: all app ops work, anon blocked); snapshot SQL executed on PG18; generated migration applied after real nextjs-subscription-payments migrations",
+      "monetization": "None added. Possible later: GitHub Action / CI guard that fails PRs adding CREATE TABLE without GRANT.",
+      "social": "Drafted (launch/supabase-grants-check/posts.md + og.png), not published: no social connectors",
+      "score": 7.3
     }
-   ]
-  }
- ],
- "investigated": [
-  {
-   "idea": "EDF deadline tracker for Indian service exporters",
-   "score": 7.9,
-   "decision": "selected",
-   "date": "2026-10-07"
-  },
-  {
-   "idea": "AI agent token budget / cost tracker",
-   "score": 5.7,
-   "decision": "rejected",
-   "reason": "Crowded (Helicone, Langfuse, provider dashboards); weak differentiation for a static MVP",
-   "date": "2026-10-07"
-  },
-  {
-   "idea": "DGFT SAC to RBI purpose-code mismatch helper",
-   "score": 5.6,
-   "decision": "deferred",
-   "reason": "Narrower; better as an EDF Tracker add-on (IMPROVE candidate)",
-   "date": "2026-10-07"
-  },
-  {
-   "idea": "Developer/contractor offboarding access-revocation checklist",
-   "score": 5.6,
-   "decision": "rejected",
-   "reason": "Low trend strength (1 mention); many existing checklists",
-   "date": "2026-10-07"
-  },
-  {
-   "idea": "LibreOffice malicious-spreadsheet checker",
-   "score": 4.8,
-   "decision": "rejected",
-   "reason": "Real fix is patching; a checker risks false assurance",
-   "date": "2026-10-07"
-  },
-  {
-   "idea": "Kubernetes pending-pod provisioning explainer",
-   "score": 4.7,
-   "decision": "rejected",
-   "reason": "Hard to build well without cluster access; small audience",
-   "date": "2026-10-07"
-  },
-  {
-   "idea": "IMPROVE EDF Tracker for RBI 7 Oct clarification (individuals not covered)",
-   "score": 8.2,
-   "decision": "selected",
-   "date": "2026-10-08",
-   "reason": "Live product's core claim became partly wrong; correcting it and answering 'do I need to file?' is the highest-value work"
-  },
-  {
-   "idea": "Reddit RSS replacement (RSS ends 13 Nov 2026, public Data API March 2027)",
-   "score": 5.4,
-   "decision": "rejected",
-   "reason": "Any replacement depends on Reddit data access that Reddit is deliberately closing; ToS/legal risk; revisit only as a migration guide/OPML exporter",
-   "date": "2026-10-08"
-  },
-  {
-   "idea": "NYC Click-to-Cancel helper (rule effective 1 Oct 2026)",
-   "score": 4.9,
-   "decision": "rejected",
-   "reason": "NYC already runs an official complaint portal (NYC311/DCWP); single-city audience; small gap",
-   "date": "2026-10-08"
-  },
-  {
-   "idea": "Custom GPT backup + migration kit (custom GPTs retire Dec 11, 2026)",
-   "score": 7.4,
-   "decision": "selected",
-   "date": "2026-10-09",
-   "reason": "Large audience, hard deadline, OpenAI FAQ confirms what migration drops, no export button; only blog guides exist, no dedicated tool found"
-  },
-  {
-   "idea": "Hemp 0.4 mg total-THC per-container compliance calculator (Nov 12 / Dec 11, 2026)",
-   "score": 6.4,
-   "decision": "rejected",
-   "date": "2026-10-09",
-   "reason": "Several free COA calculators already exist (theleafconcierge, docs-hemp, hempdata); weak differentiation; harder organic distribution"
-  },
-  {
-   "idea": "GitHub Org-mode README converter (GitHub stopped rendering .org)",
-   "score": 5.4,
-   "decision": "rejected",
-   "date": "2026-10-09",
-   "reason": "Small audience; pandoc already does it; may be a bug GitHub fixes"
-  },
-  {
-   "idea": "Mozilla Solo site rescue (deleted Nov 30, 2026; images must be saved one by one)",
-   "score": 5.2,
-   "decision": "rejected",
-   "date": "2026-10-09",
-   "reason": "Export CSV format not public; image CDN CORS unknown; small audience"
-  },
-  {
-   "idea": "IMPROVE EDF Tracker for RBI EDF FAQs",
-   "score": 0,
-   "decision": "deferred",
-   "date": "2026-10-09",
-   "reason": "RBI FAQs not yet published as of 9 Oct 2026; nothing to change"
-  },
-  {
-   "idea": "Ubuntu 26.04 runner migration checker (GitHub Actions)",
-   "score": 7.1,
-   "decision": "selected",
-   "date": "2026-10-10",
-   "reason": "Dated, broad developer pain (Oct 19-Nov 19); official announcement omits removed tools; gap vs existing Node24/expiry linters"
-  },
-  {
-   "idea": "Mealime recipe rescue (app shuts Oct 21, 2026)",
-   "score": 4.9,
-   "decision": "rejected",
-   "date": "2026-10-10",
-   "reason": "Crowded: multiple competitors already ship one-click Mealime importers"
-  },
-  {
-   "idea": "SSH key checker for GitHub Oct 14 RSA/SHA-1 changes",
-   "score": 5.0,
-   "decision": "rejected",
-   "date": "2026-10-10",
-   "reason": "ssh-keygen -l already answers it; GitHub emails affected users"
-  },
-  {
-   "idea": "Windows 11 24H2 end-of-support (Oct 13) checker",
-   "score": 4.8,
-   "decision": "rejected",
-   "date": "2026-10-10",
-   "reason": "Windows Update and many guides already cover it; not a software gap"
-  },
-  {
-   "idea": "Deprecated LLM model-ID scanner (OpenAI Dec 11 shutdowns)",
-   "score": 5.3,
-   "decision": "rejected",
-   "date": "2026-10-10",
-   "reason": "Existing deprecation trackers/scanners; overlaps GPT Backup Kit audience"
-  },
-  {
-   "idea": "IMPROVE EDF Tracker / GPT Backup Kit",
-   "score": 0,
-   "decision": "deferred",
-   "date": "2026-10-10",
-   "reason": "RBI EDF FAQs still unpublished; OpenAI retirement dates unchanged"
-  },
-  {
-   "idea": "Claude 4.5 → 5.5 request compatibility checker",
-   "score": 6.9,
-   "decision": "selected",
-   "date": "2026-10-11",
-   "reason": "Hard Nov 30 deadline, documented 400s that differ per model/platform, real GitHub breakage reports; official fix needs Claude Code"
-  },
-  {
-   "idea": "EU €2 low-value parcel handling fee (Nov 1) calculator",
-   "score": 5.4,
-   "decision": "rejected",
-   "date": "2026-10-11",
-   "reason": "Collected by platforms/customs automatically; calculator adds little over news coverage"
-  },
-  {
-   "idea": "OpenAI Evals export before Oct 31 shutdown",
-   "score": 5.2,
-   "decision": "rejected",
-   "date": "2026-10-11",
-   "reason": "Requires users' OpenAI API key and the dashboard already offers per-run export"
-  },
-  {
-   "idea": "Hume AI shutdown (Nov 13) data export",
-   "score": 4.4,
-   "decision": "rejected",
-   "date": "2026-10-11",
-   "reason": "Small user base; vendor provides export instructions"
-  },
-  {
-   "idea": "IMPROVE Ubuntu 26 Runner Check",
-   "score": 0,
-   "decision": "deferred",
-   "date": "2026-10-11",
-   "reason": "No runner-images 26.04 README/toolset commits since Oct 9; migration starts Oct 19"
-  },
-  {
-   "idea": "npm 12 readiness checker (install scripts / allowScripts)",
-   "score": 6.7,
-   "decision": "selected",
-   "date": "2026-10-12",
-   "reason": "Broad audience, silent failures, fresh issues daily, official tooling lacks needed-vs-not verdict and requires upgrading first"
-  },
-  {
-   "idea": "USDA SNAP retailer stocking-rule checker (Nov 4, 2026)",
-   "score": 4.8,
-   "decision": "rejected",
-   "date": "2026-10-12",
-   "reason": "USDA FNS already ships an official interactive stocking calculator and toolkit"
-  },
-  {
-   "idea": "Gemini Gems backup before Nov 17 move to Skills",
-   "score": 4.5,
-   "decision": "rejected",
-   "date": "2026-10-12",
-   "reason": "Google auto-migrates Gems to Skills; small gap; overlaps GPT Backup Kit"
-  },
-  {
-   "idea": "GitHub App installation token length change (40 -> 520 chars)",
-   "score": 4.0,
-   "decision": "rejected",
-   "date": "2026-10-12",
-   "reason": "Niche; fix is a column-size change, not a tool"
-  },
-  {
-   "idea": ".NET 8/9 end of support Nov 10, 2026",
-   "score": 4.6,
-   "decision": "rejected",
-   "date": "2026-10-12",
-   "reason": "Mature official tooling (upgrade assistant, dotnet list package) covers it"
-  },
-  {
-   "idea": "Python 3.15 Readiness Check (pinned wheels + removed APIs + floating CI)",
-   "score": 7.0,
-   "decision": "selected",
-   "date": "2026-10-13",
-   "reason": "3.15.0 released Oct 9; floating tags already moved; per-pin wheel gap verified on PyPI; existing tools check latest release only"
-  },
-  {
-   "idea": "Australia card surcharge ban (Oct 1, 2026) menu repricer for small businesses",
-   "score": 6.4,
-   "decision": "rejected (keep as candidate)",
-   "date": "2026-10-13",
-   "reason": "Real pain (SMH Oct 10, ASBFEO guidance) but a free calculator already exists (WebGecko) and the factory has no AU distribution; revisit with a per-item price list + ACCC-safe signage angle"
-  },
-  {
-   "idea": "Gemini 2.5 on Vertex retirement Oct 20 request checker",
-   "score": 5.0,
-   "decision": "rejected",
-   "date": "2026-10-13",
-   "reason": "Too close to Claude 5.5 Request Check and earlier rejected model-ID scanner; Google publishes a migration guide"
-  },
-  {
-   "idea": "Passkey lockout / 'passkeys are a trap' debate",
-   "score": 3.5,
-   "decision": "rejected",
-   "date": "2026-10-13",
-   "reason": "Hot discussion but no concrete, software-solvable gap identified"
-  },
-  {
-   "idea": "npm trusted publishing unvalidated configs expiring",
-   "score": 4.0,
-   "decision": "rejected",
-   "date": "2026-10-13",
-   "reason": "Niche (package maintainers only) and npm notifies affected users directly"
-  }
- ]
+  ],
+  "investigated": [
+    {
+      "idea": "EDF deadline tracker for Indian service exporters",
+      "score": 7.9,
+      "decision": "selected",
+      "date": "2026-10-07"
+    },
+    {
+      "idea": "AI agent token budget / cost tracker",
+      "score": 5.7,
+      "decision": "rejected",
+      "reason": "Crowded (Helicone, Langfuse, provider dashboards); weak differentiation for a static MVP",
+      "date": "2026-10-07"
+    },
+    {
+      "idea": "DGFT SAC to RBI purpose-code mismatch helper",
+      "score": 5.6,
+      "decision": "deferred",
+      "reason": "Narrower; better as an EDF Tracker add-on (IMPROVE candidate)",
+      "date": "2026-10-07"
+    },
+    {
+      "idea": "Developer/contractor offboarding access-revocation checklist",
+      "score": 5.6,
+      "decision": "rejected",
+      "reason": "Low trend strength (1 mention); many existing checklists",
+      "date": "2026-10-07"
+    },
+    {
+      "idea": "LibreOffice malicious-spreadsheet checker",
+      "score": 4.8,
+      "decision": "rejected",
+      "reason": "Real fix is patching; a checker risks false assurance",
+      "date": "2026-10-07"
+    },
+    {
+      "idea": "Kubernetes pending-pod provisioning explainer",
+      "score": 4.7,
+      "decision": "rejected",
+      "reason": "Hard to build well without cluster access; small audience",
+      "date": "2026-10-07"
+    },
+    {
+      "idea": "IMPROVE EDF Tracker for RBI 7 Oct clarification (individuals not covered)",
+      "score": 8.2,
+      "decision": "selected",
+      "date": "2026-10-08",
+      "reason": "Live product's core claim became partly wrong; correcting it and answering 'do I need to file?' is the highest-value work"
+    },
+    {
+      "idea": "Reddit RSS replacement (RSS ends 13 Nov 2026, public Data API March 2027)",
+      "score": 5.4,
+      "decision": "rejected",
+      "reason": "Any replacement depends on Reddit data access that Reddit is deliberately closing; ToS/legal risk; revisit only as a migration guide/OPML exporter",
+      "date": "2026-10-08"
+    },
+    {
+      "idea": "NYC Click-to-Cancel helper (rule effective 1 Oct 2026)",
+      "score": 4.9,
+      "decision": "rejected",
+      "reason": "NYC already runs an official complaint portal (NYC311/DCWP); single-city audience; small gap",
+      "date": "2026-10-08"
+    },
+    {
+      "idea": "Custom GPT backup + migration kit (custom GPTs retire Dec 11, 2026)",
+      "score": 7.4,
+      "decision": "selected",
+      "date": "2026-10-09",
+      "reason": "Large audience, hard deadline, OpenAI FAQ confirms what migration drops, no export button; only blog guides exist, no dedicated tool found"
+    },
+    {
+      "idea": "Hemp 0.4 mg total-THC per-container compliance calculator (Nov 12 / Dec 11, 2026)",
+      "score": 6.4,
+      "decision": "rejected",
+      "date": "2026-10-09",
+      "reason": "Several free COA calculators already exist (theleafconcierge, docs-hemp, hempdata); weak differentiation; harder organic distribution"
+    },
+    {
+      "idea": "GitHub Org-mode README converter (GitHub stopped rendering .org)",
+      "score": 5.4,
+      "decision": "rejected",
+      "date": "2026-10-09",
+      "reason": "Small audience; pandoc already does it; may be a bug GitHub fixes"
+    },
+    {
+      "idea": "Mozilla Solo site rescue (deleted Nov 30, 2026; images must be saved one by one)",
+      "score": 5.2,
+      "decision": "rejected",
+      "date": "2026-10-09",
+      "reason": "Export CSV format not public; image CDN CORS unknown; small audience"
+    },
+    {
+      "idea": "IMPROVE EDF Tracker for RBI EDF FAQs",
+      "score": 0,
+      "decision": "deferred",
+      "date": "2026-10-09",
+      "reason": "RBI FAQs not yet published as of 9 Oct 2026; nothing to change"
+    },
+    {
+      "idea": "Ubuntu 26.04 runner migration checker (GitHub Actions)",
+      "score": 7.1,
+      "decision": "selected",
+      "date": "2026-10-10",
+      "reason": "Dated, broad developer pain (Oct 19-Nov 19); official announcement omits removed tools; gap vs existing Node24/expiry linters"
+    },
+    {
+      "idea": "Mealime recipe rescue (app shuts Oct 21, 2026)",
+      "score": 4.9,
+      "decision": "rejected",
+      "date": "2026-10-10",
+      "reason": "Crowded: multiple competitors already ship one-click Mealime importers"
+    },
+    {
+      "idea": "SSH key checker for GitHub Oct 14 RSA/SHA-1 changes",
+      "score": 5.0,
+      "decision": "rejected",
+      "date": "2026-10-10",
+      "reason": "ssh-keygen -l already answers it; GitHub emails affected users"
+    },
+    {
+      "idea": "Windows 11 24H2 end-of-support (Oct 13) checker",
+      "score": 4.8,
+      "decision": "rejected",
+      "date": "2026-10-10",
+      "reason": "Windows Update and many guides already cover it; not a software gap"
+    },
+    {
+      "idea": "Deprecated LLM model-ID scanner (OpenAI Dec 11 shutdowns)",
+      "score": 5.3,
+      "decision": "rejected",
+      "date": "2026-10-10",
+      "reason": "Existing deprecation trackers/scanners; overlaps GPT Backup Kit audience"
+    },
+    {
+      "idea": "IMPROVE EDF Tracker / GPT Backup Kit",
+      "score": 0,
+      "decision": "deferred",
+      "date": "2026-10-10",
+      "reason": "RBI EDF FAQs still unpublished; OpenAI retirement dates unchanged"
+    },
+    {
+      "idea": "Claude 4.5 → 5.5 request compatibility checker",
+      "score": 6.9,
+      "decision": "selected",
+      "date": "2026-10-11",
+      "reason": "Hard Nov 30 deadline, documented 400s that differ per model/platform, real GitHub breakage reports; official fix needs Claude Code"
+    },
+    {
+      "idea": "EU €2 low-value parcel handling fee (Nov 1) calculator",
+      "score": 5.4,
+      "decision": "rejected",
+      "date": "2026-10-11",
+      "reason": "Collected by platforms/customs automatically; calculator adds little over news coverage"
+    },
+    {
+      "idea": "OpenAI Evals export before Oct 31 shutdown",
+      "score": 5.2,
+      "decision": "rejected",
+      "date": "2026-10-11",
+      "reason": "Requires users' OpenAI API key and the dashboard already offers per-run export"
+    },
+    {
+      "idea": "Hume AI shutdown (Nov 13) data export",
+      "score": 4.4,
+      "decision": "rejected",
+      "date": "2026-10-11",
+      "reason": "Small user base; vendor provides export instructions"
+    },
+    {
+      "idea": "IMPROVE Ubuntu 26 Runner Check",
+      "score": 0,
+      "decision": "deferred",
+      "date": "2026-10-11",
+      "reason": "No runner-images 26.04 README/toolset commits since Oct 9; migration starts Oct 19"
+    },
+    {
+      "idea": "npm 12 readiness checker (install scripts / allowScripts)",
+      "score": 6.7,
+      "decision": "selected",
+      "date": "2026-10-12",
+      "reason": "Broad audience, silent failures, fresh issues daily, official tooling lacks needed-vs-not verdict and requires upgrading first"
+    },
+    {
+      "idea": "USDA SNAP retailer stocking-rule checker (Nov 4, 2026)",
+      "score": 4.8,
+      "decision": "rejected",
+      "date": "2026-10-12",
+      "reason": "USDA FNS already ships an official interactive stocking calculator and toolkit"
+    },
+    {
+      "idea": "Gemini Gems backup before Nov 17 move to Skills",
+      "score": 4.5,
+      "decision": "rejected",
+      "date": "2026-10-12",
+      "reason": "Google auto-migrates Gems to Skills; small gap; overlaps GPT Backup Kit"
+    },
+    {
+      "idea": "GitHub App installation token length change (40 -> 520 chars)",
+      "score": 4.0,
+      "decision": "rejected",
+      "date": "2026-10-12",
+      "reason": "Niche; fix is a column-size change, not a tool"
+    },
+    {
+      "idea": ".NET 8/9 end of support Nov 10, 2026",
+      "score": 4.6,
+      "decision": "rejected",
+      "date": "2026-10-12",
+      "reason": "Mature official tooling (upgrade assistant, dotnet list package) covers it"
+    },
+    {
+      "idea": "Python 3.15 Readiness Check (pinned wheels + removed APIs + floating CI)",
+      "score": 7.0,
+      "decision": "selected",
+      "date": "2026-10-13",
+      "reason": "3.15.0 released Oct 9; floating tags already moved; per-pin wheel gap verified on PyPI; existing tools check latest release only"
+    },
+    {
+      "idea": "Australia card surcharge ban (Oct 1, 2026) menu repricer for small businesses",
+      "score": 6.4,
+      "decision": "rejected (keep as candidate)",
+      "date": "2026-10-13",
+      "reason": "Real pain (SMH Oct 10, ASBFEO guidance) but a free calculator already exists (WebGecko) and the factory has no AU distribution; revisit with a per-item price list + ACCC-safe signage angle"
+    },
+    {
+      "idea": "Gemini 2.5 on Vertex retirement Oct 20 request checker",
+      "score": 5.0,
+      "decision": "rejected",
+      "date": "2026-10-13",
+      "reason": "Too close to Claude 5.5 Request Check and earlier rejected model-ID scanner; Google publishes a migration guide"
+    },
+    {
+      "idea": "Passkey lockout / 'passkeys are a trap' debate",
+      "score": 3.5,
+      "decision": "rejected",
+      "date": "2026-10-13",
+      "reason": "Hot discussion but no concrete, software-solvable gap identified"
+    },
+    {
+      "idea": "npm trusted publishing unvalidated configs expiring",
+      "score": 4.0,
+      "decision": "rejected",
+      "date": "2026-10-13",
+      "reason": "Niche (package maintainers only) and npm notifies affected users directly"
+    },
+    {
+      "idea": "Supabase Oct 30 Data API grants checker",
+      "score": 7.3,
+      "decision": "selected",
+      "date": "2026-10-14",
+      "reason": "Dated, platform-wide breaking change in 16 days; huge user base incl. AI-builder users; existing free tools need CLI or email; code-derived least privilege is a clear gap"
+    },
+    {
+      "idea": "Azure DevOps retired task versions checker (73 tasks, Oct 15)",
+      "score": 5.8,
+      "decision": "rejected",
+      "date": "2026-10-14",
+      "reason": "Retirement is warning-only until Mar 2027; enterprise audience with little organic distribution; too close to Runner Check"
+    },
+    {
+      "idea": "OpenAI GPT-4-series deprecation checker (Jan 2027)",
+      "score": 4.8,
+      "decision": "rejected",
+      "date": "2026-10-14",
+      "reason": "Months away and too similar to Claude 5.5 Request Check"
+    },
+    {
+      "idea": "macOS 14 runner retirement (Nov 2, brownouts)",
+      "score": 5.5,
+      "decision": "deferred",
+      "date": "2026-10-14",
+      "reason": "Better as an IMPROVE to Runner Check than a new product"
+    },
+    {
+      "idea": "Atlassian Git Credential Manager <3.0 block (Nov 30)",
+      "score": 4.5,
+      "decision": "rejected",
+      "date": "2026-10-14",
+      "reason": "Fix is a one-line upgrade; Atlassian notifies users"
+    }
+  ]
 }
